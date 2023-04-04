@@ -1,0 +1,13 @@
+body{
+    margin: auto;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    background-color: lightblue;
+    justify-content: center;
+}
+input, label{
+    padding: 10px;
+}
