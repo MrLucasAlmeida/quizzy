@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <link rel="stylesheet" href="./css/postStyle.css">
+</head>
+<body>
+    <div id="header">
+        <div id="logoContainer">
+            <img src="./assets/logo.jpg" alt="logo" id="logo">
+        </div>
+        <div id="headerButtons">
+            <img src="./assets/avatar.png" alt="Avatar" class="avatar">
+            <button id="homeButton">Home</button>
+        </div>
+    </div>
+    <form action="/post">
+        <label for="title">Title</label>
+        <input type="text" name="title">
+        <label for="topic">Topic</label>
+        <input type="text" name="title">
+        <br><br><br><br>
+        <h2>Term 1:</h2>
+        <input type="text" name="front">
+        <input type="text" name="back">
+        <input type="file">
+        <h2>Term 2:</h2>
+        <input type="text" name="front">
+        <input type="text" name="back">
+        <input type="file">
+        <h2>Term 3:</h2>
+        <input type="text" name="front">
+        <input type="text" name="back">
+        <input type="file">
+        <button type="button">Add +</button>
+        <button>Create</button>
+    </form>
+</body>
+</html>
