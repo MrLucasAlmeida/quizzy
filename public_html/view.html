@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings</title>
-    <link rel="stylesheet" href="./css/settingsStyle.css">
+    <title>View</title>
+    <link rel="stylesheet" href="./css/viewStyle.css">
     <link rel="icon" type="image/x-icon" href="./assets/favicon.jpg">
 </head>
 <body>
@@ -18,14 +18,9 @@
             <button id="homeButton">Home</button>
         </div>
     </div>
-    <form action="/saveSettings">
-        <label for="oldPassword">Old Password</label>
-        <input type="password" name="oldPassword">
-        <label for="newPassword">New Password</label>
-        <input type="password" name="newPassword">
-        <label for="newAvatar">Change my avatar</label>
-        <input type="file" name="newAvatar">
-        <button>Save</button>
-    </form>
+    <div id="flashcard"></div>
+    <div class="left"></div>
+    <div class="right"></div>
+    <button id="testButton">Test</button>
 </body>
 </html>
