@@ -9,11 +9,11 @@ const upload = multer({dest: __dirname + '/images'});
 const crypto = require('crypto')
 var hash = crypto.createHash('sha3-256');
 
-const port = 3550;
+const port = 3000;
 const localhost = "127.0.0.1";
 
 app.use(cookieParser())
-app.use("/*.html", authenticate)
+// app.use("/*.html", authenticate)
 app.use(express.static('public_html'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,13 +33,24 @@ const usersSchema = new Schema({
     listings: [mongoose.ObjectId],
 })
 
-const users = mongoose.model("users", usersSchema);
+const Users = mongoose.model("Users", usersSchema);
 
 
 app.post('/login', (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
-    users.findOne()
+    Users.findOne({username: username}).exec()
+        .then(user =>{
+            if (user){
+                var toHash = password + user.salt;
+                data = hash.update(toHash, 'utf-8');
+                gen_hash = data.digest('hex');
+                if (gen_hash == user.hash){
+                    console.log("success")
+                    res.redirect("./home.html")
+                }
+            }
+        })
 
 })
 
@@ -49,8 +60,12 @@ app.post('/signup', (req, res, next) => {
     var toHash = password + salt;
     data = hash.update(toHash, 'utf-8');
     gen_hash = data.digest('hex');
-    const user = new users({username, salt, gen_hash})
-    users.save();
+    const user = new Users({username, salt, hash: gen_hash})
+    user.save();
     res.json(user)
 
 })
+
+app.listen(port, () => {
+    console.log(`Server is running on port http://${localhost}:${port}`);
+});
