@@ -7,7 +7,7 @@ const multer = require('multer');
 const { Hash } = require("crypto");
 const upload = multer({dest: __dirname + '/images'});
 const crypto = require('crypto')
-var hash = crypto.createHash('sha3-256');
+
 
 const port = 3000;
 const localhost = "127.0.0.1";
@@ -37,17 +37,24 @@ const Users = mongoose.model("Users", usersSchema);
 
 
 app.post('/login', (req, res, next) => {
+    console.log("TRying to login")
     const username = req.body.username;
     const password = req.body.password;
     Users.findOne({username: username}).exec()
         .then(user =>{
             if (user){
+                var hash = crypto.createHash('sha3-256');
                 var toHash = password + user.salt;
-                data = hash.update(toHash, 'utf-8');
-                gen_hash = data.digest('hex');
-                if (gen_hash == user.hash){
+                dataa = hash.update(toHash, 'utf-8');
+                hashed = dataa.digest('hex');
+                console.log(user.hash)
+                console.log(hashed)
+                if (hashed === user.hash){
                     console.log("success")
-                    res.redirect("./home.html")
+                    res.redirect("/home.html")
+                }
+                else{
+                    console.log("incorrect password")
                 }
             }
         })
@@ -55,15 +62,24 @@ app.post('/login', (req, res, next) => {
 })
 
 app.post('/signup', (req, res, next) => {
+    var hash = crypto.createHash('sha3-256');
     const {username, password} = req.body;
-    var salt = Math.floor(Math.random() * 100000);
-    var toHash = password + salt;
-    data = hash.update(toHash, 'utf-8');
-    gen_hash = data.digest('hex');
-    const user = new Users({username, salt, hash: gen_hash})
-    user.save();
-    res.json(user)
-
+    Users.findOne({username: username}).exec()
+        .then(user => {
+            if (user){
+                console.log("This user already exists")
+            }
+            else{
+                var salt = Math.floor(Math.random() * 100000);
+                var toHash = password + salt;
+                data = hash.update(toHash, 'utf-8');
+                gen_hash = data.digest('hex');
+                const user = new Users({username, salt, hash: gen_hash})
+                user.save();
+                res.json(user)
+                res.redirect("/index.html")
+            }
+        })
 })
 
 app.listen(port, () => {
