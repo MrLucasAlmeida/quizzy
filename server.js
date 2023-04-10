@@ -116,16 +116,7 @@ app.post('/signup', async (req, res) => {
     const user = new Users({username, salt, hash: gen_hash, favorites: [], listings: []})
     user.save();
     res.redirect("/");
-});
-
-
-
-
-
-
-
-
-
+})
 
 app.listen(port, () => {
     console.log(`Server is running on port http://${localhost}:${port}`);
