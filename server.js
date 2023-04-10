@@ -38,7 +38,7 @@ const usersSchema = new Schema({
     listings: [mongoose.ObjectId],
 })
 
-const Users = mongoose.model("Users", usersSchema);
+let Users = mongoose.model("Users", usersSchema);
 
 
 
@@ -98,16 +98,20 @@ app.post('/login', async (req, res) => {
 
 // route for signing up to the website
 app.post('/signup', async (req, res) => {
+    console.log("Trying to sign up");
     var hash = crypto.createHash('sha3-256');
     const {username, password} = req.body;
+    console.log(username, password);
     const response = await Users.findOne({username}).exec();
+    
 
     // stop if user already exists
     if (response) {
-        res.redirect("/");
+        console.log('USER ALREADY EXISTS');
+        res.sendStatus(404);
         return;
     }
-
+    console.log('hashing');
     // add new user
     let salt = Math.floor(Math.random() * 1000000);
     let toHash = password + salt;
@@ -115,7 +119,7 @@ app.post('/signup', async (req, res) => {
     let gen_hash = data.digest('hex');
     const user = new Users({username, salt, hash: gen_hash, favorites: [], listings: []})
     user.save();
-    res.redirect("/");
+    res.sendStatus(200);
 })
 
 app.listen(port, () => {
