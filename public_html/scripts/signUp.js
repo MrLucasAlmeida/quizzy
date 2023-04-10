@@ -3,7 +3,11 @@ async function handleCreateAccount() {
     console.log('trying to create account')
     const username = document.getElementById('signupUsername').value;
     const password = document.getElementById('signupPassword').value;
-    const response = await fetch('/signUp', {
+
+    // do nothing if either field is empty
+    if (username === '' || password === '') return;
+
+    const response = await fetch('/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -13,9 +17,10 @@ async function handleCreateAccount() {
     // const data = JSON.stringify(response);
     // console.log(data);
     if (response.status === 200){
-        window.location.href = '/login';
+        window.location.href = '/';
     }
     else{
+        const signupForm = document.getElementById('signupForm');
         const p = document.createElement('p')
         p.textContent = "User already exists! Try another username"
         p.style.fontSize = '15px';

@@ -13,7 +13,7 @@ const port = 3000;
 const localhost = "127.0.0.1";
 
 app.use(cookieParser())
-app.use("/*.html", authenticate)
+// app.use("/*.html", authenticate)
 app.use(express.static('public_html'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -79,7 +79,7 @@ function doesUserHaveSession(user, sessionId) {
 
 
 // get routes
-app.get('/', (req, res) => res.send('Hello World!'));
+// app.get('/', (req, res) => res.send('Hello World!'));
 
 app.get('/get/curruser', (req, res) => {});
 
