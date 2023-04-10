@@ -112,7 +112,7 @@ app.post('/change/password', async (req, res) => {
     console.log(newPassword)
 
     const response = await Users.findOne({username}).exec();
-    console.log(response)
+    
     // verify old password
     var hash = crypto.createHash('sha3-256');
     var toHash = oldPassword + response.salt;
@@ -130,9 +130,11 @@ app.post('/change/password', async (req, res) => {
     toHash = newPassword + salt;
     data = hash.update(toHash, 'utf-8');
     let gen_hash = data.digest('hex');
-    
-    Users.updateOne({username}, {salt, hash: gen_hash});
-    res.sendStatus(200);
+    console.log(gen_hash)
+    console.log(response.hash)
+    console.log(username)
+    Users.updateOne({username}, {salt, hash: gen_hash}).exec();
+    res.sendStatus(200)
 
 
     // first authenticate
