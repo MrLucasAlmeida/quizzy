@@ -129,12 +129,7 @@ app.post('/change/password', async (req, res) => {
 
     Users.updateOne({username}, {salt, hash: gen_hash});
     
-
-
-    // first authenticate
-
-
-    // then change the password if authenticated
+    res.sendStatus(200);
 
 });
 
