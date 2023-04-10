@@ -83,12 +83,19 @@ function doesUserHaveSession(user, sessionId) {
 
 
 // get routes
-// app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => res.send('Hello World!'));
 
-app.get('/get/curruser', (req, res) => {});
+// returns document of the current user logged in
+app.get('/get/curruser', async (req, res) => {
+    const c = req.cookies;
+    const response = await Users.find({username: c.login.username}).exec();
+    res.send(response);
+});
 
-app.get('/get/users/all', (req, res) => {
-
+// get all users
+app.get('/get/users/all', async (req, res) => {
+    const response = await Users.find({}).exec();
+    res.send(response);
 });
 
 // get a set based on a id
@@ -97,8 +104,37 @@ app.get('/get/set/:id', (req, res) => {
 });
 
 // post to change the password
-app.post('/change/password', (req, res) => {
-    const { password } = req.body;
+app.post('/change/password', async (req, res) => {
+    const username = req.cookies.login.username;
+    const { oldPassword, newPassword } = req.body;
+
+    const response = await Users.findOne({username}).exec();
+
+    // verify old password
+    var hash = crypto.createHash('sha3-256');
+    var toHash = password + response.salt;
+    dataa = hash.update(toHash, 'utf-8');
+    hashed = dataa.digest('hex');
+
+    // stop if the old password is incorrect
+    if (hashed !== response.hash) {
+        res.sendStatus(404);
+        return;
+    }
+    hash = crypto.createHash('sha3-256');
+    let salt = Math.floor(Math.random() * 1000000);
+    toHash = newPassword + salt;
+    data = hash.update(toHash, 'utf-8');
+    let gen_hash = data.digest('hex');
+
+    Users.updateOne({username}, {salt, hash: gen_hash});
+    
+
+
+    // first authenticate
+
+
+    // then change the password if authenticated
 
 });
 
