@@ -13,7 +13,7 @@ const port = 3000;
 const localhost = "127.0.0.1";
 
 app.use(cookieParser())
-// app.use("/*.html", authenticate)
+app.use("/*.html", authenticate)
 app.use(express.static('public_html'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -40,8 +40,39 @@ const usersSchema = new Schema({
 
 let Users = mongoose.model("Users", usersSchema);
 
+var sessionKeys = {};
+const period = 3000000;
 
+// authentication
+function authenticate(req, res, next) {
+    let c = req.cookies;
+    if (c && c.login){
+        let result = doesUserHaveSession(c.login.username, c.login.sessionId)
+        if (result){
+            next()
+            return;
+        }
+    }
+    res.redirect("/")
+}
 
+// add a session for user
+function addSession(req, res) {
+    const username = req.body.username;
+    if (username){
+        let sessionId = Math.floor(Math.random() * 10000);
+        sessionKeys[username] = [sessionId, Date.now()];
+        res.cookie("login", { username: username, sessionId: sessionId }, { maxAge: period });
+    }
+}
+// check if user has a session
+function doesUserHaveSession(user, sessionId) {
+    let entry = sessionKeys[user];
+    if (entry != undefined) {
+      return entry[0] == sessionId && Date.now() - entry[1] < period;
+    }
+    return false;
+}
 // routes
 
 
@@ -52,7 +83,9 @@ app.get('/', (req, res) => res.send('Hello World!'));
 
 app.get('/get/curruser', (req, res) => {});
 
-app.get('/get/users/all', (req, res) => {});
+app.get('/get/users/all', (req, res) => {
+
+});
 
 // get a set based on a id
 app.get('/get/set/:id', (req, res) => {
@@ -65,7 +98,27 @@ app.post('/change/password', (req, res) => {
 
 });
 
+// creating a set
+app.post('/create/set', (req, res) => {
+    const { front, back, author, year } = req.body;   
+})
 
+// post to add a set to favorites
+app.post('/add/favorite', (req, res) => {
+    const { id } = req.body;
+});
+// searching for a set by title
+app.get('/search/set/:title', (req, res) => {
+    const { title } = req.params;
+})
+// searching for a set by author
+app.get('/search/set/:author', (req, res) => {
+    const { author } = req.params;
+})
+// searching for a set by topic
+app.get('/search/set/:topic', (req, res) => {
+    const { topic } = req.params;
+})
 
 
 // route for login in to the website
@@ -90,6 +143,7 @@ app.post('/login', async (req, res) => {
 
     // redirect to home page if password is correct
     if (hashed === response.hash){
+        addSession(req, res)
         res.redirect("/home.html");
     } else {
         res.redirect("/");
