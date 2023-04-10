@@ -118,6 +118,7 @@ app.get('/search/set/:author', (req, res) => {
 // searching for a set by topic
 app.get('/search/set/:topic', (req, res) => {
     const { topic } = req.params;
+    res.send('hello')
 })
 
 
