@@ -43,7 +43,30 @@ const Users = mongoose.model("Users", usersSchema);
 
 
 // routes
+
+
+
+
+// get routes
 app.get('/', (req, res) => res.send('Hello World!'));
+
+app.get('/get/curruser', (req, res) => {});
+
+app.get('/get/users/all', (req, res) => {});
+
+// get a set based on a id
+app.get('/get/set/:id', (req, res) => {
+    const { id } = req.params;
+});
+
+// post to change the password
+app.post('/change/password', (req, res) => {
+    const { password } = req.body;
+
+});
+
+
+
 
 // route for login in to the website
 app.post('/login', async (req, res) => {
@@ -93,7 +116,16 @@ app.post('/signup', async (req, res) => {
     const user = new Users({username, salt, hash: gen_hash, favorites: [], listings: []})
     user.save();
     res.redirect("/");
-})
+});
+
+
+
+
+
+
+
+
+
 
 app.listen(port, () => {
     console.log(`Server is running on port http://${localhost}:${port}`);
