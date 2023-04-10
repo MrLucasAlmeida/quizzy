@@ -20,14 +20,15 @@
             <button id="homeButton">Home</button>
         </div>
     </div>
-    <form action="/saveSettings">
+    <form id="formSettings">
         <label for="oldPassword">Old Password</label>
-        <input type="password" name="oldPassword">
+        <input type="password" name="oldPassword" id="oldPassword">
         <label for="newPassword">New Password</label>
-        <input type="password" name="newPassword">
+        <input type="password" name="newPassword" id="newPassword">
         <label for="newAvatar">Change my avatar</label>
         <input type="file" name="newAvatar">
-        <button>Save</button>
+        <button type="button" onclick="handleNewPassword()">Save</button>
     </form>
+    <script src="./scripts/settings.js"></script>
 </body>
 </html>
