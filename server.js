@@ -104,7 +104,7 @@ app.post('/signup', async (req, res) => {
 
     // stop if user already exists
     if (response) {
-        res.redirect("/");
+        res.sendStatus(404)
         return;
     }
 
