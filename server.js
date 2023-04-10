@@ -13,7 +13,7 @@ const port = 3000;
 const localhost = "127.0.0.1";
 
 app.use(cookieParser())
-// app.use("/*.html", authenticate)
+app.use("/*.html", authenticate);
 app.use(express.static('public_html'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,6 +45,10 @@ const period = 3000000;
 
 // authentication
 function authenticate(req, res, next) {
+    if (req.baseUrl === "/index.html" || req.baseUrl === "/signUp.html" || req.baseUrl === "/help.html") {
+        next();
+        return;
+    }
     let c = req.cookies;
     if (c && c.login){
         let result = doesUserHaveSession(c.login.username, c.login.sessionId)
@@ -132,7 +136,7 @@ app.post('/login', async (req, res) => {
     
     // check if there is a user with that username
     if (!response) {
-        res.redirect("/");
+        res.sendStatus(404);
         return;
     }
 
@@ -144,10 +148,10 @@ app.post('/login', async (req, res) => {
 
     // redirect to home page if password is correct
     if (hashed === response.hash){
-        addSession(req, res)
-        res.redirect("/home.html");
+        addSession(req, res);
+        res.sendStatus(200);
     } else {
-        res.redirect("/");
+        res.sendStatus(404);
     }
 });
 
