@@ -11,8 +11,9 @@ async function handleNewPassword(){
         },
         body: JSON.stringify({oldPassword, newPassword})
     })
+    console.log(response.status)
     if (response.status === 200){
-        window.location.href = './home.html';
+        window.location.href = '/home.html';
     }
     else{
         console.log('not good')
@@ -22,6 +23,6 @@ async function handleNewPassword(){
         p.style.fontSize = '15px';
         p.style.color = 'red';
         formSettings.appendChild(p)
-        const myTimeout = setTimeout(() => {signupForm.removeChild(p)}, 2000)
+        const myTimeout = setTimeout(() => {formSettings.removeChild(p)}, 2000)
     }
 }
