@@ -67,6 +67,7 @@ app.post('/signup', (req, res, next) => {
     Users.findOne({username: username}).exec()
         .then(user => {
             if (user){
+                res.sendStatus(500)
                 console.log("This user already exists")
             }
             else{
@@ -77,10 +78,11 @@ app.post('/signup', (req, res, next) => {
                 const user = new Users({username, salt, hash: gen_hash})
                 user.save();
                 res.json(user)
-                res.redirect("/index.html")
+                res.redirect("./public_html/index.html")
             }
         })
 })
+//comment
 
 app.listen(port, () => {
     console.log(`Server is running on port http://${localhost}:${port}`);
