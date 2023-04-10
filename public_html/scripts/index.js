@@ -19,7 +19,6 @@ async function handleLoginAccount() {
         window.location.href = './home.html';
     }
     else{
-        window.location.href = '/';
         const loginForm = document.getElementById('loginForm');
         const p = document.createElement('p')
         p.textContent = "You failed "
