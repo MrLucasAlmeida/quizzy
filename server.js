@@ -121,6 +121,7 @@ app.post('/change/password', async (req, res) => {
 
     // stop if the old password is incorrect
     if (hashed !== response.hash) {
+        console.log('incorrect password');
         res.sendStatus(404);
         return;
     }
@@ -131,7 +132,7 @@ app.post('/change/password', async (req, res) => {
     let gen_hash = data.digest('hex');
     
     Users.updateOne({username}, {salt, hash: gen_hash});
-    res.status(200)
+    res.sendStatus(200);
 
 
     // first authenticate
