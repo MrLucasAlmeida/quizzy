@@ -44,13 +44,13 @@ const cardSchema = new Schema({
     front: String,
     back: String,
     author: mongoose.ObjectId,
-    set: mongoose.ObjectId,
+    set: mongoose.ObjectId
 })
 
 let Cards = mongoose.model("Cards", cardSchema);
 
 const setsSchema = new Schema({
-    authors: [mongoose.ObjectId],
+    author: mongoose.ObjectId,
     topic: String,
     title: String,
     views: Number,
@@ -187,21 +187,56 @@ app.get('/search/set/title/:title', (req, res) => {
     const { title } = req.params;
     Sets.find({title}).exec().then((set) => {
         res.send(set);
-    })
-})
+    });
+});
 // searching for a set by author
 app.get('/search/set/author/:author', (req, res) => {
     const { author } = req.params;
     Sets.find({author}).exec().then((set) => {
         res.send(set);
-    })
-})
+    });
+});
+
+// get all set documents by keyword match in title, author, front and back of cards
+app.get('/search/set/keyword/:keyword', async (req, res) => {
+    let resSets = [];
+    let keyword = req.params.keyword;
+    // docs that match the keyword in the title
+    const response = await Sets.find({title: {$regex: keyword, $options: 'i'}}).exec();
+    resSets.push(response);
+
+    // docs that match the keyword in the author
+    const response2 = await Sets.find({author: {$regex: req.params.keyword, $options: 'i'}}).exec();
+    resSets.push(response2);
+
+    // docs that match the keyword in the front or back of the cards
+    const response3 = await Cards.find({$or: [{front: {$regex: req.params.keyword, $options: 'i'}}, {back: {$regex: req.params.keyword, $options: 'i'}}]}).exec();
+    
+    const setIds = response3.map((card) => card.set);
+    setIds = setIds.filter((id, index) => setIds.indexOf(id) === index);
+
+    // get the sets for each of these ids
+    const newSet = setIds.map(async (id) => {
+        const setResponse = await Sets.findOne({_id : id}).exec();
+        return setResponse;
+    });
+
+    resSets.push(newSet);
+
+    // filter the resSets so there are no duplicates based on _id
+    resSets = resSets.filter((currSet, idx) => {
+        return idx === resSets.indexOf(element => element._id === currSet._id)});
+
+    res.send(resSets);
+});
+
+
 // searching for a set by topic
 app.get('/search/set/topic/:topic', (req, res) => {
     const { topic } = req.params;
     Sets.find({topic}).exec().then((set) => {
         res.send(set);
-    })
+    });
 })
 
 
