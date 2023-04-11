@@ -21,7 +21,7 @@ async function handleLoginAccount() {
     else{
         const loginForm = document.getElementById('loginForm');
         const p = document.createElement('p')
-        p.textContent = "You failed "
+        p.textContent = "Username or password is incorrect"
         p.style.fontSize = '15px';
         p.style.color = 'red';
         loginForm.appendChild(p)

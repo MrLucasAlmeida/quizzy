@@ -40,6 +40,25 @@ const usersSchema = new Schema({
 
 let Users = mongoose.model("Users", usersSchema);
 
+const cardSchema = new Schema({
+    front: String,
+    back: String,
+    author: mongoose.ObjectId,
+    set: mongoose.ObjectId,
+})
+
+let Cards = mongoose.model("Cards", cardSchema);
+
+const setsSchema = new Schema({
+    authors: [mongoose.ObjectId],
+    topic: String,
+    title: String,
+    views: Number,
+    cards: [mongoose.ObjectId],
+})
+
+let Sets = mongoose.model("Sets", setsSchema);
+
 var sessionKeys = {};
 const period = 3000000;
 
@@ -83,7 +102,10 @@ function doesUserHaveSession(user, sessionId) {
 
 
 // get routes
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res, next) => {
+    res.send('Hello World!')
+    next();
+});
 
 // returns document of the current user logged in
 app.get('/get/curruser', async (req, res) => {
@@ -99,17 +121,18 @@ app.get('/get/users/all', async (req, res) => {
 });
 
 // get a set based on a id
-app.get('/get/set/:id', (req, res) => {
+app.get('/get/set/:id', async (req, res) => {
     const { id } = req.params;
+    res.send('hello')
+    // what is meant by id? By title or by topic?
+    const response = await Sets.find({id}).exec()
+    res.send(response);
 });
 
 // post to change the password
 app.post('/change/password', async (req, res) => {
     const username = req.cookies.login.username;
     const { oldPassword, newPassword } = req.body;
-    console.log(username)
-    console.log(oldPassword)
-    console.log(newPassword)
 
     const response = await Users.findOne({username}).exec();
     
@@ -132,36 +155,53 @@ app.post('/change/password', async (req, res) => {
     toHash = newPassword + salt;
     data = hash.update(toHash, 'utf-8');
     let gen_hash = data.digest('hex');
-    console.log(gen_hash);
-    console.log(response.hash);
-    console.log(username);
-    // update the new salt and hash
     Users.updateOne({username}, {salt, hash: gen_hash}).exec();
     res.sendStatus(200)
 
 });
 
 // creating a set
-app.post('/create/set', (req, res) => {
-    const { front, back, author, year } = req.body;   
+app.post('/create/card', (req, res) => {
+    const { front, back, author, set } = req.body;   
+    const newCard = new Cards({front, back, author, set});
+    newCard.save();
+    // find a set that corresponds to that card
+    // and then add the card to the set
+    Sets.find({id: set}).exec().then((set) => {
+        set.cards.push(newCard);
+        set.save();
+    })
 })
 
 // post to add a set to favorites
 app.post('/add/favorite', (req, res) => {
     const { id } = req.body;
+    const username = req.cookies.login.username;
+    Users.find({username}).exec().then((user) => {
+        user.favorites.push(id);
+        user.save();
+    })
 });
 // searching for a set by title match substring
 app.get('/search/set/title/:title', (req, res) => {
     const { title } = req.params;
+    Sets.find({title}).exec().then((set) => {
+        res.send(set);
+    })
 })
 // searching for a set by author
 app.get('/search/set/author/:author', (req, res) => {
     const { author } = req.params;
+    Sets.find({author}).exec().then((set) => {
+        res.send(set);
+    })
 })
 // searching for a set by topic
 app.get('/search/set/topic/:topic', (req, res) => {
     const { topic } = req.params;
-    res.send('hello')
+    Sets.find({topic}).exec().then((set) => {
+        res.send(set);
+    })
 })
 
 
