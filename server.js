@@ -125,22 +125,19 @@ app.post('/change/password', async (req, res) => {
         res.sendStatus(404);
         return;
     }
+
+    // hash the new password
     hash = crypto.createHash('sha3-256');
     let salt = Math.floor(Math.random() * 1000000);
     toHash = newPassword + salt;
     data = hash.update(toHash, 'utf-8');
     let gen_hash = data.digest('hex');
-    console.log(gen_hash)
-    console.log(response.hash)
-    console.log(username)
+    console.log(gen_hash);
+    console.log(response.hash);
+    console.log(username);
+    // update the new salt and hash
     Users.updateOne({username}, {salt, hash: gen_hash}).exec();
     res.sendStatus(200)
-
-
-    // first authenticate
-
-
-    // then change the password if authenticated
 
 });
 
@@ -153,16 +150,16 @@ app.post('/create/set', (req, res) => {
 app.post('/add/favorite', (req, res) => {
     const { id } = req.body;
 });
-// searching for a set by title
-app.get('/search/set/:title', (req, res) => {
+// searching for a set by title match substring
+app.get('/search/set/title/:title', (req, res) => {
     const { title } = req.params;
 })
 // searching for a set by author
-app.get('/search/set/:author', (req, res) => {
+app.get('/search/set/author/:author', (req, res) => {
     const { author } = req.params;
 })
 // searching for a set by topic
-app.get('/search/set/:topic', (req, res) => {
+app.get('/search/set/topic/:topic', (req, res) => {
     const { topic } = req.params;
     res.send('hello')
 })
@@ -199,20 +196,18 @@ app.post('/login', async (req, res) => {
 
 // route for signing up to the website
 app.post('/signup', async (req, res) => {
-    console.log("Trying to sign up");
+    // hash the password
     var hash = crypto.createHash('sha3-256');
     const {username, password} = req.body;
-    console.log(username, password);
     const response = await Users.findOne({username}).exec();
     
-
     // stop if user already exists
     if (response) {
         console.log('USER ALREADY EXISTS');
         res.sendStatus(404);
         return;
     }
-    console.log('hashing');
+    
     // add new user
     let salt = Math.floor(Math.random() * 1000000);
     let toHash = password + salt;
