@@ -65,6 +65,7 @@ body {
     height: 100%;
     bottom: 0;
     background-color: blueviolet;
+    overflow-y: auto;
     
 }
 .avatar {

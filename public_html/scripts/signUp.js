@@ -1,3 +1,6 @@
+const MASTER_URL = 'http://localhost:3000';
+
+
 
 async function handleCreateAccount() {
     console.log('trying to create account')
@@ -7,7 +10,7 @@ async function handleCreateAccount() {
     // do nothing if either field is empty
     if (username === '' || password === '') return;
 
-    const response = await fetch('/signup', {
+    const response = await fetch(`${MASTER_URL}/signup`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

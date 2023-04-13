@@ -1,7 +1,6 @@
 const cookieParser = require("cookie-parser");
 const express = require("express")
 const mongoose = require("mongoose")
-const app = express();
 const bodyParser = require("body-parser")
 const multer = require('multer');
 const { Hash } = require("crypto");
@@ -10,13 +9,14 @@ const crypto = require('crypto')
 
 
 const port = 3000;
-const localhost = "127.0.0.1";
+
+const app = express();
 
 app.use(cookieParser())
 app.use("/*.html", authenticate);
 app.use(express.static('public_html'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // connect to mongoDB
@@ -50,7 +50,7 @@ const cardSchema = new Schema({
 let Cards = mongoose.model("Cards", cardSchema);
 
 const setsSchema = new Schema({
-    author: mongoose.ObjectId,
+    author: String,
     topic: String,
     title: String,
     views: Number,
@@ -76,7 +76,7 @@ function authenticate(req, res, next) {
             return;
         }
     }
-    res.redirect("/")
+    res.redirect("/");
 }
 
 // add a session for user
@@ -96,10 +96,11 @@ function doesUserHaveSession(user, sessionId) {
     }
     return false;
 }
+
+
+
+
 // routes
-
-
-
 
 // get routes
 app.get('/', (req, res, next) => {
@@ -161,24 +162,27 @@ app.post('/change/password', async (req, res) => {
 });
 
 // creating a set
-app.post('/create/card', (req, res) => {
-    const { front, back, author, set } = req.body;   
+app.post('/create/card', async (req, res) => {
+    const { front, back, set } = req.body;   
+    const author = await Users.find(req.cookies.login.username).exec()._id;
+
     const newCard = new Cards({front, back, author, set});
     newCard.save();
     // find a set that corresponds to that card
     // and then add the card to the set
-    Sets.find({id: set}).exec().then((set) => {
-        set.cards.push(newCard);
+    Sets.find({_id: set}).exec().then((set) => {
+        set.cards.push(newCard._id);
         set.save();
     })
 })
 
-// post to add a set to favorites
+// post to add a set to favorites for a logged in user
 app.post('/add/favorite', (req, res) => {
-    const { id } = req.body;
+    const { setId } = req.body;
     const username = req.cookies.login.username;
     Users.find({username}).exec().then((user) => {
-        user.favorites.push(id);
+        user.favorites.push(setId);
+        user.favorites = user.favorites.filter((id, index) => user.favorites.indexOf(id) === index);
         user.save();
     })
 });
@@ -201,27 +205,32 @@ app.get('/search/set/author/:author', (req, res) => {
 app.get('/search/set/keyword/:keyword', async (req, res) => {
     let resSets = [];
     let keyword = req.params.keyword;
+    
+    console.log(keyword);
+    console.log('getting sets by title');
     // docs that match the keyword in the title
     const response = await Sets.find({title: {$regex: keyword, $options: 'i'}}).exec();
-    resSets.push(response);
-
+    
+    resSets.push(...response);
+    console.log('getting sets by title');
     // docs that match the keyword in the author
-    const response2 = await Sets.find({author: {$regex: req.params.keyword, $options: 'i'}}).exec();
-    resSets.push(response2);
+    const response2 = await Sets.find({author: {$regex: keyword, $options: 'i'}}).exec();
+    resSets.push(...response2);
+    
 
     // docs that match the keyword in the front or back of the cards
-    const response3 = await Cards.find({$or: [{front: {$regex: req.params.keyword, $options: 'i'}}, {back: {$regex: req.params.keyword, $options: 'i'}}]}).exec();
+    const response3 = await Cards.find({$or: [{front: {$regex: keyword, $options: 'i'}}, {back: {$regex: req.params.keyword, $options: 'i'}}]}).exec();
     
-    const setIds = response3.map((card) => card.set);
+    let setIds = response3.map((card) => card.set);
     setIds = setIds.filter((id, index) => setIds.indexOf(id) === index);
 
     // get the sets for each of these ids
-    const newSet = setIds.map(async (id) => {
+    const newMatchingSet = setIds.map(async (id) => {
         const setResponse = await Sets.findOne({_id : id}).exec();
         return setResponse;
     });
 
-    resSets.push(newSet);
+    resSets.push(...newMatchingSet);
 
     // filter the resSets so there are no duplicates based on _id
     resSets = resSets.filter((currSet, idx) => {
@@ -234,8 +243,8 @@ app.get('/search/set/keyword/:keyword', async (req, res) => {
 // searching for a set by topic
 app.get('/search/set/topic/:topic', (req, res) => {
     const { topic } = req.params;
-    Sets.find({topic}).exec().then((set) => {
-        res.send(set);
+    Sets.find({topic}).exec().then(setArr => {
+        res.send(setArr);
     });
 })
 
@@ -294,5 +303,5 @@ app.post('/signup', async (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Server is running on port http://${localhost}:${port}`);
+    console.log(`Server is running on port http://localhost:${port}`);
 });
