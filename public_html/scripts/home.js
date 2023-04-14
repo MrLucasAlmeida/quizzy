@@ -7,6 +7,16 @@ settingsBtn.addEventListener('click', () => {
     window.location.href = './settings.html';
 });
 
+function logout(){
+    fetch('/clear/cookies', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((res) => {
+        window.location.href = './index.html';
+    });
+}
 
 // create a container that will hold a set
 function createSetContainer(setDoc) {

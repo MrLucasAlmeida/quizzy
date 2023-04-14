@@ -130,6 +130,12 @@ app.get('/get/set/:id', async (req, res) => {
     res.send(response);
 });
 
+// clear cookies
+app.post('/clear/cookies', (req, res) => {
+    res.clearCookie('login');
+    res.sendStatus(200);
+});
+
 // post to change the password
 app.post('/change/password', async (req, res) => {
     const username = req.cookies.login.username;
