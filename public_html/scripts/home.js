@@ -20,16 +20,31 @@ function logout(){
 
 // create a container that will hold a set
 function createSetContainer(setDoc) {
-    const setContainer = document.createElement('div');
-    setContainer.classList.add('setContainer');
-    setContainer.id = setDoc._id;
-    const setName = document.createElement('h3');
-    setName.textContent = setDoc.name;
-    const setCount = document.createElement('p');
-    setCount.textContent = setDoc.cards.length;
-    setContainer.appendChild(setName);
-    setContainer.appendChild(setCount);
+
+    const setContainer = `
+    <div class="setContainer">
+        <h2>${setDoc._id}</h2>
+        <p>${setDoc.title}</p>
+        <p>${setDoc.topic}</p>
+        <p>${setDoc.cards.length} Terms</p>
+        <p>${setDoc.author}</p>
+    </div>
+    `;
+
     return setContainer;
+
+
+
+    // const setContainer = document.createElement('div');
+    // setContainer.classList.add('setContainer');
+    // setContainer.id = setDoc._id;
+    // const setName = document.createElement('h3');
+    // setName.textContent = setDoc.name;
+    // const setCount = document.createElement('p');
+    // setCount.textContent = setDoc.cards.length;
+    // setContainer.appendChild(setName);
+    // setContainer.appendChild(setCount);
+    // return setContainer;
 }
 
 async function handleSearch(e) {
@@ -44,7 +59,6 @@ async function handleSearch(e) {
 
     console.log('handling search for sets');
     const response = await fetch(`${MASTER_URL}/search/set/keyword/${searchKeyword}`);
-    console.log(response);
     const data = await response.json();
     console.log(data);
     // const response = [];
@@ -52,9 +66,9 @@ async function handleSearch(e) {
     const studySetContainer = document.getElementById('studySetContainer');
     studySetContainer.innerHTML = '';
 
-    for (let i in response) {
-        const setContainer = createSetContainer(response[i]);
-        studySetContainer.appendChild(setContainer);
+    for (let i in data) {
+        const setContainer = createSetContainer(data[i]);
+        studySetContainer.innerHTML += setContainer;
     }
 
 }

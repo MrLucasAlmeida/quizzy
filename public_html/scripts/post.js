@@ -6,7 +6,9 @@ document.getElementById("removeButton").addEventListener("click", () => {
     const termContainer = document.getElementById('cardInputContainer');
 
     // remove the last 3 elements from the term container
-    if (termContainer.children.length < 4) return;
+    console.log('checking to remove one term');
+    if (termContainer.children.length < 4) {alert('Sets need at least one term!');return;};
+    console.log('removing one term');
     termContainer.removeChild(termContainer.children[termContainer.children.length - 1]);
     termContainer.removeChild(termContainer.children[termContainer.children.length - 1]);
     termContainer.removeChild(termContainer.children[termContainer.children.length - 1]);
@@ -116,6 +118,3 @@ document.getElementById('createButton').addEventListener('click', async () => {
     alert('Set created successfully');
     window.location.href = `${MASTER_URL}/home.html`;
 });
-
-
-
