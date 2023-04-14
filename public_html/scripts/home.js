@@ -21,7 +21,7 @@ function createSetContainer(setDoc) {
     let newDiv = document.createElement('div');
     newDiv.className = 'setContainer';
     newDiv.innerHTML += `
-        <h2>${setDoc._id}</h2>
+        <h2 class="setId">${setDoc._id}</h2>
         <h1>${setDoc.title}</h1>
         <p>${setDoc.topic}</p>
         <p>${setDoc.cards.length} Terms</p>
@@ -51,18 +51,20 @@ async function handleSearch(e) {
 
     for (let i in data) {
         let setContainer = createSetContainer(data[i]);
-        // add event listener for clicking on a set
-        setContainer.addEventListener('click', handleSetClick);
-
+        
         studySetContainer.append(setContainer);
+    }
+    const allSetContainers = Array.from(document.getElementById('studySetContainer').children);
+    for (let i in allSetContainers) {
+        // add event listener for clicking on a set
+        allSetContainers[i].addEventListener('click', handleSetClick);
     }
 
 }
 
 function handleSetClick(e) {
     console.log('handling set click');
-    const setId = e.target.getElementsByTagName('h2')[0].innerText;
-    console.log(setId);
+    const setId = e.currentTarget.getElementsByClassName('setId')[0].innerText;
     window.location.href = './view.html?id=' + setId;
 }
 

@@ -90,8 +90,8 @@ body {
 }
 
 
-.setContainer h2 {
-    display: none;
+.setId {
+    /* display: none; */
     /* color: red;  */
 } 
 .setContainer h1 {
