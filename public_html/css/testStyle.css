@@ -30,7 +30,11 @@ height: 15%;
 #logo {
     height: 100%;
 }
-
+.avatar:hover{
+    background-color: darkgreen;
+    transform: scale(1.1);
+    opacity: 0.8;
+}
 .avatar {
 width: 30px;
 height: 30px;
