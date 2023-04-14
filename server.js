@@ -43,7 +43,7 @@ let Users = mongoose.model("Users", usersSchema);
 const cardSchema = new Schema({
     front: String,
     back: String,
-    author: mongoose.ObjectId,
+    author: String,
     set: mongoose.ObjectId
 })
 
@@ -161,20 +161,36 @@ app.post('/change/password', async (req, res) => {
 
 });
 
+// post to create a new set
+app.post('/create/set', async (req, res) => {
+    const {title, topic} = req.body;
+    const author = req.cookies.login.username;
+    const newSet = new Sets({title, topic, author, views: 0, cards: []});
+    newSet.save();
+    
+    // add the set to the user's listings
+    Users.updateOne({username: author}, {$push: {listings: newSet._id}}).exec();
+    console.log(newSet._id.toString());
+
+    // send the id of the new set
+    res.send(JSON.stringify(newSet._id.toString()));
+});
+
 // creating a set
 app.post('/create/card', async (req, res) => {
     const { front, back, set } = req.body;   
-    const author = await Users.find(req.cookies.login.username).exec()._id;
+    console.log(front,back);
+    const author = req.cookies.login.username;
+    console.log(author);
 
     const newCard = new Cards({front, back, author, set});
     newCard.save();
     // find a set that corresponds to that card
     // and then add the card to the set
-    Sets.find({_id: set}).exec().then((set) => {
-        set.cards.push(newCard._id);
-        set.save();
-    })
-})
+    Sets.updateOne({_id: set}, {$push: {cards: newCard._id}}).exec();
+    res.end();
+});
+
 
 // post to add a set to favorites for a logged in user
 app.post('/add/favorite', (req, res) => {

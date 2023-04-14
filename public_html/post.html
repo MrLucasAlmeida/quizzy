@@ -20,26 +20,32 @@
             <button id="homeButton">Home</button>
         </div>
     </div>
-    <form action="/post" method="POST">
-        <label for="title">Title</label>
-        <input type="text" name="title">
-        <label for="topic">Topic</label>
-        <input type="text" name="title">
-        <br><br><br><br>
-        <h2>Term 1:</h2>
-        <input type="text" name="front">
-        <input type="text" name="back">
-        <input type="file">
-        <h2>Term 2:</h2>
-        <input type="text" name="front">
-        <input type="text" name="back">
-        <input type="file">
-        <h2>Term 3:</h2>
-        <input type="text" name="front">
-        <input type="text" name="back">
-        <input type="file">
-        <button type="button">Add +</button>
-        <button>Create</button>
-    </form>
+    <div id="formContainer">
+        <form id="cardsForm">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="titleInput">
+            <label for="topic">Topic</label>
+            <input type="text" name="topic" id="topicInput">
+            <br><br><br><br>
+    
+            <div id="cardInputContainer">
+                <h2>Term 1:</h2>
+                <input type="text" name="front" class="frontCard">
+                <input type="text" name="back" class="backCard">
+                <h2>Term 2:</h2>
+                <input type="text" name="front" class="frontCard">
+                <input type="text" name="back" class="backCard">
+                <h2>Term 3:</h2>
+                <input type="text" name="front" class="frontCard">
+                <input type="text" name="back" class="backCard">
+            </div>
+            
+    
+            <button type="button" id="addButton">Add +</button>
+            <button type="button" id="createButton">Create</button>
+        </form>
+    </div>
+    
+    <script src="./scripts/post.js"></script>
 </body>
 </html>
