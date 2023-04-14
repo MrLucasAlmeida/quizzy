@@ -119,18 +119,3 @@ document.getElementById('createButton').addEventListener('click', async () => {
 
 
 
-// click to remove entry
-document.getElementById('removeButton').addEventListener('click', () => {
-
-
-    // grab the term container
-    const termContainer = document.getElementById('cardInputContainer');
-
-    // remove the last 3 elements
-    termContainer.removeChild(termContainer.lastChild);
-    termContainer.removeChild(termContainer.lastChild);
-    termContainer.removeChild(termContainer.lastChild);
-
-    // decrement the term number
-    currTermNumber--;
-});
