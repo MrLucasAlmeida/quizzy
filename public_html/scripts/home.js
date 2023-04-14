@@ -21,30 +21,17 @@ function logout(){
 // create a container that will hold a set
 function createSetContainer(setDoc) {
 
-    const setContainer = `
-    <div class="setContainer">
+
+    let newDiv = document.createElement('div');
+    newDiv.className = 'setContainer';
+    newDiv.innerHTML += `
         <h2>${setDoc._id}</h2>
-        <p>${setDoc.title}</p>
+        <h1>${setDoc.title}</h1>
         <p>${setDoc.topic}</p>
         <p>${setDoc.cards.length} Terms</p>
-        <p>${setDoc.author}</p>
-    </div>
-    `;
+        <p>${setDoc.author}</p>`;
 
-    return setContainer;
-
-
-
-    // const setContainer = document.createElement('div');
-    // setContainer.classList.add('setContainer');
-    // setContainer.id = setDoc._id;
-    // const setName = document.createElement('h3');
-    // setName.textContent = setDoc.name;
-    // const setCount = document.createElement('p');
-    // setCount.textContent = setDoc.cards.length;
-    // setContainer.appendChild(setName);
-    // setContainer.appendChild(setCount);
-    // return setContainer;
+    return newDiv;
 }
 
 async function handleSearch(e) {
@@ -67,11 +54,22 @@ async function handleSearch(e) {
     studySetContainer.innerHTML = '';
 
     for (let i in data) {
-        const setContainer = createSetContainer(data[i]);
-        studySetContainer.innerHTML += setContainer;
+        let setContainer = createSetContainer(data[i]);
+        // add event listener for clicking on a set
+        setContainer.addEventListener('click', handleSetClick);
+
+        studySetContainer.append(setContainer);
     }
 
 }
+
+function handleSetClick(e) {
+    console.log('handling set click');
+    const setId = e.target.getElementsByTagName('h2')[0].innerText;
+    console.log(setId);
+    window.location.href = './view.html?id=' + setId;
+}
+
 
 // function for adding all the sets to the page based on a search
 document.getElementById('searchBar').addEventListener('keyup', handleSearch);
