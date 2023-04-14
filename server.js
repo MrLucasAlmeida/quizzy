@@ -219,7 +219,7 @@ app.get('/search/set/author/:author', (req, res) => {
 
 // get all set documents by keyword match in title, author, front and back of cards
 app.get('/search/set/keyword/:keyword', async (req, res) => {
-    let resSets = [];
+    let resSetIds = [];
     let keyword = req.params.keyword;
     
     console.log(keyword);
@@ -227,32 +227,31 @@ app.get('/search/set/keyword/:keyword', async (req, res) => {
     // docs that match the keyword in the title
     const response = await Sets.find({title: {$regex: keyword, $options: 'i'}}).exec();
     
-    resSets.push(...response);
-    console.log('getting sets by title');
+    resSetIds.push(...response.map((set) => set._id.toString()));
+    // console.log(resSets);
+    console.log('getting sets by author');
     // docs that match the keyword in the author
     const response2 = await Sets.find({author: {$regex: keyword, $options: 'i'}}).exec();
-    resSets.push(...response2);
+    resSetIds.push(...response2.map((set) => set._id.toString()));
+    // console.log(resSets);
     
 
     // docs that match the keyword in the front or back of the cards
     const response3 = await Cards.find({$or: [{front: {$regex: keyword, $options: 'i'}}, {back: {$regex: req.params.keyword, $options: 'i'}}]}).exec();
     
-    let setIds = response3.map((card) => card.set);
-    setIds = setIds.filter((id, index) => setIds.indexOf(id) === index);
+    let setIds = response3.map((card) => card.set.toString());
 
-    // get the sets for each of these ids
-    const newMatchingSet = setIds.map(async (id) => {
-        const setResponse = await Sets.findOne({_id : id}).exec();
-        return setResponse;
-    });
-
-    resSets.push(...newMatchingSet);
+    resSetIds.push(...setIds);
 
     // filter the resSets so there are no duplicates based on _id
-    resSets = resSets.filter((currSet, idx) => {
-        return idx === resSets.indexOf(element => element._id === currSet._id)});
+    resSetIds = resSetIds.filter((currId, idx) => {
+        return idx === resSetIds.indexOf(currId)});
 
-    res.send(resSets);
+    
+
+    // convert the set ids to set documents
+    const resSets = await Sets.find({_id: {$in: resSetIds}}).exec();
+    res.send(JSON.stringify(resSets));
 });
 
 
