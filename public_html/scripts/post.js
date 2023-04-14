@@ -1,6 +1,20 @@
 const MASTER_URL = 'http://localhost:3000';
 var currTermNumber = 4;
 
+document.getElementById("removeButton").addEventListener("click", () => {
+    // grab the term container
+    const termContainer = document.getElementById('cardInputContainer');
+
+    // remove the last 3 elements from the term container
+    if (termContainer.children.length < 4) return;
+    termContainer.removeChild(termContainer.children[termContainer.children.length - 1]);
+    termContainer.removeChild(termContainer.children[termContainer.children.length - 1]);
+    termContainer.removeChild(termContainer.children[termContainer.children.length - 1]);
+
+
+    // decrement the term number
+    currTermNumber--;
+})
 
 // click for add new term input fields
 document.getElementById('addButton').addEventListener('click', () => {
