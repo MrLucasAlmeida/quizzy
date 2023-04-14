@@ -2,10 +2,6 @@
 const MASTER_URL = 'http://localhost:3000';
 
 
-const settingsBtn = document.getElementById('settingsBtn');
-settingsBtn.addEventListener('click', () => {
-    window.location.href = './settings.html';
-});
 
 function logout(){
     fetch('/clear/cookies', {

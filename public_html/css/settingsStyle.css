@@ -66,3 +66,8 @@ button {
     cursor: pointer;
     margin-top: 20px;
 }
+.avatar:hover{
+        background-color: darkgreen;
+        transform: scale(1.1);
+        opacity: 0.8;
+    }

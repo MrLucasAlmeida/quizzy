@@ -58,6 +58,11 @@ body {
     transform: scale(1.1);
     opacity: 0.8;
 }
+.avatar:hover{
+    background-color: darkgreen;
+    transform: scale(1.1);
+    opacity: 0.8;
+}
 
 #studySetContainer {
     display: flex;
