@@ -32,7 +32,12 @@ function createSetContainer(setDoc) {
     return setContainer;
 }
 
-async function handleSearch() {
+async function handleSearch(e) {
+    console.log('checking for enter key');
+    if (e.key !== 'Enter' && e.target.id !== 'searchIcon') return;
+
+
+    console.log('handling search for sets');
     const searchKeyword = document.getElementById('searchBar').value;
     // do nothing if search is empty
     if (searchKeyword === '') return;
@@ -40,7 +45,7 @@ async function handleSearch() {
     console.log('handling search for sets');
     const response = await fetch(`${MASTER_URL}/search/set/keyword/${searchKeyword}`);
     console.log(response);
-    const data = JSON.parse(response);
+    const data = await response.json();
     console.log(data);
     // const response = [];
     console.log('handling search for sets');
