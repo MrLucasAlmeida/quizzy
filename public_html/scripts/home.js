@@ -72,3 +72,25 @@ function handleSetClick(e) {
 // function for adding all the sets to the page based on a search
 document.getElementById('searchBar').addEventListener('keyup', handleSearch);
 document.getElementById('searchIcon').addEventListener('click', handleSearch);
+
+
+// handling the avatar clicks
+
+const avatar = document.querySelector('.avatar');
+const dropdownMenu = document.querySelector('.dropdown-menu');
+
+// add an event listener to the window such that when clicked, the dropdown menu dissapears
+window.addEventListener('click', function(event) {
+    console.log('listening for click window')
+    if (dropdownMenu.classList.contains('show')) {
+        dropdownMenu.classList.remove('show');
+    }
+})
+
+// add an event listener to avatar such that when clicked, the dropdown menu appears and won't dissapear until clicked again
+avatar.addEventListener('click', function(event) {
+    console.log('listening for click avat')
+    event.stopPropagation();
+    dropdownMenu.classList.toggle('show');
+});
+

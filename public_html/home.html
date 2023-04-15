@@ -26,10 +26,17 @@
             <img src="./assets/searchIcon.svg" id="searchIcon">
         </div>
         <div id="headerButtons">
-            <img src="./assets/avatar.png" alt="Avatar" class="avatar" onclick="window.location.href='./settings.html'">
             <button onclick="window.location.href='/help.html'" id="homeButton">Help</button>
             <button onclick="window.location.href='./post.html'" id="postBtn">Post</button>
             <button id="logoutButton" onclick="logout()">Logout</button>
+            <div class="avatar-dropdown">
+                <img src="./assets/avatar.png" alt="Avatar" class="avatar">
+                <ul class="dropdown-menu">
+                  <li><a href="#">Settings</a></li>
+                  <li><a href="#">Listings</a></li>
+                  <li><a href="#">Favorites</a></li>
+                </ul>
+              </div>
         </div>
     </div>
     <div id="studySetContainer">
