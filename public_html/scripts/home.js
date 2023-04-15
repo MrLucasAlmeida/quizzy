@@ -20,6 +20,29 @@ setCont.append(newDiv);
 // TEST SET ENDS HERE
 //----------------------------
 
+async function main() {
+    // grab all of the distinct topics and add them to the dropdown menu
+    const response = await fetch(`${MASTER_URL}/get/topics/all`);
+    const data = await response.json();
+
+    // add the topics to the dropdown menu
+    const topicDropdown = document.getElementById('topicDropdown');
+    topicDropdown.addEventListener('change', handleMenuSelection);
+    for (let i in data) {
+        let newOption = document.createElement('option');
+        // capitalize the first letter of each topic
+        newOption.innerText= data[i].charAt(0).toUpperCase() + data[i].slice(1);
+        newOption.value = data[i];
+        topicDropdown.append(newOption);
+    }
+
+}
+
+
+
+
+
+
 
 
 function logout(){
@@ -73,12 +96,6 @@ async function handleSearch(e) {
         setContainer.addEventListener('click', handleSetClick);
         studySetContainer.append(setContainer);
     }
-    // const allSetContainers = Array.from(document.getElementById('studySetContainer').children);
-    // for (let i in allSetContainers) {
-    //     // add event listener for clicking on a set
-    //     allSetContainers[i].addEventListener('click', handleSetClick);
-    // }
-
 }
 
 function handleSetClick(e) {
@@ -86,6 +103,26 @@ function handleSetClick(e) {
     const setId = e.currentTarget.getElementsByClassName('setId')[0].innerText;
     window.location.href = './view.html?id=' + setId;
 }
+
+async function handleMenuSelection(e) {
+    console.log('handling menu selection');
+    const topic = e.target.value;
+    const response = await fetch(`${MASTER_URL}/search/set/topic/${topic}`);
+    const data = await response.json();
+    console.log(data);
+    // const response = [];
+    console.log('handling search for sets');
+    const studySetContainer = document.getElementById('studySetContainer');
+    studySetContainer.innerHTML = '';
+
+    for (let i in data) {
+        let setContainer = createSetContainer(data[i]);
+        setContainer.addEventListener('click', handleSetClick);
+        studySetContainer.append(setContainer);
+    }
+}
+
+
 
 
 // function for adding all the sets to the page based on a search
@@ -112,4 +149,8 @@ avatar.addEventListener('click', function(event) {
     event.stopPropagation();
     dropdownMenu.classList.toggle('show');
 });
+
+
+// main function call
+main();
 

@@ -92,7 +92,7 @@ body {
 
 .setId {
     color: red;
-    /* display: none; */
+    display: none;
     /* color: red;  */
 } 
 .setContainer h1 {

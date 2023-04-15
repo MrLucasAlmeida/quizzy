@@ -134,6 +134,16 @@ app.get('/get/allcards/:id', async (req, res) => {
     res.send(JSON.stringify(response));
 });
 
+app.get('/get/topics/all', async (req, res) => {
+    const response = await Sets.find({}).exec();
+    let topics = response.map((set) => set.topic);
+    topics = topics.filter((topic, index) => topics.indexOf(topic) === index);
+    res.send(JSON.stringify(topics));
+});
+
+
+
+
 // clear cookies
 app.post('/clear/cookies', (req, res) => {
     res.clearCookie('login');
@@ -268,8 +278,9 @@ app.get('/search/set/keyword/:keyword', async (req, res) => {
 // searching for a set by topic
 app.get('/search/set/topic/:topic', (req, res) => {
     const { topic } = req.params;
-    Sets.find({topic}).exec().then(setArr => {
-        res.send(setArr);
+    // using regex to ignore case
+    Sets.find({topic: {$regex: topic, $options: 'i'}}).exec().then((set) => {
+        res.send(JSON.stringify(set));
     });
 })
 
