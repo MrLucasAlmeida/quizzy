@@ -1,6 +1,25 @@
 
 const MASTER_URL = 'http://localhost:3000';
 
+//----------------------------
+// TEST SET STARTS HERE
+// default set for testing purposes
+const setCont = document.getElementById('studySetContainer');
+newDiv = document.createElement('div');
+newDiv.addEventListener('click', handleSetClick);
+newDiv.className = 'setContainer';
+newDiv.innerHTML += `
+        <h2 class="setId">6439983325f3e78ff8ee6d29</h2>
+        <h1>Test Title</h1>
+        <p>Test Topic</p>
+        <p>5 Terms</p>
+        <p>Test Author</p>`;
+
+setCont.append(newDiv);
+
+// TEST SET ENDS HERE
+//----------------------------
+
 
 
 function logout(){
@@ -51,14 +70,14 @@ async function handleSearch(e) {
 
     for (let i in data) {
         let setContainer = createSetContainer(data[i]);
-        
+        setContainer.addEventListener('click', handleSetClick);
         studySetContainer.append(setContainer);
     }
-    const allSetContainers = Array.from(document.getElementById('studySetContainer').children);
-    for (let i in allSetContainers) {
-        // add event listener for clicking on a set
-        allSetContainers[i].addEventListener('click', handleSetClick);
-    }
+    // const allSetContainers = Array.from(document.getElementById('studySetContainer').children);
+    // for (let i in allSetContainers) {
+    //     // add event listener for clicking on a set
+    //     allSetContainers[i].addEventListener('click', handleSetClick);
+    // }
 
 }
 

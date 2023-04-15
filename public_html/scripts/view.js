@@ -7,32 +7,68 @@ const right = document.getElementById('right');
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
-console.log(id); 
+
+var globalCards = [];
+var currIndex = 0;
 
 
-// get the set from the server using the id of the set
-async function getSet() {
-    const response = await fetch(`${MASTER_URL}/get/set/${id}`);
-    const data = await response.json();
-    return data;
+async function main() {
+    // fetch cards information based on id
+    const response = await fetch(`${MASTER_URL}/get/allcards/${id}`);
+    globalCards = await response.json();
+
+    // display the first card
+    displayCard(globalCards[currIndex]);
 }
 
-getSet().then((data) => {
-    // iterate through the cards
-    console.log(data)
-    for (let i in data.cards) {
-        // create a div for each card
-        let card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-            <h1>${data.cards[i].front}</h1>
-            <p>${data.cards[i].back}</p>
-        `;
-        // add the card to the flashcard
-        flashcard.appendChild(card);
-    }
-    console.log(data)
-    return;
+
+function handleClickLeft() {
+    console.log('clicked left');
+    currIndex = (currIndex - 1 + globalCards.length) % globalCards.length;
+    displayCard(globalCards[currIndex]);
+}
+function handleClickRight() {
+    console.log('clicked right');
+    currIndex = (currIndex + 1 + globalCards.length) % globalCards.length;
+    displayCard(globalCards[currIndex]);
+}
+
+function displayCard(cardDoc) {
+    const flashcardContainer = document.getElementById('allCardsContainer');
+
+    // remove the 2nd element which is the flashcard
+    flashcardContainer.removeChild(flashcardContainer.children[1]);
+
+    // create a new flashcard
+    const newFlashcard = `
+        <div class="card">
+            <div class="card__inner">
+                <div class="card__face card__face--front">
+                    <h2>${cardDoc.front}</h2>
+                </div>
+                <div class="card__face card__face--back">
+                    <h2>${cardDoc.back}</h2>
+                </div>
+            </div>
+        </div>
+    `;
+
+
+    // add the new flashcard to the container at position 1
+    document.getElementsByClassName('left')[0].insertAdjacentHTML('afterend', newFlashcard);
+
+
+
+    // add event listener to the card for flipping
+    const card = document.querySelector(".card__inner");
+    card.addEventListener("click", function (e) {
+    card.classList.toggle('is-flipped');
 });
 
+}
 
+
+
+
+
+main();

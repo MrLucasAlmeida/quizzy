@@ -53,44 +53,10 @@ cursor: pointer;
 }
 
 
-.left,
-.right {
-    width: 100px;
-    height: 100px;
-    transition: .5s;
-    float: left;
-    box-shadow: -2px 2px 0 black;
-}
-
-.left {
-    transform: rotate(45deg);
-    position: fixed;
-    left: 250px;
-    top: 350px;
-}
-
-.right {
-    transform: rotate(-135deg);
-    position: fixed;
-    right: 250px;
-    top: 350px;
-}
-
-#flashcard{
-    width: 40vw;
-    height: 40vh;
-    margin: 10px;
-    position: fixed;
-    left: 480px;
-    top: 240px;
-    background-color: blue;
-}
 
 #testButton {
-    position: fixed;
-    bottom: 80px;
-    left: 735px;
-    size: 100px;
+    display: block;
+    margin: 20px auto;
     padding: 25px 50px;
     background-color: #4CAF50;
     color: white;
@@ -103,8 +69,122 @@ cursor: pointer;
   }
   #testButton:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* opacity: 0.9; */
+    transform: scale(1.03);
   }
 
+
+  /* styling for the flashcard and the arrows starts here */
+
+  #allCardsContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 80px;
+    width: 100%;
+    height: 100%;
+  }
+
+:root {
+    --primary: #FFCE00;
+    --secondary: #FE4880;
+    --dark: #212121;
+    --light: #F3F3F3;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  .card {
+    /* margin: 0 auto; */
+    width: 50%;
+    height: 80%;
+    perspective: 1000px;
+  }
+  
+  .card__inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .card__inner.is-flipped {
+    transform: rotateY(180deg);
+  }
+  
+  
+  .card__face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0px 3px 18px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card__face--front, .card__face--back {
+    background-image: linear-gradient(to bottom right, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card__face--front h2, .card__face--back h2 {
+    color: #FFF;
+    font-size: 32px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+  }
+  
+  .card__face--back {
+    background-color: var(--light);
+    transform: rotateY(180deg);
+  }
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  .left,
+  .right {
+      width: 100px;
+      height: 100px;
+      transition: .5s;
+      /* float: left; */
+      margin: 0 auto;
+      box-shadow: -2px 2px 0 black;
+  }
+  
+  .left {
+      transform: rotate(45deg);
+  }
+  
+  .right {
+      transform: rotate(-135deg);
+  }
+  
+  
   .left .right:hover {
     background-color: darkgreen;
     transform: scale(1.1);

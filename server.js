@@ -124,8 +124,14 @@ app.get('/get/users/all', async (req, res) => {
 // get a set based on a id
 app.get('/get/set/:id', async (req, res) => {
     const { id } = req.params;
-    const response = await Sets.find({id}).exec()
-    res.send(response);
+    const response = await Sets.findOne({_id: id}).exec();
+    res.send(JSON.stringify(response));
+});
+
+app.get('/get/allcards/:id', async (req, res) => {
+    const { id } = req.params;
+    const response = await Cards.find({set: id}).exec();
+    res.send(JSON.stringify(response));
 });
 
 // clear cookies

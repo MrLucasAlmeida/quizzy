@@ -17,10 +17,21 @@
         </div>
         <img src="./assets/avatar.png" alt="Avatar" class="avatar" onclick="window.location.href='./settings.html'">
     </div>
-    <div id="flashcard"></div>
-    <div class="left"></div>
-    <div class="right"></div>
+
     <button id="testButton" onclick="window.location.href='./test.html'">Test</button>
+
+    <div id="allCardsContainer">
+        <div class="left" onclick="handleClickLeft()"></div>
+
+
+        <!-- cards go here, the following is a dummy div -->
+        <div></div>
+
+
+        <div class="right" onclick="handleClickRight()"></div>
+    </div>
+    
+    
     <script src="./scripts/view.js"></script>
 </body>
 </html>
