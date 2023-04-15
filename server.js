@@ -124,8 +124,6 @@ app.get('/get/users/all', async (req, res) => {
 // get a set based on a id
 app.get('/get/set/:id', async (req, res) => {
     const { id } = req.params;
-    res.send('hello')
-    // what is meant by id? By title or by topic?
     const response = await Sets.find({id}).exec()
     res.send(response);
 });
