@@ -69,6 +69,7 @@ async function main() {
 
 
 function logout(){
+    localStorage.clear();
     fetch('/clear/cookies', {
         method: 'POST',
         headers: {
