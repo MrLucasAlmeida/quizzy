@@ -121,6 +121,12 @@ app.get('/get/users/all', async (req, res) => {
     res.send(response);
 });
 
+// get all sets
+app.get('/get/sets/all', async (req, res) => {
+    const response = await Sets.find({}).exec();
+    res.send(JSON.stringify(response));
+});
+
 // get a set based on a id
 app.get('/get/set/:id', async (req, res) => {
     const { id } = req.params;
@@ -247,6 +253,8 @@ app.get('/search/set/keyword/:keyword', async (req, res) => {
     // docs that match the keyword in the title
     const response = await Sets.find({title: {$regex: keyword, $options: 'i'}}).exec();
     
+    
+
     resSetIds.push(...response.map((set) => set._id.toString()));
     // console.log(resSets);
     console.log('getting sets by author');
@@ -338,6 +346,4 @@ app.post('/signup', async (req, res) => {
     res.sendStatus(200);
 })
 
-app.listen(port, () => {
-    console.log(`Server is running on port http://localhost:${port}`);
-});
+app.listen(port, () => console.log(`Server is running on port http://localhost:${port}`));

@@ -136,12 +136,20 @@ const avatar = document.querySelector('.avatar');
 const dropdownMenu = document.querySelector('.dropdown-menu');
 
 // add an event listener to the window such that when clicked, the dropdown menu dissapears
-window.addEventListener('click', function(event) {
-    console.log('listening for click window')
-    if (dropdownMenu.classList.contains('show')) {
-        dropdownMenu.classList.remove('show');
-    }
-})
+// window.addEventListener('click', function(event) {
+//     console.log('listening for click window')
+//     if (dropdownMenu.classList.contains('show')) {
+//         dropdownMenu.classList.remove('show');
+//     }
+// });
+// what are the different types of event listeners?
+// avatar.addEventListener('click', function(event) {});
+avatar.addEventListener('dblclick', function(event) {console.log('double clicked')});
+avatar.addEventListener('focus', function(event) {console.log('focused')});
+
+avatar.addEventListener('blur', function(event) {});
+
+
 
 // add an event listener to avatar such that when clicked, the dropdown menu appears and won't dissapear until clicked again
 avatar.addEventListener('click', function(event) {
