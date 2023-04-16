@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/homeStyle.css">
+    <link rel="stylesheet" href="./css/navigationBar.css">
     <link rel="icon" type="image/x-icon" href="./assets/logo.jpg">
+
+
     <title>Home</title>
 </head>
 <body>
@@ -20,10 +23,22 @@
             <select id="topicDropdown">
                 <!-- options go here -->
             </select>
-            <input type="text" id="searchBar" placeholder="Search for a study set...""></input>
+            <input type="text" id="searchBar" placeholder="Search for a study set..."></input>
             <img src="./assets/searchIcon.svg" id="searchIcon">
         </div>
-        <div id="headerButtons">
+
+
+        <!-- new profile dropdown goes here -->
+
+
+
+
+
+
+
+
+
+        <!-- <div id="headerButtons">
             <button onclick="window.location.href='/help.html'" id="homeButton">Help</button>
             <button onclick="window.location.href='./post.html'" id="postBtn">Post</button>
             <button id="logoutButton" onclick="logout()">Logout</button>
@@ -36,11 +51,12 @@
                   <li><a href="#">Favorites</a></li>
                 </ul>
               </div>
-        </div>
+        </div> -->
     </div>
     <div id="studySetContainer">
 
     </div>
     <script src="./scripts/home.js"></script>
+    <script src="./scripts/profileDropdown.js"></script>
 </body>
 </html>

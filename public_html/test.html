@@ -7,6 +7,7 @@
     <title>Test</title>
     <link rel="icon" type="image/x-icon" href="./assets/favicon.jpg">
     <link rel="stylesheet" href="./css/testStyle.css">
+    <link rel="stylesheet" href="./css/navigationBar.css">
 </head>
 <body>
     <div id="header">
@@ -15,12 +16,10 @@
                 <img src="./assets/logo.jpg" alt="logo" id="logo">
             </a>
         </div>
-        <div id="headerButtons">
-            <img src="./assets/avatar.png" alt="Avatar" class="avatar" onclick="window.location.href='./settings.html'">
-        </div>
+        <!-- profile dropdown goes here -->
     </div>
-    <h1>Test</h1>
-    <h5>You got this</h5>
+    <h1 id="firstMessage">Test</h1>
+    <h5 id="secondMessage">You got this</h5>
     <form action="/test">
         <div id="questions">
             <input type="radio" class='true' value="true">
@@ -45,5 +44,6 @@
             <button id="submit">Submit</button>
         </div>
     </form>
+    <script src="./scripts/profileDropdown.js"></script>
 </body>
 </html>

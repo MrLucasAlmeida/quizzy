@@ -36,6 +36,11 @@ async function main() {
         topicDropdown.append(newOption);
     }
 
+
+    // function for adding all the sets to the page based on a search
+    document.getElementById('searchBar').addEventListener('keyup', handleSearch);
+    document.getElementById('searchIcon').addEventListener('click', handleSearch);
+
 }
 
 
@@ -52,7 +57,7 @@ function logout(){
             'Content-Type': 'application/json'
         }
     }).then((res) => {
-        window.location.href = './index.html';
+        window.location.href = '/';
     });
 }
 
@@ -125,38 +130,7 @@ async function handleMenuSelection(e) {
 
 
 
-// function for adding all the sets to the page based on a search
-document.getElementById('searchBar').addEventListener('keyup', handleSearch);
-document.getElementById('searchIcon').addEventListener('click', handleSearch);
 
-
-// handling the avatar clicks
-
-const avatar = document.querySelector('.avatar');
-const dropdownMenu = document.querySelector('.dropdown-menu');
-
-// add an event listener to the window such that when clicked, the dropdown menu dissapears
-// window.addEventListener('click', function(event) {
-//     console.log('listening for click window')
-//     if (dropdownMenu.classList.contains('show')) {
-//         dropdownMenu.classList.remove('show');
-//     }
-// });
-// what are the different types of event listeners?
-// avatar.addEventListener('click', function(event) {});
-avatar.addEventListener('dblclick', function(event) {console.log('double clicked')});
-avatar.addEventListener('focus', function(event) {console.log('focused')});
-
-avatar.addEventListener('blur', function(event) {});
-
-
-
-// add an event listener to avatar such that when clicked, the dropdown menu appears and won't dissapear until clicked again
-avatar.addEventListener('click', function(event) {
-    console.log('listening for click avat')
-    event.stopPropagation();
-    dropdownMenu.classList.toggle('show');
-});
 
 
 // main function call
