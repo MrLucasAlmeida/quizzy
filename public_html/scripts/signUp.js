@@ -1,4 +1,4 @@
-const MASTER_URL = 'http://localhost:3000';
+MASTER_URL = 'http://localhost:3000';
 
 
 

@@ -4,7 +4,7 @@ async function handleNewPassword(){
 
     if (oldPassword === '' || newPassword === '') return;
 
-    const response = await fetch('/change/password', {
+    const response = await fetch('/update/password', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -17,7 +17,7 @@ async function handleNewPassword(){
     }
     else{
         console.log('not good')
-        const formSettings = document.getElementById('formSettings');
+        const formSettings = document.getElementById('formForPassword');
         const p = document.createElement('p')
         p.textContent = "The old password is typed incorrectly"
         p.style.fontSize = '15px';

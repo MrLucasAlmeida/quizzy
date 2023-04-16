@@ -1,21 +1,21 @@
 
-const MASTER_URL = 'http://localhost:3000';
+MASTER_URL = 'http://localhost:3000';
 
 //----------------------------
 // TEST SET STARTS HERE
 // default set for testing purposes
-const setCont = document.getElementById('studySetContainer');
-newDiv = document.createElement('div');
-newDiv.addEventListener('click', handleSetClick);
-newDiv.className = 'setContainer';
-newDiv.innerHTML += `
-        <h2 class="setId">6439983325f3e78ff8ee6d29</h2>
-        <h1>Test Title</h1>
-        <p>Test Topic</p>
-        <p>5 Terms</p>
-        <p>Test Author</p>`;
+// const setCont = document.getElementById('studySetContainer');
+// newDiv = document.createElement('div');
+// newDiv.addEventListener('click', handleSetClick);
+// newDiv.className = 'setContainer';
+// newDiv.innerHTML += `
+//         <h2 class="setId">6439983325f3e78ff8ee6d29</h2>
+//         <h1>Test Title</h1>
+//         <p>Test Topic</p>
+//         <p>5 Terms</p>
+//         <p>Test Author</p>`;
 
-setCont.append(newDiv);
+// setCont.append(newDiv);
 
 // TEST SET ENDS HERE
 //----------------------------
@@ -28,6 +28,24 @@ async function main() {
     // add the topics to the dropdown menu
     const topicDropdown = document.getElementById('topicDropdown');
     topicDropdown.addEventListener('change', handleMenuSelection);
+
+    // add the default all option
+    // add select a topic option
+    let emptyOption = document.createElement('option');
+    emptyOption.innerText= 'Select a Topic';
+    emptyOption.value = 'Select a Topic';
+    emptyOption.disabled = true;
+    emptyOption.selected = true;
+    topicDropdown.append(emptyOption);
+    // add all option
+    let allOption = document.createElement('option');
+    allOption.innerText= 'All';
+    allOption.value = 'All';
+    topicDropdown.append(allOption);
+
+    
+
+
     for (let i in data) {
         let newOption = document.createElement('option');
         // capitalize the first letter of each topic
@@ -112,7 +130,13 @@ function handleSetClick(e) {
 async function handleMenuSelection(e) {
     console.log('handling menu selection');
     const topic = e.target.value;
-    const response = await fetch(`${MASTER_URL}/search/set/topic/${topic}`);
+
+    if (topic === 'All') {
+        var response = await fetch(`${MASTER_URL}/get/sets/all`);
+    } else {
+        var response = await fetch(`${MASTER_URL}/search/set/topic/${topic}`);
+    }
+
     const data = await response.json();
     console.log(data);
     // const response = [];
@@ -126,6 +150,8 @@ async function handleMenuSelection(e) {
         studySetContainer.append(setContainer);
     }
 }
+
+
 
 
 
