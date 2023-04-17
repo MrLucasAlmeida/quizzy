@@ -19,14 +19,17 @@
         <!-- profile dropdown goes here -->
 
     </div>
-    <form id="formSettings">
+    <form id="formForPassword">
         <label for="oldPassword">Old Password</label>
         <input type="password" name="oldPassword" id="oldPassword">
         <label for="newPassword">New Password</label>
         <input type="password" name="newPassword" id="newPassword">
+        <button type="button" onclick="handleNewPassword()">Update Password</button>
+    </form>
+    <form action="/update/avatar" method="post" enctype="multipart/form-data">
         <label for="newAvatar">Change my avatar</label>
-        <input type="file" name="newAvatar">
-        <button type="button" onclick="handleNewPassword()">Save</button>
+        <input type="file" name="newAvatar" accept="image/*" required>
+        <button onclick="localStorage.clear()">Update Profile Picture</button>
     </form>
     <script src="./scripts/settings.js"></script>
     <script src="./scripts/profileDropdown.js"></script>

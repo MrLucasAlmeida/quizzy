@@ -1,5 +1,5 @@
 
-const MASTER_URL = 'http://localhost:3000';
+MASTER_URL = 'http://localhost:3000';
 
 //----------------------------
 // TEST SET STARTS HERE
@@ -16,7 +16,7 @@ newDiv.innerHTML += `
         <p>5 Terms</p>
         <p>Test Author</p>`;
 
-setCont.append(newDiv);
+// setCont.append(newDiv);
 
 // TEST SET ENDS HERE
 //----------------------------
@@ -29,6 +29,24 @@ async function main() {
     // add the topics to the dropdown menu
     const topicDropdown = document.getElementById('topicDropdown');
     topicDropdown.addEventListener('change', handleMenuSelection);
+
+    // add the default all option
+    // add select a topic option
+    let emptyOption = document.createElement('option');
+    emptyOption.innerText= 'Select a Topic';
+    emptyOption.value = 'Select a Topic';
+    emptyOption.disabled = true;
+    emptyOption.selected = true;
+    topicDropdown.append(emptyOption);
+    // add all option
+    let allOption = document.createElement('option');
+    allOption.innerText= 'All';
+    allOption.value = 'All';
+    topicDropdown.append(allOption);
+
+    
+
+
     for (let i in data) {
         let newOption = document.createElement('option');
         // capitalize the first letter of each topic
@@ -52,6 +70,7 @@ async function main() {
 
 
 function logout(){
+    localStorage.clear();
     fetch('/clear/cookies', {
         method: 'POST',
         headers: {
@@ -119,7 +138,13 @@ function handleSetClick(e) {
 async function handleMenuSelection(e) {
     console.log('handling menu selection');
     const topic = e.target.value;
-    const response = await fetch(`${MASTER_URL}/search/set/topic/${topic}`);
+
+    if (topic === 'All') {
+        var response = await fetch(`${MASTER_URL}/get/sets/all`);
+    } else {
+        var response = await fetch(`${MASTER_URL}/search/set/topic/${topic}`);
+    }
+
     const data = await response.json();
     console.log(data);
     // const response = [];
@@ -133,6 +158,8 @@ async function handleMenuSelection(e) {
         studySetContainer.append(setContainer);
     }
 }
+
+
 
 
 

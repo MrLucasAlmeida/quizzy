@@ -1,7 +1,9 @@
-const MASTER_URL = 'http://localhost:3000';
+MASTER_URL = 'http://localhost:3000';
 
 
 async function handleLoginAccount() {
+
+
     console.log('trying to create account')
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
@@ -19,6 +21,7 @@ async function handleLoginAccount() {
     // const data = JSON.stringify(response);
     // console.log(data);
     if (response.status === 200){
+        localStorage.clear();
         window.location.href = './home.html';
     }
     else{

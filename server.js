@@ -1,10 +1,11 @@
 const cookieParser = require("cookie-parser");
 const express = require("express")
-const mongoose = require("mongoose")
-const bodyParser = require("body-parser")
+const mongoose = require("mongoose");
+
 const multer = require('multer');
+const upload = multer({dest: __dirname + '/public_html/avatars'});
+
 const { Hash } = require("crypto");
-const upload = multer({dest: __dirname + '/images'});
 const crypto = require('crypto')
 
 
@@ -34,6 +35,7 @@ const usersSchema = new Schema({
     username: String,
     salt: Number,
     hash: String,
+    avatar: String,
     favorites: [mongoose.ObjectId],
     listings: [mongoose.ObjectId],
 })
@@ -111,7 +113,7 @@ app.get('/', (req, res, next) => {
 // returns document of the current user logged in
 app.get('/get/curruser', async (req, res) => {
     const c = req.cookies;
-    const response = await Users.find({username: c.login.username}).exec();
+    const response = await Users.findOne({username: c.login.username}).exec();
     res.send(response);
 });
 
@@ -165,7 +167,7 @@ app.post('/clear/cookies', (req, res) => {
 });
 
 // post to change the password
-app.post('/change/password', async (req, res) => {
+app.post('/update/password', async (req, res) => {
     const username = req.cookies.login.username;
     const { oldPassword, newPassword } = req.body;
 
@@ -193,6 +195,13 @@ app.post('/change/password', async (req, res) => {
     Users.updateOne({username}, {salt, hash: gen_hash}).exec();
     res.sendStatus(200)
 
+});
+
+app.post('/update/avatar', upload.single('newAvatar'), (req, res) => {
+    const username = req.cookies.login.username;
+    const fileName = req.file.filename;
+    Users.updateOne({username}, {avatar: fileName}).exec();
+    res.redirect('/settings.html');
 });
 
 // post to create a new set
@@ -349,7 +358,7 @@ app.post('/signup', async (req, res) => {
     let toHash = password + salt;
     let data = hash.update(toHash, 'utf-8');
     let gen_hash = data.digest('hex');
-    const user = new Users({username, salt, hash: gen_hash, favorites: [], listings: []})
+    const user = new Users({username, salt, hash: gen_hash, avatar: "avatar.png", favorites: [], listings: []})
     user.save();
     res.sendStatus(200);
 })
