@@ -168,26 +168,27 @@ cursor: pointer;
 
   .left,
   .right {
-      width: 100px;
-      height: 100px;
-      transition: .5s;
-      /* float: left; */
-      margin: 0 auto;
-      box-shadow: -2px 2px 0 black;
+      transition: .2s;
+      transform: scale(2);
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
   }
   
   .left {
-      transform: rotate(45deg);
+
+      
   }
   
   .right {
-      transform: rotate(-135deg);
+
   }
   
   
-  .left .right:hover {
-    background-color: darkgreen;
-    transform: scale(1.1);
+  .left:hover, .right:hover {
+    /* background-color: darkgreen; */
+    transform: scale(2.2);
     opacity: 0.8;
+    cursor: pointer;
   }
   

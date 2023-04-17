@@ -80,11 +80,6 @@ function logout(){
         window.location.href = '/';
     });
 }
-const favoriteStar = document.querySelector('.favorite-star');
-
-favoriteStar.addEventListener('click', () => {
-  favoriteStar.classList.toggle('favorited');
-});
 
 // create a container that will hold a set
 function createSetContainer(setDoc) {
