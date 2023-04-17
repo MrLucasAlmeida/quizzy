@@ -67,11 +67,11 @@ async function fillGlobalArrays() {
 // function for display one card's back
 function displayQuizQuestion() {
     // create quiz element div
-    let quizContainerForm = document.createElement('form');
-    quizContainerForm.id = 'quizContainerForm';
-
-
+    const quizContainerForm = document.getElementById('quizContainerForm');
+    
     for (let i in frontTextArr) {
+        const questionContainer = document.createElement('div');
+        questionContainer.className = 'questionContainer';
         const questionQuestionCards = `
             <div class="quizQuestionCards">
                 <div class="frontCardText">
@@ -86,24 +86,51 @@ function displayQuizQuestion() {
                 </div>
             </div>
         `;
+        // const radioButtonTrueFalse = `
+        //     <p>Choose answer</p>
+        //     <div class="radioButtonTrueFalse">
+                
+        //         <input type="radio" id="true" name="trueFalse${i}" value="true">
+        //         <label for="true">True</label>
+        //         <input type="radio" id="false" name="trueFalse${i}" value="false">
+        //         <label for="false">False</label>
+        //     </div>
+        // `;
+
         const radioButtonTrueFalse = `
-            <div class="radioButtonTrueFalse">
+        <p>Choose answer</p>
+        <ul class="radioButtonTrueFalse">
+            <li>
                 <input type="radio" id="true" name="trueFalse${i}" value="true">
-                <label for="true">True</label><br>
+                <label for="true">True</label>
+            </li>
+            <li>
                 <input type="radio" id="false" name="trueFalse${i}" value="false">
-                <label for="false">False</label><br>
-            </div>
+                <label for="false">False</label>
+            </li>
+        </ul>
         `;
 
 
+        questionContainer.innerHTML += questionQuestionCards + radioButtonTrueFalse
         // add the question to the quiz container
-        quizContainerForm.innerHTML += questionQuestionCards;
-        quizContainerForm.innerHTML += radioButtonTrueFalse;
+        quizContainerForm.append(questionContainer);
+        // quizContainerForm.innerHTML += ;
     }
 
-
+    
     // add the quiz container to the page
     document.getElementById('contentContainer').append(quizContainerForm);
+
+
+
+    // add mouse over event listener for the radio buttons
+    const radioButtons = Array.from(document.querySelectorAll('li'));
+    radioButtons.forEach(radioButton => radioButton.addEventListener('mouseover', (e) => {
+        const currListItem = e.currentTarget;
+        currListItem.querySelector('input').style.border = '2px solid black';
+        
+    }));
 
 
 }

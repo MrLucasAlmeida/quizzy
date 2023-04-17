@@ -200,12 +200,20 @@ app.post('/update/password', async (req, res) => {
 app.post('/update/favorites', async (req, res) => {
     console.log('updating favorites')
     const username = req.cookies.login.username;
+    const setId = req.body.setId;
+
+    // add id to favorites of user if it is not already there
+    // remove id from favorites of user if it is already there
+
+
+
+
     
     // Given the user, grab the user's favorites
     const user = await Users.findOne({username}).exec();
     const favorites = user.favorites;
   
-    const setId = req.body.setId;
+    
   
     // Given the setId, get the set
     const set = await Sets.findById(setId).exec();
