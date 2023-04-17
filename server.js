@@ -233,7 +233,7 @@ app.post('/update/favorites', async (req, res) => {
     await user.save();
     res.send('favorites updated');
   });
-
+  
 // get the favorites of the user
 app.get('/get/favorites', async (req, res) => {
     const username = req.cookies.login.username;
