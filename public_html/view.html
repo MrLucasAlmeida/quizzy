@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="./css/viewStyle.css">
     <link rel="stylesheet" href="./css/navigationBar.css">
     <link rel="icon" type="image/x-icon" href="./assets/logo.jpg">
+
+    <title>View</title>
+
+    
 </head>
 <body>
     <div id="header">
@@ -22,14 +27,18 @@
     <button id="testButton" onclick="TestButton()">Test</button>
 
     <div id="allCardsContainer">
-        <div class="left" onclick="handleClickLeft()"></div>
+        <!-- <div class="left" onclick="handleClickLeft()"></div> -->
+        <span class="left material-icons" onclick="handleClickLeft()">arrow_back</span>
+        
 
 
         <!-- cards go here, the following is a dummy div -->
         <div></div>
 
 
-        <div class="right" onclick="handleClickRight()"></div>
+        <!-- <div class="right" onclick="handleClickRight()"></div> -->
+        <span class="right material-icons" onclick="handleClickRight()">arrow_forward</span>
+        <!-- <span class="material-icons icons-size">account_circle</span> -->
     </div>
     
     

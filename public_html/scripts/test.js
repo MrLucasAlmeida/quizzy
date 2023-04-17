@@ -1,47 +1,112 @@
 // set the master url to localhost
-const MASTER_URL = 'http://localhost:3000';
+MASTER_URL = 'http://localhost:3000';
 
 const urlParams = new URLSearchParams(window.location.search);
-const id = urlParams.get('id');
-console.log(id)
+const setId = urlParams.get('id');
 
-async function displayCards(){
+// global variable to store card info
+let globalCards = [];
+let frontTextArr = [];
+let backTextArr = [];
+let quizAnswers = [];
+
+async function main() {
+    // const response = await fetch(`${MASTER_URL}/get/allcards/${setId}`);
+    // const cards = await response.json();
+    // console.log(cards);
+
+    // fill the global arrays with the cards
+    console.log('filling global arrays');
+    await fillGlobalArrays();
+    console.log(frontTextArr);
+    console.log(backTextArr);
+    console.log(quizAnswers);
+
+
+    // use the arrays to display the quiz questions
+    console.log('displaying quiz questions');
+    displayQuizQuestion();
+
+}
+
+
+
+
+async function fillGlobalArrays() {
     // fetch all cards given the set id
-    const response = await fetch(`${MASTER_URL}/get/allcards/${id}`);
+    const response = await fetch(`${MASTER_URL}/get/allcards/${setId}`);
     globalCards = await response.json();
     console.log(globalCards);
     // print how many cards there are in the set
-    console.log(globalCards.length);
-    let shuffled = shuffleWords(globalCards);
-    console.log(shuffled);
-    // display only the front of the card
-    for (let i = 0; i < shuffled.length; i++){
-        // for every index, 
-        displayCardBack(shuffled[i])
+    // create card matches for questions
+    for (let i in globalCards) {
+        frontTextArr.push(globalCards[i].front);
+
+        // determine if the question should be correct or not
+        if (Math.random() < 0.5) {
+            backTextArr.push(globalCards[i].back);
+            quizAnswers.push(true);
+        } else {
+            // answer is incorrect
+            // get a random card from the set that is not of the same index
+            let randomIndex = Math.floor(Math.random() * globalCards.length);
+            while (randomIndex == i) {
+                randomIndex = Math.floor(Math.random() * globalCards.length);
+            }
+
+            backTextArr.push(globalCards[randomIndex].back);
+            quizAnswers.push(false);
+        }
     }
+
 
 }
 
 // shuffle words
-function shuffleWords(words) {
-    const shuffled = words.slice(); 
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1)); 
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; 
-    }
-    return shuffled;
-}
 
 // function for display one card's back
-function displayCardBack(cardDoc) {
-    const container = document.getElementById('questions');
-    container.innerHTML += `<div class="card">
-    <div class="card__inner">
-        <div class="card__face card__face--back">
-            <h2>${cardDoc.back}</h2>
-        </div>
-    </div>
-</div>`;
-};
+function displayQuizQuestion() {
+    // create quiz element div
+    let quizContainerForm = document.createElement('form');
+    quizContainerForm.id = 'quizContainerForm';
 
-displayCards()
+
+    for (let i in frontTextArr) {
+        const questionQuestionCards = `
+            <div class="quizQuestionCards">
+                <div class="frontCardText">
+                    <h2>
+                        ${frontTextArr[i]}
+                    </h2>
+                </div>
+                <div class="backCardText">
+                    <h2>
+                        ${backTextArr[i]}
+                    </h2>
+                </div>
+            </div>
+        `;
+        const radioButtonTrueFalse = `
+            <div class="radioButtonTrueFalse">
+                <input type="radio" id="true" name="trueFalse${i}" value="true">
+                <label for="true">True</label><br>
+                <input type="radio" id="false" name="trueFalse${i}" value="false">
+                <label for="false">False</label><br>
+            </div>
+        `;
+
+
+        // add the question to the quiz container
+        quizContainerForm.innerHTML += questionQuestionCards;
+        quizContainerForm.innerHTML += radioButtonTrueFalse;
+    }
+
+
+    // add the quiz container to the page
+    document.getElementById('contentContainer').append(quizContainerForm);
+
+
+}
+
+// main function
+main();
