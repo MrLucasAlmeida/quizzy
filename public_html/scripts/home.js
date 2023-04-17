@@ -187,7 +187,13 @@ async function handleMenuSelection(e) {
     console.log(favStarArray);
     // iterate through the favorite stars and add an event listener to each one
     favStarArray.forEach((star) => {star.addEventListener('click', (e) => 
-    {  e.stopPropagation();
+    {  
+        const id = star.parentElement.getElementsByClassName('setId')[0].innerText;
+        console.log(id);
+        if (favoritesSet.includes(id)){
+            star.classList.add('favorited');
+        }
+        e.stopPropagation();
         star.classList.toggle('favorited');});
     });
 }
