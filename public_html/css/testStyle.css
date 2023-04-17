@@ -31,37 +31,21 @@ body {
     color: aqua;
 }
 
-form {
-background-color: #fff;
-padding: 2rem;
-border: 1px solid #ccc;
-border-radius: 5px;
+#contentContainer {
+    display: flex;
+    height: 100%;
+    width: 100%;
 }
 
-#questions {
-display: flex;
-flex-wrap: wrap;
+#quizContainerForm {
+    
 }
 
-input[type="radio"] {
-margin-right: 0.5rem;
+.quizQuestionCards {
+    display: flex;
 }
 
-label {
-font-weight: bold;
-}
 
-#submitTest {
-margin-top: 1rem;
-display: flex;
-justify-content: flex-end;
-}
+.radioButtonTrueFalse {
 
-#submit {
-background-color: green;
-color: #fff;
-border: none;
-padding: 0.5rem 1rem;
-border-radius: 2px;
-cursor: pointer;
 }

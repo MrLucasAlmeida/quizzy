@@ -6,7 +6,7 @@ const multer = require('multer');
 const upload = multer({dest: __dirname + '/public_html/avatars'});
 
 const { Hash } = require("crypto");
-const crypto = require('crypto')
+const crypto = require('crypto');
 
 
 const port = 3000;
@@ -17,7 +17,6 @@ app.use(cookieParser())
 app.use("/*.html", authenticate);
 app.use(express.static('public_html'));
 app.use(express.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // connect to mongoDB
