@@ -77,7 +77,7 @@ const newProfileDropdown = `
                     </li>
                     <li>
                         <span class="material-icons icons-size">favorite</span>
-                        <a href="#">Favorites</a>
+                        <a href="/fav.html">Favorites</a>
                     </li>
                     <li>
                         <span class="material-icons icons-size">mode</span>

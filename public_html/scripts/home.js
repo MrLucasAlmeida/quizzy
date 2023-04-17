@@ -129,7 +129,16 @@ async function handleSearch(e) {
     console.log(favStarArray);
     // iterate through the favorite stars and add an event listener to each one
     favStarArray.forEach((star) => {star.addEventListener('click', (e) => 
-    {  e.stopPropagation();
+    {  
+        // fetch('/favorite/set' and send the set id)
+        fetch("/update/favorites", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ setId: star.parentElement.getElementsByClassName('setId')[0].innerText })
+        });
+        e.stopPropagation();
         star.classList.toggle('favorited');});
     });
 }

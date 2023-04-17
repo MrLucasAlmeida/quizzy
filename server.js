@@ -197,6 +197,46 @@ app.post('/update/password', async (req, res) => {
 
 });
 
+// add a route that checks if the set is in user favorites, if it is, remove it, if not, add it
+app.post('/update/favorites', async (req, res) => {
+    console.log('updating favorites')
+    const username = req.cookies.login.username;
+    
+    // Given the user, grab the user's favorites
+    const user = await Users.findOne({username}).exec();
+    const favorites = user.favorites;
+  
+    const setId = req.body.setId;
+  
+    // Given the setId, get the set
+    const set = await Sets.findById(setId).exec();
+    
+    // Check if the set is in the favorites
+    if (favorites.includes(setId)) {
+      console.log('removed')
+      // Remove from the favorites list
+      const index = favorites.indexOf(setId);
+        user.favorites.splice(index, 1);
+    } else {
+      console.log('added')
+      // Add it to the favorites list
+      user.favorites.push(setId);
+    }
+    
+    await user.save();
+    res.send('favorites updated');
+  });
+
+// get the favorites of the user
+app.get('/get/favorites', async (req, res) => {
+    const username = req.cookies.login.username;
+    const user = await Users.findOne({username}).exec();
+    console.log(user)
+    const favorites = user.favorites;
+    console.log(user.favorites)
+    res.send(favorites);
+});
+
 app.post('/update/avatar', upload.single('newAvatar'), (req, res) => {
     const username = req.cookies.login.username;
     const fileName = req.file.filename;
