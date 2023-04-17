@@ -16,7 +16,7 @@ newDiv.innerHTML += `
         <p>5 Terms</p>
         <p>Test Author</p>`;
 
-// setCont.append(newDiv);
+setCont.append(newDiv);
 
 // TEST SET ENDS HERE
 //----------------------------
@@ -80,7 +80,9 @@ function logout(){
         window.location.href = '/';
     });
 }
+/*
 
+*/
 // create a container that will hold a set
 function createSetContainer(setDoc) {
 
@@ -122,6 +124,14 @@ async function handleSearch(e) {
         setContainer.addEventListener('click', handleSetClick);
         studySetContainer.append(setContainer);
     }
+    const favoriteStar = document.querySelectorAll('.favorite-star');
+    const favStarArray = Array.from(favoriteStar);
+    console.log(favStarArray);
+    // iterate through the favorite stars and add an event listener to each one
+    favStarArray.forEach((star) => {star.addEventListener('click', (e) => 
+    {  e.stopPropagation();
+        star.classList.toggle('favorited');});
+    });
 }
 
 function handleSetClick(e) {
@@ -152,6 +162,14 @@ async function handleMenuSelection(e) {
         setContainer.addEventListener('click', handleSetClick);
         studySetContainer.append(setContainer);
     }
+    const favoriteStar = document.querySelectorAll('.favorite-star');
+    const favStarArray = Array.from(favoriteStar);
+    console.log(favStarArray);
+    // iterate through the favorite stars and add an event listener to each one
+    favStarArray.forEach((star) => {star.addEventListener('click', (e) => 
+    {  e.stopPropagation();
+        star.classList.toggle('favorited');});
+    });
 }
 
 

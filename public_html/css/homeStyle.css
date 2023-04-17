@@ -14,12 +14,12 @@ Styling of the star icon
     display: inline-block;
     width: 20px;
     height: 20px;
-    background-image: url('/images/starBefore.webp');
+    background-image: url('/assets/starBefore.webp');
     background-repeat: no-repeat;
     background-size: contain;
   }
   .favorite-star.favorited {
-    background-image: url('/images/starAfter.png');
+    background-image: url('/assets/starAfter.png');
     color: gold;
   }
   
