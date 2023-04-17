@@ -16,6 +16,7 @@ async function displayCards(){
     console.log(shuffled);
     // display only the front of the card
     for (let i = 0; i < shuffled.length; i++){
+        // for every index, 
         displayCardBack(shuffled[i])
     }
 
