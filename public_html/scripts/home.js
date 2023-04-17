@@ -9,6 +9,7 @@ newDiv = document.createElement('div');
 newDiv.addEventListener('click', handleSetClick);
 newDiv.className = 'setContainer';
 newDiv.innerHTML += `
+        <i class="favorite-star"></i>
         <h2 class="setId">6439983325f3e78ff8ee6d29</h2>
         <h1>Test Title</h1>
         <p>Test Topic</p>
@@ -60,6 +61,11 @@ function logout(){
         window.location.href = '/';
     });
 }
+const favoriteStar = document.querySelector('.favorite-star');
+
+favoriteStar.addEventListener('click', () => {
+  favoriteStar.classList.toggle('favorited');
+});
 
 // create a container that will hold a set
 function createSetContainer(setDoc) {
@@ -68,6 +74,7 @@ function createSetContainer(setDoc) {
     let newDiv = document.createElement('div');
     newDiv.className = 'setContainer';
     newDiv.innerHTML += `
+        <i class="favorite-star"></i>
         <h2 class="setId">${setDoc._id}</h2>
         <h1>${setDoc.title}</h1>
         <p>${setDoc.topic}</p>

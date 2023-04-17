@@ -7,7 +7,22 @@ body {
     padding: 0;
     overflow: hidden;
 }
-
+/*
+Styling of the star icon
+*/
+.favorite-star {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('/images/starBefore.webp');
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .favorite-star.favorited {
+    background-image: url('/images/starAfter.png');
+    color: gold;
+  }
+  
 
 #studySetContainer {
     display: flex;

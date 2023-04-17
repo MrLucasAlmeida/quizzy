@@ -11,9 +11,13 @@ const id = urlParams.get('id');
 var globalCards = [];
 var currIndex = 0;
 
+// when the test button is clicked, the setId has to be attached in the url
+function TestButton(){
+    window.location.href = './test.html?id=' + id;
+}
 
 async function main() {
-    // fetch cards information based on id
+    // fetch cards from the current user
     const response = await fetch(`${MASTER_URL}/get/allcards/${id}`);
     globalCards = await response.json();
 

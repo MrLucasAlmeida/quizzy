@@ -32,7 +32,7 @@ const newProfileDropdown = `
                     </li>
                     <li>
                         <span class="material-icons icons-size">dynamic_feed</span>
-                        <a href="#">My Sets</a>
+                        <a href="/mySets.html">My Sets</a>
                     </li>
                     <li>
                         <span class="material-icons icons-size">favorite</span>

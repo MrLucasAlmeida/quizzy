@@ -140,6 +140,14 @@ app.get('/get/allcards/:id', async (req, res) => {
     res.send(JSON.stringify(response));
 });
 
+// get all cards by a user
+app.get('/get/cards/all', async (req, res) => {
+    const user = req.cookies.login.username;
+    const response = await Sets.find({author: user}).exec();
+    console.log("Getting all cards by user: " + user);
+    res.send(JSON.stringify(response));
+});
+
 app.get('/get/topics/all', async (req, res) => {
     const response = await Sets.find({}).exec();
     let topics = response.map((set) => set.topic);
