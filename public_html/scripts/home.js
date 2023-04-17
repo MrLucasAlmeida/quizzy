@@ -1,6 +1,6 @@
 
 MASTER_URL = 'http://localhost:3000';
-
+var favoritesSet = [];
 //----------------------------
 // TEST SET STARTS HERE
 // default set for testing purposes
@@ -22,6 +22,9 @@ setCont.append(newDiv);
 //----------------------------
 
 async function main() {
+    // get the user's favorites
+    const fav = await fetch(`${MASTER_URL}/get/favorites`);
+    favoritesSet = await fav.json();
     // grab all of the distinct topics and add them to the dropdown menu
     const response = await fetch(`${MASTER_URL}/get/topics/all`);
     const data = await response.json();
@@ -125,10 +128,17 @@ async function handleSearch(e) {
         studySetContainer.append(setContainer);
     }
     const favoriteStar = document.querySelectorAll('.favorite-star');
+
     const favStarArray = Array.from(favoriteStar);
     console.log(favStarArray);
     // iterate through the favorite stars and add an event listener to each one
-    favStarArray.forEach((star) => {star.addEventListener('click', (e) => 
+    favStarArray.forEach((star) => {
+        const id = star.parentElement.getElementsByClassName('setId')[0].innerText;
+        console.log(id);
+        if (favoritesSet.includes(id)){
+            star.classList.add('favorited');
+        }
+        star.addEventListener('click', (e) => 
     {  
         // fetch('/favorite/set' and send the set id)
         fetch("/update/favorites", {
@@ -138,6 +148,7 @@ async function handleSearch(e) {
             },
             body: JSON.stringify({ setId: star.parentElement.getElementsByClassName('setId')[0].innerText })
         });
+
         e.stopPropagation();
         star.classList.toggle('favorited');});
     });
