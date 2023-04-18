@@ -125,9 +125,57 @@ function displayQuizQuestion() {
     submitButton.id = 'submitButton';
     submitButton.type = 'submit';
     submitButton.innerHTML = 'Submit test';
+    // submitButton.addEventListener('onsubmit', handleQuizSubmit);
+    // submitButton.onsubmit = handleQuizSubmit;
     quizContainerForm.append(submitButton);
 
+
+    // add event listener to the form
+    quizContainerForm.addEventListener('submit', handleQuizSubmit);
+
+
 }
+
+
+
+function handleQuizSubmit(e) {
+    e.preventDefault();
+    // verify the answers and display the results
+    // calculate the score and create an array of the wrong answers
+
+    let correctArr = [];
+    let currentScore = 0;
+    let quizForm = e.target;
+    // find all of the radio button divs
+    const radioButtonInputs = quizForm.getElementsByClassName('radioButtonTrueFalse');
+    const radioBtnDivArr = Array.from(radioButtonInputs);
+
+    // iterate through the quiz questions
+    for (let i in radioBtnDivArr) {
+        // get the radio button
+        const radioBtns = Array.from(radioBtnDivArr[i].getElementsByTagName('input'));
+        const trueBtn = radioBtns[0];
+        const falseBtn = radioBtns[1];
+
+        let correctAnswer = trueBtn.checked ? true : false;
+        // check which one is correct
+        correctArr.push(correctAnswer === quizAnswers[i]);
+
+        
+    }
+    console.log(correctArr);
+
+
+
+
+
+}
+
+
+
+
+
+
 
 // main function
 main();

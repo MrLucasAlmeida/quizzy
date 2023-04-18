@@ -43,7 +43,8 @@ Styling of the star icon
 .setContainer {
     width: 370px;
     height: 200px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    box-shadow: 0 0 5px #000000;
     border-radius: 10px;
     background-color: white;
     padding: 10px;
@@ -51,9 +52,9 @@ Styling of the star icon
 }
 .setContainer:hover {
     transform: scale(1.02);
+    box-shadow: 0 0 7px #000000;
     cursor: pointer;
 }
-
 
 .setId {
     color: red;

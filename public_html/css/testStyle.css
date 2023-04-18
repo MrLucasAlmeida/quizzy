@@ -1,4 +1,12 @@
 
+:root {
+  /* --primary: #FFCE00; */
+  --primary: #06188f;
+  /* --secondary: #FE4880; */
+  --secondary: #5264ff;
+  --dark: #212121;
+  --light: #F3F3F3;
+}
 
 body {
     display: flex;
@@ -37,8 +45,9 @@ body {
 .questionContainer {
     padding: 20px;
     margin: 10px;
-    border: 1px solid black;
-    background-color: white;
+    /* border: 1px solid black; */
+    background-image: linear-gradient(to bottom right, var(--primary), var(--secondary));
+    box-shadow: 0 0 5px #000000;
     border-radius: 10px;
 }
 .questionContainer .termCount {
@@ -46,8 +55,8 @@ body {
     justify-content: flex-end;
     margin: 0;
     padding: 0;
-    color: #5a5a5a;
-    opacity: 0.8;
+    color: #ffffff;
+    opacity: 0.9;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     margin-right: 10px;
@@ -64,9 +73,13 @@ body {
     justify-content: center;
     width: 300px;
     height: 200px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 10px;
     margin: 10px;
+    background-image: linear-gradient(to bottom right, var(--secondary), var(--primary));
+    box-shadow: 0 0 10px #212121;
+    color: white;
+    opacity: 0.9;
 }
 .frontCardText h2,
 .backCardText h2 {
@@ -75,11 +88,9 @@ body {
 
 .questionContainer p {
     margin-top: 10px;
-    color: #5a5a5a;
+    color: white;
+    opacity: 0.9;
 }
-
-
-
 
 
 .radioButtonTrueFalse {
@@ -115,8 +126,10 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    border: 3px solid darkgray;
+    /* border: 3px solid darkgray; */
+    box-shadow: 0 0 5px #212121;
     border-radius: 10px;
+    color: white;
     cursor: pointer;
   }
   .radioButtonTrueFalse label:hover, .radioButtonTrueFalse input:hover {
@@ -130,8 +143,11 @@ body {
   
   .radioButtonTrueFalse input[type="radio"]:checked+label,
   .Checked+label {
-    background: #afafaf;
-    border: 3px solid #4255ff;
+    /* background: #afafaf; */
+    /* border: 3px solid #4255ff; */
+    box-shadow: 0 0 10px var(--primary);
+    background-image: linear-gradient(to bottom, var(--primary), var(--secondary));
+    
   }
   
   .radioButtonTrueFalse label {
