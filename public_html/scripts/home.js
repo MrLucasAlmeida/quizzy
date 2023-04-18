@@ -113,15 +113,25 @@ async function handleSearch(e) {
     // do nothing if search is empty
     if (searchKeyword === '') return;
 
+
+    // gets the favorites
+    const fav = await fetch(`${MASTER_URL}/get/favorites`);
+    favoritesSet = await fav.json();
+
+
+
+    // gets sets based on keyword
     console.log('handling search for sets');
     const response = await fetch(`${MASTER_URL}/search/set/keyword/${searchKeyword}`);
     const data = await response.json();
     console.log(data);
+
     // const response = [];
     console.log('handling search for sets');
     const studySetContainer = document.getElementById('studySetContainer');
     studySetContainer.innerHTML = '';
 
+    // create the set cards
     for (let i in data) {
         let setContainer = createSetContainer(data[i]);
         setContainer.addEventListener('click', handleSetClick);
@@ -134,7 +144,6 @@ async function handleSearch(e) {
     // iterate through the favorite stars and add an event listener to each one
     favStarArray.forEach((star) => {
         const id = star.parentElement.getElementsByClassName('setId')[0].innerText;
-        console.log(id);
         if (favoritesSet.includes(id)){
             star.classList.add('favorited');
         }
@@ -172,11 +181,20 @@ async function handleMenuSelection(e) {
 
     const data = await response.json();
     console.log(data);
-    // const response = [];
+    
+
+    // gets the favorites
+    const fav = await fetch(`${MASTER_URL}/get/favorites`);
+    favoritesSet = await fav.json();
+
+
+
     console.log('handling search for sets');
     const studySetContainer = document.getElementById('studySetContainer');
     studySetContainer.innerHTML = '';
 
+
+    // create the set cards
     for (let i in data) {
         let setContainer = createSetContainer(data[i]);
         setContainer.addEventListener('click', handleSetClick);
@@ -186,15 +204,28 @@ async function handleMenuSelection(e) {
     const favStarArray = Array.from(favoriteStar);
     console.log(favStarArray);
     // iterate through the favorite stars and add an event listener to each one
-    favStarArray.forEach((star) => {star.addEventListener('click', (e) => 
-    {  
+    favStarArray.forEach((star) => {
         const id = star.parentElement.getElementsByClassName('setId')[0].innerText;
         console.log(id);
         if (favoritesSet.includes(id)){
+
             star.classList.add('favorited');
         }
-        e.stopPropagation();
-        star.classList.toggle('favorited');});
+        star.addEventListener('click', (e) => {  
+            // update the favorites array for the user with this new set
+            // fetch('/favorite/set' and send the set id)
+            fetch("/update/favorites", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ setId: star.parentElement.getElementsByClassName('setId')[0].innerText })
+            });
+
+
+
+            e.stopPropagation();
+            star.classList.toggle('favorited');});
     });
 }
 
