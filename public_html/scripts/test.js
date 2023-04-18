@@ -164,6 +164,7 @@ function handleQuizSubmit(e) {
         
     }
     console.log(correctArr);
+    
 
 
 
