@@ -55,22 +55,20 @@ cursor: pointer;
 
 
 #testButton {
-    display: block;
     margin: 20px auto;
-    padding: 25px 50px;
-    background-color: #4CAF50;
-    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    background-color: #4255ff;
+    color: white;
+    font-size: 25px;
+    font-family: 'Roboto', sans-serif;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s ease-in-out;
+    width: fit-content;
   }
+
   #testButton:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    /* opacity: 0.9; */
-    transform: scale(1.03);
+    background-color: #3a4fd4;
   }
 
 
@@ -87,8 +85,10 @@ cursor: pointer;
   }
 
 :root {
-    --primary: #FFCE00;
-    --secondary: #FE4880;
+    /* --primary: #FFCE00; */
+    --primary: #06188f;
+    /* --secondary: #FE4880; */
+    --secondary: #5264ff;
     --dark: #212121;
     --light: #F3F3F3;
   }
@@ -102,7 +102,7 @@ cursor: pointer;
   .card {
     /* margin: 0 auto; */
     width: 50%;
-    height: 80%;
+    height: 90%;
     perspective: 1000px;
   }
   
@@ -154,7 +154,10 @@ cursor: pointer;
   
   
   
-
+  #currTerm {
+    margin: auto;
+    margin-bottom: 20px;
+  }
 
 
 

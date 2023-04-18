@@ -73,6 +73,7 @@ function displayQuizQuestion() {
         const questionContainer = document.createElement('div');
         questionContainer.className = 'questionContainer';
         const questionQuestionCards = `
+            <h2 class="termCount" >${parseInt(i) + 1} of ${frontTextArr.length}</h2>
             <div class="quizQuestionCards">
                 <div class="frontCardText">
                     <h2>
@@ -86,26 +87,16 @@ function displayQuizQuestion() {
                 </div>
             </div>
         `;
-        // const radioButtonTrueFalse = `
-        //     <p>Choose answer</p>
-        //     <div class="radioButtonTrueFalse">
-                
-        //         <input type="radio" id="true" name="trueFalse${i}" value="true">
-        //         <label for="true">True</label>
-        //         <input type="radio" id="false" name="trueFalse${i}" value="false">
-        //         <label for="false">False</label>
-        //     </div>
-        // `;
 
         const radioButtonTrueFalse = `
         <p>Choose answer</p>
         <ul class="radioButtonTrueFalse">
             <li>
-                <input type="radio" id="true" name="trueFalse${i}" value="true">
+                <input type="radio" id="true" name="trueFalse${i}" value="true" required>
                 <label for="true">True</label>
             </li>
             <li>
-                <input type="radio" id="false" name="trueFalse${i}" value="false">
+                <input type="radio" id="false" name="trueFalse${i}" value="false" required>
                 <label for="false">False</label>
             </li>
         </ul>
@@ -115,23 +106,26 @@ function displayQuizQuestion() {
         questionContainer.innerHTML += questionQuestionCards + radioButtonTrueFalse
         // add the question to the quiz container
         quizContainerForm.append(questionContainer);
-        // quizContainerForm.innerHTML += ;
+        
+        
     }
 
-    
+
     // add the quiz container to the page
     document.getElementById('contentContainer').append(quizContainerForm);
 
+    // submit message
+    const submitMessage = document.createElement('div');
+    submitMessage.id = 'submitMessage';
+    submitMessage.innerHTML = 'You have completed the quiz. Click submit to see your results.';
+    quizContainerForm.append(submitMessage);
 
-
-    // add mouse over event listener for the radio buttons
-    const radioButtons = Array.from(document.querySelectorAll('li'));
-    radioButtons.forEach(radioButton => radioButton.addEventListener('mouseover', (e) => {
-        const currListItem = e.currentTarget;
-        currListItem.querySelector('input').style.border = '2px solid black';
-        
-    }));
-
+    // add a submit button to the form
+    const submitButton = document.createElement('button');
+    submitButton.id = 'submitButton';
+    submitButton.type = 'submit';
+    submitButton.innerHTML = 'Submit test';
+    quizContainerForm.append(submitButton);
 
 }
 

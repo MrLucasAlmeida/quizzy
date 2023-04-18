@@ -69,6 +69,10 @@ function displayCard(cardDoc) {
     card.classList.toggle('is-flipped');
 });
 
+
+    // update the span showing the current term number
+    document.getElementById('currTerm').innerHTML = `${currIndex + 1} of ${globalCards.length}`;
+
 }
 
 

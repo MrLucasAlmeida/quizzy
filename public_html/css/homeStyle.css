@@ -12,8 +12,8 @@ Styling of the star icon
 */
 .favorite-star {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     background-image: url('/assets/starBefore.webp');
     background-repeat: no-repeat;
     background-size: contain;
@@ -22,12 +22,17 @@ Styling of the star icon
     background-image: url('/assets/starAfter.png');
     color: gold;
   }
+  .favorite-star:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
   
 
 #studySetContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 20px 0;
     height: 100%;
     bottom: 0;
     background-color: lightblue;
