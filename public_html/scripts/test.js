@@ -140,6 +140,7 @@ function displayQuizQuestion() {
 function renderAnswers(correctArr){
     // iterate through the correct array and change the background color of the radio buttons
     const radioButtons = document.getElementsByClassName('radioButtonTrueFalse');
+    var points = 0;
     for (let i in correctArr) {
         if (correctArr[i]) {
             // correct answer
@@ -149,6 +150,7 @@ function renderAnswers(correctArr){
             radioButtons[i].lastChild.style.transform = 'scale(1.8)';
             radioButtons[i].lastChild.style.transition = 'transform 0.5s ease-in-out';
             radioButtons[i].lastChild.style.padding = '5px';
+            points++;
         
         } else {
             // incorrect answer
@@ -159,6 +161,15 @@ function renderAnswers(correctArr){
             radioButtons[i].lastChild.style.padding = '5px';
         }
     }
+    window.alert(`You got ${points} out of ${correctArr.length} correct! And you earned ${points} points!`);
+    // fetch 'add/points/${points}' and add the points to the user's account
+    fetch(`${MASTER_URL}/add/points/${points}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(points),
+    })
 }
 
 function handleQuizSubmit(e) {

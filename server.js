@@ -385,6 +385,16 @@ app.post('/login', async (req, res) => {
         res.sendStatus(404);
     }
 });
+// route for getting a user and adding points to them
+app.post('/add/points/:points', async (req, res) => {
+    const username = req.cookies.login.username;
+    const points = req.params.points;
+    // get the user based on the username
+    const user = await Users.findOne({username}).exec();
+    // add the points to the user
+    user.points += points;
+    await user.save();
+});
 
 // route for signing up to the website
 app.post('/signup', async (req, res) => {

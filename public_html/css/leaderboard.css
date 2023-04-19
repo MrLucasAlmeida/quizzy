@@ -1,0 +1,24 @@
+body{
+    margin: 0;
+}
+div{
+    margin: 5px;
+    padding: 10px;
+}
+h1{
+    text-align: center;
+    color: blue;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#mainSection{
+    width: 100%;
+    height: 100%;
+    background-color: lightblue;
+}
+#leaderboard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: blue;
+}
