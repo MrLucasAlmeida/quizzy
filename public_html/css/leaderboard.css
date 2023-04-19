@@ -5,6 +5,12 @@ div{
     margin: 5px;
     padding: 10px;
 }
+#row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
 h1{
     text-align: center;
     color: blue;

@@ -4,6 +4,7 @@ const MASTER_URL = 'http://localhost:3000';
 function displayUser(user, ranking){
     // grab the leaderboard div
     const leaderboard = document.getElementById('leaderboard');
+    const row = document.createElement('div');
     // create a div for the user
     const userDiv = document.createElement('div');
     userDiv.innerHTML = user.username;
@@ -12,28 +13,31 @@ function displayUser(user, ranking){
     rankingDiv.innerHTML = ranking;
     // create a div for user's score
     const scoreDiv = document.createElement('div');
-    scoreDiv.innerHTML = user.score;
+    scoreDiv.innerHTML = user.points;
     // append the ranking div to the leaderboard div
     if (ranking === 1) {
-        rankingDiv.style.color = 'gold';
+        row.style.backgroundColor = 'gold';
     } else if (ranking === 2) {
-        rankingDiv.style.color = 'silver';
+        row.style.backgroundColor = 'silver';
     } else if (ranking === 3) {
-        rankingDiv.style.color = 'brown';
+        row.style.backgroundColor = 'brown';
     }
     else{
-        rankingDiv.style.color = 'lightgreen';
+        row.style.backgroundColor = 'gray';
     }
-    leaderboard.append(rankingDiv);
+    row.append(rankingDiv);
     // append the user div to the leaderboard div
-    leaderboard.append(userDiv);
+    row.append(userDiv);
     // append the score div to the leaderboard div
-    leaderboard.append(scoreDiv);
+    console.log(scoreDiv)
+    row.append(scoreDiv);
+    // append the user div to the leaderboard div
+    leaderboard.append(row);
 }
 
 async function main() {
     // fetch all users from the database
-    const response = await fetch(`${MASTER_URL}/get/allusers`);
+    const response = await fetch(`${MASTER_URL}/get/users/all`);
     const users = await response.json();
     console.log(users);
     // sort the users by score
@@ -42,6 +46,8 @@ async function main() {
     console.log(users);
     // display each user by iterating through the array
     for (let i in users) {
+        console.log(i)
+        let ranking = i + 1;
         displayUser(users[i], ranking);
     }
 }
