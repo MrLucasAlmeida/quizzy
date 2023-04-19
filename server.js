@@ -56,10 +56,15 @@ const setsSchema = new Schema({
     topic: String,
     title: String,
     views: Number,
+    comments: {
+        type: Map,
+        of: String
+    },
     cards: [mongoose.ObjectId],
 })
 
 let Sets = mongoose.model("Sets", setsSchema);
+
 
 var sessionKeys = {};
 const period = 3000000;
