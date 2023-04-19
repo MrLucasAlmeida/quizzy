@@ -137,7 +137,7 @@ function displayQuizQuestion() {
 
 }
 
-function renderAnswers(correctArr){
+async function renderAnswers(correctArr){
     // iterate through the correct array and change the background color of the radio buttons
     const radioButtons = document.getElementsByClassName('radioButtonTrueFalse');
     var points = 0;
@@ -163,12 +163,13 @@ function renderAnswers(correctArr){
     }
     window.alert(`You got ${points} out of ${correctArr.length} correct! And you earned ${points} points!`);
     // fetch 'add/points/${points}' and add the points to the user's account
-    fetch(`${MASTER_URL}/add/points/${points}`, {
+    console.log(points)
+    await fetch(`${MASTER_URL}/add/points`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify(points),
+        body: JSON.stringify({points: points})
     })
 }
 

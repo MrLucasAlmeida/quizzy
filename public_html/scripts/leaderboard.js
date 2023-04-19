@@ -2,53 +2,56 @@ const MASTER_URL = 'http://localhost:3000';
 // This js is used to display the leaderboard for all users
 
 function displayUser(user, ranking){
-    // grab the leaderboard div
-    const leaderboard = document.getElementById('leaderboard');
-    const row = document.createElement('div');
-    // create a div for the user
-    const userDiv = document.createElement('div');
-    userDiv.innerHTML = user.username;
-    // create a div for user's ranking number
-    const rankingDiv = document.createElement('div');
-    rankingDiv.innerHTML = ranking;
-    // create a div for user's score
-    const scoreDiv = document.createElement('div');
-    scoreDiv.innerHTML = user.points;
-    // append the ranking div to the leaderboard div
+    const row = document.createElement('tr');
+    console.log(ranking)
+    row.innerHTML = 
+    `
+    <td>${ranking}</td>
+    <td>${user.username}</td>
+    <td>${user.points}</td>
+    `
     if (ranking === 1) {
         row.style.backgroundColor = 'gold';
     } else if (ranking === 2) {
         row.style.backgroundColor = 'silver';
-    } else if (ranking === 3) {
+    }else if (ranking == 3){
         row.style.backgroundColor = 'brown';
     }
     else{
         row.style.backgroundColor = 'gray';
     }
-    row.append(rankingDiv);
-    // append the user div to the leaderboard div
-    row.append(userDiv);
-    // append the score div to the leaderboard div
-    console.log(scoreDiv)
-    row.append(scoreDiv);
-    // append the user div to the leaderboard div
-    leaderboard.append(row);
+    return row;
 }
 
 async function main() {
     // fetch all users from the database
     const response = await fetch(`${MASTER_URL}/get/users/all`);
-    const users = await response.json();
-    console.log(users);
-    // sort the users by score
-    users.sort((a, b) => (a.score < b.score) ? 1 : -1);
+    const usersUnsorted = await response.json();
+    console.log(usersUnsorted);
+    // sort the users by score, from highest to lowest
+    var users = usersUnsorted.sort(function (a, b) {
+        return b.points - a.points;
+    });
     // log sorted users
     console.log(users);
     // display each user by iterating through the array
+    const leaderboard = document.getElementById('leaderboard');
+    const table = document.createElement('table');
+    table.innerHTML += `
+        <tr>
+            <th>Ranking</th>
+            <th>Username</th>
+            <th>Score</th>
+        </tr>
+    `
+    leaderboard.append(table);
     for (let i in users) {
         console.log(i)
+        console.log(typeof i)
+        i = parseInt(i)
         let ranking = i + 1;
-        displayUser(users[i], ranking);
+        table.append(displayUser(users[i], ranking));
+
     }
 }
 
