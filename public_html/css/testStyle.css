@@ -190,7 +190,9 @@ body {
     font-size: 25px;
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
+    transition: 0.2s;
   }
   #submitButton:hover {
+    transform: scale(1.02);
     background-color: #3a4fd4;
   }

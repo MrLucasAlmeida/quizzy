@@ -31,9 +31,11 @@ body {
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
     width: fit-content;
+    transition: .1s;
   }
 
   #testButton:hover {
+    transform: scale(1.02);
     background-color: #3a4fd4;
   }
 
