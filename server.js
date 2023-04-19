@@ -259,8 +259,8 @@ app.post('/create/set', async (req, res) => {
     const newSet = new Sets({title, topic, author, views: 0, cards: []});
     newSet.save();
     
-    // add the set to the user's listings
-    Users.updateOne({username: author}, {$push: {listings: newSet._id}}).exec();
+    // add the set to the user's listings, and increment the points of the user by 20
+    Users.updateOne({username: author}, {$push: {listings: newSet._id}, $inc: {points: 20}}).exec();
     console.log(newSet._id.toString());
 
     // send the id of the new set
@@ -346,7 +346,6 @@ app.get('/search/set/keyword/:keyword', async (req, res) => {
     const resSets = await Sets.find({_id: {$in: resSetIds}}).exec();
     res.send(JSON.stringify(resSets));
 });
-
 
 // searching for a set by topic
 app.get('/search/set/topic/:topic', (req, res) => {
