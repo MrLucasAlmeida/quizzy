@@ -22,7 +22,7 @@ function capitalize(string) {return string.charAt(0).toUpperCase() + string.slic
 function setThemeCode() {return localStorage.getItem('theme') === 'dark' ? 'dark_mode' : 'light_mode';}
 function setThemeText() {return localStorage.getItem('theme') === 'dark' ? 'Dark Mode' : 'Light Mode';}
 function handleThemeBtnClick() {
-    
+    // do stuff for toggling theme
 }
 
 
