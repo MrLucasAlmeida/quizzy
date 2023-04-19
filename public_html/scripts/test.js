@@ -187,7 +187,12 @@ function handleQuizSubmit(e) {
         
     }
     console.log(correctArr);
-    renderAnswers(correctArr);
+    
+
+
+
+
+
 }
 
 

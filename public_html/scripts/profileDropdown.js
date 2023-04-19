@@ -16,9 +16,18 @@ function getCookie(name) {
     return null;
 }
 
-function capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+function capitalize(string) {return string.charAt(0).toUpperCase() + string.slice(1);}
+
+// helper function for theme button
+function setThemeCode() {return localStorage.getItem('theme') === 'dark' ? 'dark_mode' : 'light_mode';}
+function setThemeText() {return localStorage.getItem('theme') === 'dark' ? 'Dark Mode' : 'Light Mode';}
+function handleThemeBtnClick() {
+    
 }
+
+
+
+
 
 
 async function main() {
@@ -83,6 +92,12 @@ const newProfileDropdown = `
                         <span class="material-icons icons-size">mode</span>
                         <a href="/post.html">Create a Set</a>
                     </li>
+
+                    <li>
+                        <span class="material-icons icons-size">${setThemeCode()}</span>
+                        <a href="" onclick="handleThemeBtnClick()">${setThemeText()}</a>
+                    </li>
+
                     <li>
                         <span class="material-icons icons-size">leaderboard</span>
                         <a href="/leaderboard.html">Leaderboard</a>
