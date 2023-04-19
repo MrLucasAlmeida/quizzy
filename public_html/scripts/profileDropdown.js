@@ -19,10 +19,15 @@ function getCookie(name) {
 function capitalize(string) {return string.charAt(0).toUpperCase() + string.slice(1);}
 
 // helper function for theme button
-function setThemeCode() {return localStorage.getItem('theme') === 'dark' ? 'dark_mode' : 'light_mode';}
-function setThemeText() {return localStorage.getItem('theme') === 'dark' ? 'Dark Mode' : 'Light Mode';}
+function setThemeCode() {return localStorage.getItem('theme') === 'dark' ? 'light_mode' : 'dark_mode';}
+function setThemeText() {return localStorage.getItem('theme') === 'dark' ? 'Light Mode' : 'Night Mode';}
 function handleThemeBtnClick() {
     // do stuff for toggling theme
+    if (localStorage.getItem('theme') === 'dark') {
+        localStorage.setItem('theme', 'light');
+    } else {
+        localStorage.setItem('theme', 'dark');
+    }
 }
 
 

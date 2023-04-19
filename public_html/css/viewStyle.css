@@ -58,7 +58,7 @@ body {
   
   
   .card {
-    display: inline;
+    display: flex;
     margin: 0 10%;
     width: 50%;
     height: 325px;
@@ -88,6 +88,9 @@ body {
     overflow: hidden;
     border-radius: 16px;
     box-shadow: 0px 3px 18px 3px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .card__face--front, .card__face--back {
@@ -99,6 +102,7 @@ body {
   
   .card__face--front h2, .card__face--back h2 {
     color: #FFF;
+    margin: 10%;
     font-size: 32px;
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
