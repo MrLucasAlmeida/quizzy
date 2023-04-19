@@ -1,62 +1,28 @@
-
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
-
-
 body {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: lightblue;
-}
-.avatar:hover{
-    background-color: darkgreen;
-    transform: scale(1.1);
-    opacity: 0.8;
-}
-#header {
-background-color: #f1f1f1;
-display: flex;
-justify-content: space-between;
-align-items: center;
-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-height: 15%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-#logoContainer {
-    height: 100%;
-}
-#logo {
-    height: 100%;
-}
 
-.avatar {
-width: 50px;
-height: 50px;
-border-radius: 50%;
-margin-right: 1rem;
-}
 
-#homeButton {
-background-color: green;
-border: none;
-padding: 0.5rem 1rem;
-border-radius: 5px;
-cursor: pointer;
+#contentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  /* overflow-y: auto; */
 }
 
 
 
 #testButton {
     margin: 20px auto;
-    padding: 20px 30px;
+    margin-top: 30px;
+    padding: 15px 30px;
     border-radius: 10px;
     border: none;
     background-color: #4255ff;
@@ -76,12 +42,9 @@ cursor: pointer;
 
   #allCardsContainer {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0 auto;
-    padding: 0 80px;
+    justify-content: center;
     width: 100%;
-    height: 100%;
+
   }
 
 :root {
@@ -93,16 +56,12 @@ cursor: pointer;
     --light: #F3F3F3;
   }
   
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  
   
   .card {
-    /* margin: 0 auto; */
+    display: inline;
+    margin: 0 10%;
     width: 50%;
-    height: 90%;
+    height: 325px;
     perspective: 1000px;
   }
   
@@ -155,8 +114,7 @@ cursor: pointer;
   
   
   #currTerm {
-    margin: auto;
-    margin-bottom: 20px;
+    margin: 20px auto;
   }
 
 
