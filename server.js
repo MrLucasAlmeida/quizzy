@@ -406,7 +406,7 @@ app.post('/signup', async (req, res) => {
     let toHash = password + salt;
     let data = hash.update(toHash, 'utf-8');
     let gen_hash = data.digest('hex');
-    const user = new Users({username, salt, hash: gen_hash, avatar: "avatar.png", favorites: [], listings: []})
+    const user = new Users({username, salt, hash: gen_hash, avatar: "avatar.png", points: 0, favorites: [], listings: []})
     user.save();
     res.sendStatus(200);
 })
