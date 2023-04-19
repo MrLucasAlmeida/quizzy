@@ -85,6 +85,7 @@ function displayQuizQuestion() {
                         ${backTextArr[i]}
                     </h2>
                 </div>
+                
             </div>
         `;
 
@@ -136,7 +137,41 @@ function displayQuizQuestion() {
 
 }
 
-
+async function renderAnswers(correctArr){
+    // iterate through the correct array and change the background color of the radio buttons
+    const radioButtons = document.getElementsByClassName('radioButtonTrueFalse');
+    var points = 0;
+    for (let i in correctArr) {
+        if (correctArr[i]) {
+            // correct answer
+            radioButtons[i].innerHTML += "<span class='material-icons'>done</span>"
+            console.log(radioButtons[i].lastChild)
+            radioButtons[i].lastChild.style.color = 'green';
+            radioButtons[i].lastChild.style.transform = 'scale(1.8)';
+            radioButtons[i].lastChild.style.transition = 'transform 0.5s ease-in-out';
+            radioButtons[i].lastChild.style.padding = '5px';
+            points++;
+        
+        } else {
+            // incorrect answer
+            radioButtons[i].innerHTML += "<span class='material-icons'>close</span>"
+            radioButtons[i].lastChild.style.color = 'red';
+            radioButtons[i].lastChild.style.transform = 'scale(1.8)';
+            radioButtons[i].lastChild.style.transition = 'transform 0.5s ease-in-out';
+            radioButtons[i].lastChild.style.padding = '5px';
+        }
+    }
+    window.alert(`You got ${points} out of ${correctArr.length} correct! And you earned ${points} points!`);
+    // fetch 'add/points/${points}' and add the points to the user's account
+    console.log(points)
+    await fetch(`${MASTER_URL}/add/points`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({points: points})
+    })
+}
 
 function handleQuizSubmit(e) {
     e.preventDefault();
@@ -164,13 +199,9 @@ function handleQuizSubmit(e) {
         
     }
     console.log(correctArr);
-    
-
-
-
-
-
+    renderAnswers(correctArr);
 }
+
 
 
 

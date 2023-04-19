@@ -115,6 +115,6 @@ document.getElementById('createButton').addEventListener('click', async () => {
 
     // redirect to the home page
     // console.log('set created successfully');
-    alert('Set created successfully');
+    alert('Set created successfully, and you earned 20 points');
     window.location.href = `${MASTER_URL}/home.html`;
 });

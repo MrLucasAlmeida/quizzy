@@ -35,6 +35,7 @@ const usersSchema = new Schema({
     salt: Number,
     hash: String,
     avatar: String,
+    points: Number,
     favorites: [mongoose.ObjectId],
     listings: [mongoose.ObjectId],
 })
@@ -233,7 +234,7 @@ app.post('/update/favorites', async (req, res) => {
     await user.save();
     res.send('favorites updated');
   });
-  
+
 // get the favorites of the user
 app.get('/get/favorites', async (req, res) => {
     const username = req.cookies.login.username;
@@ -258,8 +259,8 @@ app.post('/create/set', async (req, res) => {
     const newSet = new Sets({title, topic, author, views: 0, cards: []});
     newSet.save();
     
-    // add the set to the user's listings
-    Users.updateOne({username: author}, {$push: {listings: newSet._id}}).exec();
+    // add the set to the user's listings, and increment the points of the user by 20
+    Users.updateOne({username: author}, {$push: {listings: newSet._id}, $inc: {points: 20}}).exec();
     console.log(newSet._id.toString());
 
     // send the id of the new set
@@ -346,7 +347,6 @@ app.get('/search/set/keyword/:keyword', async (req, res) => {
     res.send(JSON.stringify(resSets));
 });
 
-
 // searching for a set by topic
 app.get('/search/set/topic/:topic', (req, res) => {
     const { topic } = req.params;
@@ -385,6 +385,16 @@ app.post('/login', async (req, res) => {
         res.sendStatus(404);
     }
 });
+// route for getting a user and adding points to them
+app.post('/add/points', async (req, res) => {
+    const username = req.cookies.login.username;
+    console.log(username)
+    const points = parseInt(req.body.points);
+    console.log(points)
+    // get the user based on the username
+    await Users.updateOne({username}, {$inc: {points: points}}).exec();
+    res.sendStatus(200);
+});
 
 // route for signing up to the website
 app.post('/signup', async (req, res) => {
@@ -405,7 +415,7 @@ app.post('/signup', async (req, res) => {
     let toHash = password + salt;
     let data = hash.update(toHash, 'utf-8');
     let gen_hash = data.digest('hex');
-    const user = new Users({username, salt, hash: gen_hash, avatar: "avatar.png", favorites: [], listings: []})
+    const user = new Users({username, salt, hash: gen_hash, avatar: "avatar.png", points: 0, favorites: [], listings: []})
     user.save();
     res.sendStatus(200);
 })
