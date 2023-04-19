@@ -84,6 +84,10 @@ const newProfileDropdown = `
                         <a href="/post.html">Create a Set</a>
                     </li>
                     <li>
+                        <span class="material-icons icons-size">leaderboard</span>
+                        <a href="/leaderboard.html">Leaderboard</a>
+                    </li>
+                    <li>
                         <span class="material-icons icons-size">help</span>
                         <a href="/help.html">Help</a>
                     </li>

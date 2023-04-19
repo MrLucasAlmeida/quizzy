@@ -35,6 +35,7 @@ const usersSchema = new Schema({
     salt: Number,
     hash: String,
     avatar: String,
+    points: Number,
     favorites: [mongoose.ObjectId],
     listings: [mongoose.ObjectId],
 })
@@ -233,7 +234,7 @@ app.post('/update/favorites', async (req, res) => {
     await user.save();
     res.send('favorites updated');
   });
-  
+
 // get the favorites of the user
 app.get('/get/favorites', async (req, res) => {
     const username = req.cookies.login.username;

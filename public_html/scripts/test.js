@@ -85,6 +85,7 @@ function displayQuizQuestion() {
                         ${backTextArr[i]}
                     </h2>
                 </div>
+                
             </div>
         `;
 
@@ -136,7 +137,29 @@ function displayQuizQuestion() {
 
 }
 
-
+function renderAnswers(correctArr){
+    // iterate through the correct array and change the background color of the radio buttons
+    const radioButtons = document.getElementsByClassName('radioButtonTrueFalse');
+    for (let i in correctArr) {
+        if (correctArr[i]) {
+            // correct answer
+            radioButtons[i].innerHTML += "<span class='material-icons'>done</span>"
+            console.log(radioButtons[i].lastChild)
+            radioButtons[i].lastChild.style.color = 'green';
+            radioButtons[i].lastChild.style.transform = 'scale(1.8)';
+            radioButtons[i].lastChild.style.transition = 'transform 0.5s ease-in-out';
+            radioButtons[i].lastChild.style.padding = '5px';
+        
+        } else {
+            // incorrect answer
+            radioButtons[i].innerHTML += "<span class='material-icons'>close</span>"
+            radioButtons[i].lastChild.style.color = 'red';
+            radioButtons[i].lastChild.style.transform = 'scale(1.8)';
+            radioButtons[i].lastChild.style.transition = 'transform 0.5s ease-in-out';
+            radioButtons[i].lastChild.style.padding = '5px';
+        }
+    }
+}
 
 function handleQuizSubmit(e) {
     e.preventDefault();
@@ -164,12 +187,9 @@ function handleQuizSubmit(e) {
         
     }
     console.log(correctArr);
-
-
-
-
-
+    renderAnswers(correctArr);
 }
+
 
 
 
