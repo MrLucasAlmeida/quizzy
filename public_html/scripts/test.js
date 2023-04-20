@@ -146,7 +146,7 @@ async function renderAnswers(correctArr){
             // correct answer
             radioButtons[i].innerHTML += "<span class='material-icons'>done</span>"
             console.log(radioButtons[i].lastChild)
-            radioButtons[i].lastChild.style.color = 'green';
+            radioButtons[i].lastChild.style.color = 'lightgreen';
             radioButtons[i].lastChild.style.transform = 'scale(1.8)';
             radioButtons[i].lastChild.style.transition = 'transform 0.5s ease-in-out';
             radioButtons[i].lastChild.style.padding = '5px';

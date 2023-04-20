@@ -44,8 +44,11 @@ body {
 
   #allCardsContainer {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
+    margin: 0;
+    padding: 0;
 
   }
 
@@ -140,6 +143,7 @@ body {
       -webkit-user-select: none; /* Safari */
       -ms-user-select: none; /* IE 10 and IE 11 */
       user-select: none; /* Standard syntax */
+      
   }
   
   .left {

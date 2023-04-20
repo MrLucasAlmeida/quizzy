@@ -40,6 +40,7 @@ body {
     border-radius: 10px;
     /* width: 80%; */
     height: fit-content;
+    width: 50%;
 }
 
 .questionContainer {
@@ -49,6 +50,7 @@ body {
     background-image: linear-gradient(to bottom right, var(--primary), var(--secondary));
     box-shadow: 0 0 5px #000000;
     border-radius: 10px;
+    width: 100%;
 }
 .questionContainer .termCount {
     display: flex;
@@ -66,16 +68,20 @@ body {
 .quizQuestionCards {
     display: flex;
     justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .frontCardText, .backCardText {
     display: flex;
     justify-content: center;
-    width: 300px;
+    align-items: center;
+    width: 45%;
     height: 200px;
     /* border: 1px solid black; */
     border-radius: 10px;
-    margin: 10px;
+    margin: 10px auto;
     background-image: linear-gradient(to bottom right, var(--secondary), var(--primary));
     box-shadow: 0 0 10px #212121;
     color: white;
@@ -83,7 +89,7 @@ body {
 }
 .frontCardText h2,
 .backCardText h2 {
-    margin: auto;
+    margin: 10%;
 }
 
 .questionContainer p {
@@ -102,15 +108,13 @@ body {
     padding: 0;
     width: 100%;
     align-items: center;
-    
-    /* background-color: purple; */
   }
   
   .radioButtonTrueFalse li {
     display: flex;
     align-items: center;
     margin: auto;
-    width: 300px;
+    width: 45%;
     height: 50px;
     position: relative;
     /* border-radius: 10px;
