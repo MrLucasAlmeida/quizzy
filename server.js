@@ -56,10 +56,10 @@ const setsSchema = new Schema({
     topic: String,
     title: String,
     views: Number,
-    comments: {
+    comments: [{
         type: Map,
         of: String
-    },
+    }], 
     cards: [mongoose.ObjectId],
 })
 
@@ -261,7 +261,7 @@ app.post('/update/avatar', upload.single('newAvatar'), (req, res) => {
 app.post('/create/set', async (req, res) => {
     const {title, topic} = req.body;
     const author = req.cookies.login.username;
-    const newSet = new Sets({title, topic, author, views: 0, cards: []});
+    const newSet = new Sets({title, topic, author, views: 0, comments: [], cards: []});
     newSet.save();
     
     // add the set to the user's listings, and increment the points of the user by 20
@@ -390,6 +390,24 @@ app.post('/login', async (req, res) => {
         res.sendStatus(404);
     }
 });
+// get all commments for the current set
+app.get(`/get/comments/:setId`, async (req, res) => {
+    const setId = req.params.setId;
+    // get the comments for the set with this id
+    const comments = await Sets.findOne({_id: setId}).exec();
+    console.log(JSON.stringify(comments.comments))
+    res.send(JSON.stringify(comments.comments));
+});
+
+// post a new comment to a set
+app.post('/comment', async (req, res) => {
+    const { comment, setId } = req.body;
+    const username = req.cookies.login.username;
+    // add the comment to the set with this id
+    await Sets.updateOne({_id: setId}, {$push: {comments: {comment, username}}}).exec();
+    res.sendStatus(200);
+});
+
 // route for getting a user and adding points to them
 app.post('/add/points', async (req, res) => {
     const username = req.cookies.login.username;

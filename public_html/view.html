@@ -24,39 +24,33 @@
         <!-- profile dropdown goes here -->
     </div>
 
-    
-    <div id="contentContainer">
-        <button id="testButton" onclick="TestButton()">Test</button>
-        <div id="allCardsContainer">
-            <!-- <div class="left" onclick="handleClickLeft()"></div> -->
-            <span class="left material-icons" onclick="handleClickLeft()">arrow_back</span>
-            
-    
-    
-            <!-- cards go here, the following is a dummy div -->
-            <div></div>
-    
-    
-            <!-- <div class="right" onclick="handleClickRight()"></div> -->
-            <span class="right material-icons" onclick="handleClickRight()">arrow_forward</span>
-            <!-- <span class="material-icons icons-size">account_circle</span> -->
-        </div>
-        <span id="currTerm"></span>
+    <button id="testButton" onclick="TestButton()">Test</button>
+
+    <div id="allCardsContainer">
+        <!-- <div class="left" onclick="handleClickLeft()"></div> -->
+        <span class="left material-icons" onclick="handleClickLeft()">arrow_back</span>
+        
 
 
+        <!-- cards go here, the following is a dummy div -->
+        <div></div>
+
+
+        <!-- <div class="right" onclick="handleClickRight()"></div> -->
+        <span class="right material-icons" onclick="handleClickRight()">arrow_forward</span>
+        <!-- <span class="material-icons icons-size">account_circle</span> -->
     </div>
     <span id="currTerm"></span>
     <div id="commentsSection">
-        <div id="commentsContainer">
-            <!-- comments go here -->
-        </div>
-        <div id="commentInputContainer">
-            <input type="text" id="commentInput" placeholder="Add a comment...">
-            <button id="commentButton" onclick="handleComment()">Comment</button>
-        </div>
+
     </div>
+    <form>
+        <textarea name="newComment" id="newComment" cols="50" rows="3" placeholder="Type your comment here"></textarea>
+        <button type="button" id="commentUpload">Submit</button>
+    </form>
     
     <script src="./scripts/view.js"></script>
     <script src="./scripts/profileDropdown.js"></script>
+    <script src="./scripts/postComment.js"></script>
 </body>
 </html>

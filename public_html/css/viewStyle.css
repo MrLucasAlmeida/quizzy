@@ -1,12 +1,72 @@
 body {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-y: auto;
   margin: 0;
   padding: 0;
 }
 
+.username{
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: lightblue;
+  color: green;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+.commentContent{
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: lightgreen;
+  color: blue;
+  font-size: 15px;
+  font-family: 'Courier New', Courier, monospace;
+}
+#commentsSection{
+  background-color: #3a4fd4;
+}
 
+.commentHeader{
+  align-items: center;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: lightblue;
+  color: darkgreen;
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#newComment {
+  max-width: 60%;
+  padding: 20px;
+  border: 5px solid #ccc;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+#commentUpload {
+  max-width: 30%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 20px;
+}
+
+#commentUpload:hover {
+  background-color: #3e8e41;
+}
 
 #contentContainer {
   display: flex;
