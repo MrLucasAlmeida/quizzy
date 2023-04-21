@@ -6,7 +6,7 @@ if (theme === 'dark') {
     // change the theme to dark
     const allElements = document.querySelectorAll('*');
     for (let i in allElements) {
-        allElements[i].classList.add('dark-theme');
+        allElements[i].classList.add('dark');
     }
 }
 

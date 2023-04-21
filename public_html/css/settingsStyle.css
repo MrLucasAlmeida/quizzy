@@ -29,16 +29,17 @@ input{
 }
 
 button {
-    background-color:  green;
-    color: white;
-    padding: 10px;
+    background-color: #4255ff;
+    color: #fff;
     border: none;
+    padding: 0.5rem 1rem;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-right: 1rem;
+    transition: 0.05s;
+    margin: 10px;
 }
-.avatar:hover{
-        background-color: darkgreen;
-        transform: scale(1.1);
-        opacity: 0.8;
-    }
+button:hover {
+    transform: scale(1.02);
+    background-color: #3a4fd4;
+}
