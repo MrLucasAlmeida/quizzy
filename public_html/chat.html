@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="/css/navigationBar.css">
+    <link rel="stylesheet" href="/css/chat.css">
+    <link rel="icon" type="image/x-icon" href="./assets/quizzyLogo.png">
+</head>
+<body>
+    <div id="header">
+        <div id="logoContainer">
+            <a href="home.html">
+                <img src="./assets/quizzyLogo.png" alt="logo" id="logo">
+            </a>
+        </div>
+        <!-- profile dropdown goes here -->
+
+    </div>
+    <div id="panel">
+        <label for="user">The person you would like to message:</label>
+        <input type="text" id="userName" required>
+        <button type="button" id="findConversation">Find the conversation</button>
+    </div>
+
+    <script src="/scripts/profileDropDown.js"></script>
+    <script src="/scripts/chat.js"></script>
+</body>
+</html>

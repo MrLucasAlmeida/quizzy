@@ -66,6 +66,18 @@ const setsSchema = new Schema({
 let Sets = mongoose.model("Sets", setsSchema);
 
 
+const conversationSchema = new Schema({
+    participants: [String],
+    messages: [{
+        sender: String,
+        message: String,
+        time: Date
+    }]
+})
+
+let Conversations = mongoose.model("Conversations", conversationSchema);
+
+
 var sessionKeys = {};
 const period = 3000000;
 
@@ -161,9 +173,36 @@ app.get('/get/topics/all', async (req, res) => {
     topics = topics.filter((topic, index) => topics.indexOf(topic) === index);
     res.send(JSON.stringify(topics));
 });
+// route for getting the conversation based on two participants, if it doesn't exist, create it
+app.get('/get/conversation/:user', async (req, res) => {
+    const { user } = req.params;
+    const currUser = req.cookies.login.username;
+    // check if user and currUser exists in the participants array
+    var response = await Conversations.findOne({$and: [{participants: {$in: [user]}}, {participants: {$in: [currUser]}}]}).exec();
+    if(!response){
+        const newConversation = new Conversations({ participants: [user, currUser], messages: [] });
+        await newConversation.save();
+        response = await Conversations.findOne({$and: [{participants: {$in: [user]}}, {participants: {$in: [currUser]}}]}).exec();
+    }
+    res.send(JSON.stringify(response));
+});
+
+// post for writing a message and storing it inside message between two users
+app.post('/write/message/:user', async (req, res) => {
+    const { user } = req.params;
+    const currUser = req.cookies.login.username;
+    const { message } = req.body;
+
+    response = await Conversations.findOne({$and: [{participants: {$in: [user]}}, {participants: {$in: [currUser]}}]}).exec();
+    console.log(message);
+    // find the conversation and push it in the messages
+    response.messages.push({sender: currUser, message: message, time: Date.now()});
+    await response.save();
 
 
 
+    res.sendStatus(200);
+});
 
 // clear cookies
 app.post('/clear/cookies', (req, res) => {

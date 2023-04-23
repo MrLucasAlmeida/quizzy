@@ -60,6 +60,7 @@ async function main() {
 head.innerHTML += `
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 `;
 
 const newProfileDropdown = `
@@ -92,6 +93,10 @@ const newProfileDropdown = `
                     <li>
                         <span class="material-icons icons-size">favorite</span>
                         <a href="/fav.html">Favorites</a>
+                    </li>
+                    <li>
+                        <span class="material-icons icons-size">chat</span>
+                        <a href="/chat.html">Chat</a>
                     </li>
                     <li>
                         <span class="material-icons icons-size">mode</span>

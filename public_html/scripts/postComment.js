@@ -4,24 +4,30 @@ MASTER_URL = 'http://localhost:3000';
 // get the set id from the url
 urlParamsD = new URLSearchParams(window.location.search);
 const setId = urlParamsD.get('id');
+var iteration = false;
 
 
-
-async function main() {
+async function main(iteration) {
     // fetch the comments from the current set
     const response = await fetch(`${MASTER_URL}/get/comments/${setId}`);
     const comments = await response.json();
     console.log(comments);
     const commentsSection = document.getElementById('commentsSection');
-    commentsSection.innerHTML += `
+    
+    // display the comments for each comment
+    if (iteration){
+        commentsSection.append(displayComments(comments[comments.length - 1]));
+    }
+    else{
+        commentsSection.innerHTML += `
         <div class="commentHeader">
             <h1>Comments</h1>
         </div>
-    `;
-    // display the comments for each comment
-    for (let i in comments) {
-        console.log('added comment')
-        commentsSection.append(displayComments(comments[i]));
+        `;
+        for (let i in comments) {
+            console.log('added comment')
+            commentsSection.append(displayComments(comments[i]));
+        }
     }
 }
 
@@ -36,8 +42,10 @@ async function postCommentD(){
         },
         body: JSON.stringify({comment, setId})
     })
-    // reload the page
-    window.location.reload();
+    // don't reload the page, but just dynamically change the page
+    iteration = true;
+    document.getElementById('newComment').value = '';
+    main(iteration);
 }
 const commentUpload = document.getElementById('commentUpload');
 commentUpload.addEventListener('click', postCommentD);
@@ -52,5 +60,6 @@ function displayComments(comments) {
     return div;
 }
 
-main()
+main(iteration)
+
 
