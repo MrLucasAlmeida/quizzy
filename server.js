@@ -177,6 +177,10 @@ app.get('/get/topics/all', async (req, res) => {
 app.get('/get/conversation/:user', async (req, res) => {
     const { user } = req.params;
     const currUser = req.cookies.login.username;
+    if (user === currUser){
+        res.sendStatus(400);
+        return;
+        }
     // check if user and currUser exists in the participants array
     var response = await Conversations.findOne({$and: [{participants: {$in: [user]}}, {participants: {$in: [currUser]}}]}).exec();
     if(!response){

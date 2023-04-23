@@ -1,11 +1,57 @@
 #panel{
-    background-color: darkblue;
+    background-color: lightgreen;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+
 }
 
-#userName{
-    background-color: blue;
-}
-
-#findConversation{
+#userName, #newMessage{
     background-color: lightblue;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+
 }
+
+#findConversation, #sendMessage{
+    background-color: blue;
+    padding: 10px;
+    border-radius: 10px;
+}
+/*
+Grow when hovered
+*/
+#sendMessage:hover, #findConversation:hover{
+    background-color: green;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+#findConversation:active{
+    background-color: yellow;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.username{
+    background-color: white;
+    font-weight: bold;
+    padding: 5px;
+    font-size: 23px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+.content{
+    background-color: lightblue;
+    padding: 5px;
+    font-size: 15px;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
