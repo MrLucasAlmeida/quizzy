@@ -37,7 +37,10 @@ Styling of the star icon
     bottom: 0;
     background-color: lightblue;
     overflow-y: auto;
-    
+}
+
+#studySetContainer.dark {
+    background-color: #3d3d3d;
 }
 
 .setContainer {
@@ -50,6 +53,11 @@ Styling of the star icon
     padding: 10px;
     margin: 10px;
 }
+
+.setContainer.dark {
+    filter: invert(1);
+}
+
 .setContainer:hover {
     transform: scale(1.02);
     box-shadow: 0 0 7px #000000;

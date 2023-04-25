@@ -11,6 +11,12 @@ body{
     text-align: center;
 }
 
+
+
+body.dark {
+    background-color: #3d3d3d;
+}
+
 form{
     display: flex;
     flex-direction: column;
@@ -24,10 +30,11 @@ form{
     /* border: 1px solid black; */
     box-shadow: 0 0 5px 2px black;
 }
-.avatar:hover{
-    background-color: darkgreen;
-    transform: scale(1.1);
-    opacity: 0.8;
+
+form.dark {
+    background-color: #585858;
+    box-shadow: 0 0 5px 2px #000000;
+    color: white;
 }
 
 div {
@@ -36,6 +43,26 @@ div {
     text-align: center;
     margin: 10px;
 }
+div.dark {
+    color: white;
+}
+
+a {
+    /* text-decoration: none; */
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+}
+a.dark {
+    color: white;
+}
+
+a:hover {
+    transform: scale(1.01);
+    color: #4255ff;
+}
+
 label, input {
     padding: 10px;
     margin: 10px;
@@ -49,6 +76,11 @@ input {
     border-radius: 5px;
     border: 1px solid black;
     font-size: 20px;
+}
+input.dark {
+    background-color: #585858;
+    color: white;
+    border: 1px solid white;
 }
 
 button {
@@ -76,4 +108,8 @@ button:hover {
     font-size: 13px;
     /* text-align:center; */
     margin: auto auto 20px;
+}
+
+#copyrightDate.dark {
+    color: white;
 }

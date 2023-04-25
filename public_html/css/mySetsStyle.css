@@ -14,6 +14,10 @@
     overflow: hidden;
     background-color: lightblue;
   }
+
+  body.dark {
+    background-color: #3d3d3d;
+  }
   
   #header {
     background-color: #f1f1f1;

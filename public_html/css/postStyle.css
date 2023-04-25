@@ -17,40 +17,10 @@ body {
   background-color: lightblue;
 }
 
-#header {
-  background-color: #f1f1f1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  height: 15%;
-}
-.avatar:hover{
-  background-color: darkgreen;
-  transform: scale(1.1);
-  opacity: 0.8;
-}
-#logoContainer {
-  height: 100%;
-}
-#logo {
-  height: 100%;
+body.dark {
+  background-color: #3d3d3d;
 }
 
-.avatar {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-#homeButton {
-  background-color: green;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
 
 #formContainer {
   overflow-x: auto;
@@ -62,6 +32,11 @@ form {
   background-color: #fff;
   padding: 2rem;
   border-radius: 10px;
+}
+
+form.dark {
+  background-color: #595959;
+  color: white;
 }
 
 label {
@@ -77,6 +52,11 @@ input{
   margin-bottom: 1rem;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+input.dark {
+  background-color: #4d4d4d;
+  color: white;
+  border: 1px solid #fff;
 }
 
 input[type="file"] {

@@ -4,7 +4,13 @@ body {
   overflow-y: auto;
   margin: 0;
   padding: 0;
+  background-color: lightblue;
 }
+
+body.dark {
+  background-color: #3d3d3d;
+}
+
 
 .username{
   padding: 5px;
@@ -15,6 +21,8 @@ body {
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
 }
+
+
 .commentContent{
   padding: 5px;
   margin: 5px;
@@ -38,6 +46,7 @@ body {
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
+
 
 form {
   display: flex;
@@ -185,6 +194,9 @@ form {
   #currTerm {
     margin: 20px auto;
   }
+  #currTerm.dark {
+    color: white;
+  }
 
 
 
@@ -204,6 +216,10 @@ form {
       -ms-user-select: none; /* IE 10 and IE 11 */
       user-select: none; /* Standard syntax */
       
+  }
+
+  .left.dark, .right.dark {
+    color: white;
   }
   
   .left {
