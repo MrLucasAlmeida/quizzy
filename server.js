@@ -179,6 +179,7 @@ app.get('/get/conversation/:user', async (req, res) => {
     const currUser = req.cookies.login.username;
     if (user === currUser){
         res.sendStatus(400);
+        console.log("User is the current user");
         return;
         }
     // check if user and currUser exists in the participants array

@@ -3,23 +3,42 @@ const MASTER_URL = 'http://localhost:3000';
 const findConversation = document.getElementById('findConversation');
 
 var otherUser;
-
 // when the button is clicked, the messages between two users have to displayed while fetching their conversation
-findConversation.addEventListener('click', () => {
+findConversation.addEventListener('click', async () => {
     // fetch the conversation between the current user and the user in the input
-    const user = document.getElementById('userName').value;
+    // fetch the current user from the database
+    var sameUser = true;
+    var user = document.getElementById('userName').value;
     console.log(user)
     console.log("Being clicked")
     otherUser = user;
-    panel.innerHTML = '';
-    writeMessageD();
-    setInterval(() => {
+    const response = await fetch(`${MASTER_URL}/get/currUser`);
+    const data = await response.json();
+    console.log(data)
+    // grab the username from the response
+    console.log(data.username)
+    if (data.username === user){
+        window.alert('You cannot message yourself!')
+        console.log('Getting to this part')
+    }
+    else {
+        panel.innerHTML = '';
+        sameUser = false;
+    }
+    console.log(sameUser)
+    if (sameUser){
+        user = '';
+    }
+    else{
+        writeMessageD();
+        intervalId = setInterval(() => {
+            displayConversation(otherUser);
+        }, 1000);
         displayConversation(otherUser);
-    }, 1000);
+    }
+});
 
-    displayConversation(otherUser);
 
-})
 
 
 
@@ -30,10 +49,6 @@ async function displayConversation(user)
     
     fetch(`${MASTER_URL}/get/conversation/${user}`)
         .then(response => {
-            if (response.status!==200){
-                window.alert('You cannot message yourself!')
-                return;
-            }
             return response.json();
         })
         .then(conversation => {
