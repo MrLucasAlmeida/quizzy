@@ -30,6 +30,10 @@ body {
     padding: 0;
 }
 
+#contentContainer.dark {
+  background-color: #3d3d3d;
+}
+
 #quizContainerForm {
     display: flex;
     flex-direction: column;
@@ -194,6 +198,10 @@ body {
     padding: 0;
     font-size: 30px;
     font-weight: 500;
+  }
+
+  #submitMessage.dark {
+    color: white;
   }
 
   #submitButton {
