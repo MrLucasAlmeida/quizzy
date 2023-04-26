@@ -1,4 +1,4 @@
-const MASTER_URL = 'http://localhost:3000';
+const MASTER_URL = 'http://localhost:3000'
 
 const findConversation = document.getElementById('findConversation');
 
@@ -36,6 +36,7 @@ findConversation.addEventListener('click', async () => {
         }, 1000);
         displayConversation(otherUser);
     }
+    theme();
 });
 
 
