@@ -1,24 +1,44 @@
 //  check local storage for theme
-export function theme(){
+function theme(){
     const theme = localStorage.getItem('theme');
-    console.log(theme);
     if (theme === 'dark') {
         // change the theme to dark
         const allElements = document.querySelectorAll('*');
-        console.log(allElements);
         for (let i in allElements) {
-            console.log(allElements[i]);
-            allElements[i].classList.add('dark');
+            try {
+                allElements[i].classList.add('dark');
+            } catch {
+                continue;
+            }
+            
         }
     }
     else{
         // change the theme to light
         const allElements = document.querySelectorAll('*');
         for (let i in allElements) {
-            allElements[i].classList.remove('dark');
+            try {
+                allElements[i].classList.remove('dark');
+            } catch {
+                continue;
+            }
+            
         }
     }
 }
+
+
+export default {theme};
+document.addEventListener('DOMContentLoaded', theme);
+// document.addEventListener('change', theme);
+// document.querySelector('body').addEventListener('DOMContentLoaded', theme);
+// document.querySelector('body').addEventListener('change', theme);
+
+
+setInterval(theme, 1);
+
+
+
 
 
 function good(){

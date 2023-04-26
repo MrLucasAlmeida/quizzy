@@ -21,7 +21,10 @@ async function handleLoginAccount() {
     // const data = JSON.stringify(response);
     // console.log(data);
     if (response.status === 200){
+        const currentTheme = localStorage.getItem('theme');
         localStorage.clear();
+        localStorage.setItem('theme', currentTheme);
+
         window.location.href = './home.html';
     }
     else{
