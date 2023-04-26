@@ -1,4 +1,4 @@
-
+import { theme } from './themeToggle.js';
 MASTER_URL = 'http://localhost:3000';
 var favoritesSet = [];
 //----------------------------
@@ -20,7 +20,7 @@ setCont.append(newDiv);
 
 // TEST SET ENDS HERE
 //----------------------------
-
+theme();
 async function main() {
     // get the user's favorites
     const fav = await fetch(`${MASTER_URL}/get/favorites`);
@@ -104,6 +104,7 @@ function createSetContainer(setDoc) {
 }
 
 async function handleSearch(e) {
+
     console.log('checking for enter key');
     if (e.key !== 'Enter' && e.target.id !== 'searchIcon') return;
 
@@ -161,6 +162,7 @@ async function handleSearch(e) {
         e.stopPropagation();
         star.classList.toggle('favorited');});
     });
+    theme();
 }
 
 function handleSetClick(e) {
@@ -227,6 +229,7 @@ async function handleMenuSelection(e) {
             e.stopPropagation();
             star.classList.toggle('favorited');});
     });
+    theme();
 }
 
 

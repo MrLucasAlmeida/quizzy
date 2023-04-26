@@ -139,6 +139,18 @@ body {
     color: white;
     cursor: pointer;
   }
+  #helpButton{
+    width: 60px;
+    border-radius: 500px;
+    border: 5px solid black;
+    position: fixed;
+    margin-right: 0px;
+    margin: auto;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+
+}
   .radioButtonTrueFalse label:hover, .radioButtonTrueFalse input:hover {
     border: 3px solid black;
   }

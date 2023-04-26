@@ -10,7 +10,18 @@ table{
     border: 1px solid black;
     border-radius: 10px;
 }
+#helpButton{
+    width: 60px;
+    border-radius: 500px;
+    border: 5px solid black;
+    position: fixed;
+    margin-right: 0px;
+    margin: auto;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
 
+}
 h1{
     text-align: center;
     color: blue;

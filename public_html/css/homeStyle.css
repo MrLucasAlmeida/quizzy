@@ -10,6 +10,18 @@ body {
 /*
 Styling of the star icon
 */
+#helpButton{
+    width: 60px;
+    border-radius: 500px;
+    border: 5px solid black;
+    position: fixed;
+    margin-right: 0px;
+    margin: auto;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+
+}
 .favorite-star {
     display: inline-block;
     width: 25px;
@@ -39,7 +51,13 @@ Styling of the star icon
     overflow-y: auto;
     
 }
+.setContainer.dark{
+    filter: invert(1);
+}
 
+.setContainer:hover + .favoriteStar {
+    filter: invert(0);
+}
 .setContainer {
     width: 370px;
     height: 200px;

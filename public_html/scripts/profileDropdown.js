@@ -113,10 +113,6 @@ const newProfileDropdown = `
                         <a href="/leaderboard.html">Leaderboard</a>
                     </li>
                     <li>
-                        <span class="material-icons icons-size">help</span>
-                        <a href="/help.html">Help</a>
-                    </li>
-                    <li>
                         <span class="material-icons icons-size">logout</span>
                         <a href="/" onclick="logout();" >Logout</a>
                     </li>

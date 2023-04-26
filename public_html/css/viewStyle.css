@@ -52,7 +52,18 @@ form {
   border-radius: 5px;
   margin: 20px;
 }
+#helpButton{
+  width: 60px;
+  border-radius: 500px;
+  border: 5px solid black;
+  position: fixed;
+  margin-right: 0px;
+  margin: auto;
+  right: 10px;
+  bottom: 10px;
+  cursor: pointer;
 
+}
 #commentUpload {
   max-width: 30%;
   background-color: #4CAF50;

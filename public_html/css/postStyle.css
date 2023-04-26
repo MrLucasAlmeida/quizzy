@@ -69,7 +69,18 @@ label {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
+#helpButton{
+  width: 60px;
+  border-radius: 500px;
+  border: 5px solid black;
+  position: fixed;
+  margin-right: 0px;
+  margin: auto;
+  right: 10px;
+  bottom: 10px;
+  cursor: pointer;
 
+}
 input{
   display: block;
   width: 100%;
