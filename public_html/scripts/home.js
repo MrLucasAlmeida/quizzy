@@ -1,4 +1,7 @@
-import { theme } from './themeToggle.js';
+// import { theme } from './themeToggle.js';
+// var {theme} = required('./themeToggle.js');
+
+
 MASTER_URL = 'http://localhost:3000';
 var favoritesSet = [];
 //----------------------------
@@ -20,7 +23,13 @@ setCont.append(newDiv);
 
 // TEST SET ENDS HERE
 //----------------------------
-theme();
+
+
+// theme();
+
+
+
+
 async function main() {
     // get the user's favorites
     const fav = await fetch(`${MASTER_URL}/get/favorites`);
@@ -73,6 +82,9 @@ async function main() {
 
 
 function logout(){
+
+    const currentTheme = localStorage.getItem('theme');
+    console.log('saving theme ' + currentTheme);
     localStorage.clear();
     fetch('/clear/cookies', {
         method: 'POST',
@@ -82,6 +94,9 @@ function logout(){
     }).then((res) => {
         window.location.href = '/';
     });
+
+    localStorage.setItem('theme', currentTheme);
+
 }
 /*
 
@@ -100,6 +115,9 @@ function createSetContainer(setDoc) {
         <p>${setDoc.cards.length} Terms</p>
         <p>${setDoc.author}</p>`;
 
+
+    // add dark class if dark theme
+    if (localStorage.getItem('theme') === 'dark') {newDiv.classList.add('dark');}
     return newDiv;
 }
 
@@ -162,7 +180,6 @@ async function handleSearch(e) {
         e.stopPropagation();
         star.classList.toggle('favorited');});
     });
-    theme();
 }
 
 function handleSetClick(e) {
@@ -229,7 +246,6 @@ async function handleMenuSelection(e) {
             e.stopPropagation();
             star.classList.toggle('favorited');});
     });
-    theme();
 }
 
 
