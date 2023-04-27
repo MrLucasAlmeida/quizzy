@@ -215,17 +215,18 @@ form {
   }
 
   #commentsSection.dark{
-    background-color: #464545;
+    background-color: #6f6f6f;
+    box-shadow: 0 0 5px 5px #242424;
   }
   .username.dark{
-    background-color: #948e8e;
+    background-color: #3d3d3d;
     color: lightblue;
   }
   .username h3.dark{
     color: white !important;
   }
   .commentContent.dark{
-    background-color: #a9a7a7;
+    background-color: #3d3d3d;
     color: lightgreen;
   }
   .commentContent p.dark{

@@ -83,8 +83,9 @@ async function displayConversation(user)
                 `;
                 conversationPanel.appendChild(div);
             }
-            })
             theme();
+            })
+            
 } 
 
 async function writeMessageD(){

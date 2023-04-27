@@ -9,6 +9,12 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    overflow-y: auto;
+}
+
+
+body.dark {
+    background-color: #3d3d3d;
 }
 
 
@@ -18,27 +24,40 @@ body {
     background-color: lightgreen;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     padding: 30px;
     border-radius: 10px;
-    margin-bottom: 20px;
-
+    /* margin-bottom: 20px; */
+    margin: 30px auto auto;
+    width: 70%;
+    box-shadow: 0 0 7px 2px #000000;
+    
 }
 
-#userName, #newMessage{
-    background-color: lightblue;
+#panel.dark {
+    background-color: #595959;
     color: white;
+}
+
+#userName, #newMessage {
+    /* background-color: lightblue; */
+    /* color: white; */
     padding: 10px;
     border-radius: 10px;
     margin: 10px;
-
 }
+
 
 #findConversation, #sendMessage{
     background-color: blue;
     padding: 10px;
     border-radius: 10px;
+}
+
+#findConversation.dark, #sendMessage.dark{
+    background-color: #0000ff;
+    color: white;
 }
 /*
 Grow when hovered
@@ -62,6 +81,11 @@ Grow when hovered
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
 }
+
+.username.dark{
+    color: black;
+}
+
 .content{
     background-color: lightblue;
     padding: 5px;
