@@ -1,15 +1,66 @@
-body{
+* {
     margin: 0;
-    overflow: hidden;
+    padding: 0;
 }
 
-table{
+
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: lightblue;
+}
+
+#mainSection{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+}
+
+#mainSection.dark {
+    background-color: #3d3d3d;
+}
+
+#leaderboard {
+    padding: 10px;
+    padding-bottom: 20px;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #000000;
+    width: 60%;
+}
+
+
+#leaderboard.dark {
+    background-color: #585858;
+}
+
+
+
+table {
     border-collapse: collapse;
     width: 50%;
     margin: 0 auto;
     border: 1px solid black;
-    border-radius: 10px;
+    text-align: center;
 }
+
+table.dark {
+    background-color: #585858;
+    box-shadow: 0 0 5px 1px #000000;
+    border: none;
+    color: white;
+}
+
 #helpButton{
     width: 60px;
     border-radius: 500px;
@@ -26,19 +77,7 @@ h1{
     text-align: center;
     color: blue;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-#mainSection{
-    width: 100%;
-    height: 100%;
-    background-color: lightblue;
-    overflow: auto;
+    padding: 10px;
 }
 
-#leaderboard{
-    padding: 10px;
-    margin: 20px auto;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 5px #000000;
-    width: 70%;
-}
+

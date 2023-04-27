@@ -28,7 +28,6 @@ function theme(){
 }
 
 
-export default {theme};
 document.addEventListener('DOMContentLoaded', theme);
 // document.addEventListener('change', theme);
 // document.querySelector('body').addEventListener('DOMContentLoaded', theme);
@@ -36,13 +35,5 @@ document.addEventListener('DOMContentLoaded', theme);
 
 
 setInterval(theme, 1);
-
-
-
-
-
-function good(){
-    console.log('works just fine')
-}
 
 

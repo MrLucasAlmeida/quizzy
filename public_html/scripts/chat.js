@@ -10,11 +10,28 @@ findConversation.addEventListener('click', async () => {
     var sameUser = true;
     var user = document.getElementById('userName').value;
     console.log(user)
-    console.log("Being clicked")
     otherUser = user;
     const response = await fetch(`${MASTER_URL}/get/currUser`);
     const data = await response.json();
-    console.log(data)
+    
+    let usersList = await fetch(`${MASTER_URL}/get/users/all`);
+    usersList = await usersList.json();
+
+    // checks if the user that they are trying to message exists
+    var userExists = false;
+    for (let i in usersList){
+        if (usersList[i].username === user){
+            userExists = true;
+            break;
+        }
+    }
+    if (!userExists){
+        window.alert('That user does not exist!')
+        return;
+    }
+
+
+
     // grab the username from the response
     console.log(data.username)
     if (data.username === user){
