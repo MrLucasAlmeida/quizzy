@@ -34,6 +34,6 @@ document.addEventListener('DOMContentLoaded', theme);
 // document.querySelector('body').addEventListener('change', theme);
 
 
-setInterval(theme, 1);
+setInterval(theme, 20);
 
 

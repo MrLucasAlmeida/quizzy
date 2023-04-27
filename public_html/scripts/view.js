@@ -72,7 +72,7 @@ function displayCard(cardDoc) {
 
     // update the span showing the current term number
     document.getElementById('currTerm').innerHTML = `${currIndex + 1} of ${globalCards.length}`;
-
+    theme();
 }
 
 

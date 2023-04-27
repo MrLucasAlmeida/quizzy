@@ -1,4 +1,4 @@
-const MASTER_URL = 'http://localhost:3000';
+const MASTER_URL = 'http://localhost:3000'
 
 const findConversation = document.getElementById('findConversation');
 
@@ -53,6 +53,7 @@ findConversation.addEventListener('click', async () => {
         }, 1000);
         displayConversation(otherUser);
     }
+    theme();
 });
 
 
@@ -83,7 +84,7 @@ async function displayConversation(user)
                 conversationPanel.appendChild(div);
             }
             })
-    
+            theme();
 } 
 
 async function writeMessageD(){
@@ -99,7 +100,7 @@ async function writeMessageD(){
     panel.appendChild(chatDiv)
     panel.appendChild(newDiv);
     console.log(panel)
-    
+    theme();
 }
 
 async function sendMessage(){
@@ -118,4 +119,5 @@ async function sendMessage(){
     iteration = true;
     document.getElementById('newMessage').value = '';
     displayConversation(otherUser);
+    theme();
 }

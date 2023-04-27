@@ -82,12 +82,14 @@ async function main() {
         e.stopPropagation();
         star.classList.toggle('favorited');});
     });
+    theme();
 }
 
 function handleSetClick(e) {
     console.log('handling set click');
     const setId = e.currentTarget.getElementsByClassName('setId')[0].innerText;
     window.location.href = './view.html?id=' + setId;
+    theme();
 }
 
 main()

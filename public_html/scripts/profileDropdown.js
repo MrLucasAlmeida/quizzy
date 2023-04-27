@@ -131,6 +131,7 @@ header.innerHTML += newProfileDropdown;
 function menuToggle(){
     const toggleMenu = document.querySelector('.menu');
     toggleMenu.classList.toggle('active')
+    theme();
 }
 
 // call main function

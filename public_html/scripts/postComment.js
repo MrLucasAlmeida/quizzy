@@ -29,6 +29,7 @@ async function main(iteration) {
             commentsSection.append(displayComments(comments[i]));
         }
     }
+    theme();
 }
 
 async function postCommentD(){
@@ -46,6 +47,7 @@ async function postCommentD(){
     iteration = true;
     document.getElementById('newComment').value = '';
     main(iteration);
+    theme();
 }
 const commentUpload = document.getElementById('commentUpload');
 commentUpload.addEventListener('click', postCommentD);
@@ -57,6 +59,7 @@ function displayComments(comments) {
             <h3 class="username">${comments.username}</h3>
             <p class="commentContent">${comments.comment}</p>
     `;
+    theme();
     return div;
 }
 

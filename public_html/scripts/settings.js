@@ -25,4 +25,5 @@ async function handleNewPassword(){
         formSettings.appendChild(p)
         const myTimeout = setTimeout(() => {formSettings.removeChild(p)}, 2000)
     }
+    theme();
 }
