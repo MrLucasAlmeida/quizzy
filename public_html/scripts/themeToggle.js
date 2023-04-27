@@ -28,14 +28,13 @@ function theme(){
 }
 
 
-export default {theme};
 document.addEventListener('DOMContentLoaded', theme);
 // document.addEventListener('change', theme);
 // document.querySelector('body').addEventListener('DOMContentLoaded', theme);
 // document.querySelector('body').addEventListener('change', theme);
 
 
-setInterval(theme, 1);
+setInterval(theme, 20);
 
 
 

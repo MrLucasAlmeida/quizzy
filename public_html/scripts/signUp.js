@@ -31,5 +31,6 @@ async function handleCreateAccount() {
         signupForm.appendChild(p)
         const myTimeout = setTimeout(() => {signupForm.removeChild(p)}, 2000)
     }
+    theme();
 }
 

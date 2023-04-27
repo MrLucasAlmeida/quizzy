@@ -71,7 +71,7 @@ async function main() {
     // function for adding all the sets to the page based on a search
     document.getElementById('searchBar').addEventListener('keyup', handleSearch);
     document.getElementById('searchIcon').addEventListener('click', handleSearch);
-
+    theme()
 }
 
 
@@ -180,12 +180,14 @@ async function handleSearch(e) {
         e.stopPropagation();
         star.classList.toggle('favorited');});
     });
+    theme();
 }
 
 function handleSetClick(e) {
     console.log('handling set click');
     const setId = e.currentTarget.getElementsByClassName('setId')[0].innerText;
     window.location.href = './view.html?id=' + setId;
+    theme();
 }
 
 async function handleMenuSelection(e) {
@@ -246,9 +248,36 @@ async function handleMenuSelection(e) {
             e.stopPropagation();
             star.classList.toggle('favorited');});
     });
+    theme();
 }
 
-
+function theme(){
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+        // change the theme to dark
+        const allElements = document.querySelectorAll('*');
+        for (let i in allElements) {
+            try {
+                allElements[i].classList.add('dark');
+            } catch {
+                continue;
+            }
+            
+        }
+    }
+    else{
+        // change the theme to light
+        const allElements = document.querySelectorAll('*');
+        for (let i in allElements) {
+            try {
+                allElements[i].classList.remove('dark');
+            } catch {
+                continue;
+            }
+            
+        }
+    }
+}
 
 
 

@@ -36,4 +36,5 @@ async function handleLoginAccount() {
         loginForm.appendChild(p)
         const myTimeout = setTimeout(() => {loginForm.removeChild(p)}, 2000);
     }
+    theme();
 }

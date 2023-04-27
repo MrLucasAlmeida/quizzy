@@ -20,7 +20,9 @@ function displayUser(user, ranking){
     else{
         row.style.backgroundColor = 'gray';
     }
+    theme();
     return row;
+    
 }
 
 async function main() {
@@ -53,6 +55,7 @@ async function main() {
         table.append(displayUser(users[i], ranking));
 
     }
+    theme();
 }
 
 main()
