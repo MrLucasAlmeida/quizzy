@@ -4,7 +4,12 @@ function theme(){
     const image = document.getElementById('themeImage');
     if (theme === 'dark') {
         // change the theme to dark
-        image.src = './assets/lightMode.jpg';
+        try {
+            image.src = './assets/lightMode.jpg';
+        } catch {
+
+        }
+        
         const allElements = document.querySelectorAll('*');
         for (let i in allElements) {
             try {
@@ -16,7 +21,12 @@ function theme(){
         }
     }
     else{
-        image.src = './assets/darkMode.jpg';
+        try {
+            image.src = './assets/darkMode.jpg';
+        } catch {
+            
+        }
+        
         // change the theme to light
         const allElements = document.querySelectorAll('*');
         for (let i in allElements) {
