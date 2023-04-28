@@ -36,15 +36,7 @@ input{
     border-radius: 5px;
 
 }
-#themeImage{
-    width: 50px;
-    border-radius: 500px;
-    border: 5px solid black;
-    position: fixed;
-    right: 150px;
-    top: 25px;
-    cursor: pointer;
-}
+
 #helpButton{
     width: 60px;
     border-radius: 500px;

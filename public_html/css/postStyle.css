@@ -76,15 +76,7 @@ input[type="file"] {
   border: none;
   margin-bottom: 0.5rem;
 }
-#themeImage{
-  width: 50px;
-  border-radius: 500px;
-  border: 5px solid black;
-  position: fixed;
-  right: 150px;
-  top: 25px;
-  cursor: pointer;
-}
+
 
 h2 {
   font-size: 1.2rem;

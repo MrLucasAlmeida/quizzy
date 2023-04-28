@@ -67,15 +67,7 @@ Grow when hovered
     transform: scale(1.1);
     cursor: pointer;
 }
-#themeImage{
-    width: 50px;
-    border-radius: 500px;
-    border: 5px solid black;
-    position: fixed;
-    right: 150px;
-    top: 25px;
-    cursor: pointer;
-}
+
 #findConversation:active{
     background-color: yellow;
     transform: scale(1.1);

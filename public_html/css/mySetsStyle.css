@@ -50,15 +50,7 @@
     cursor: pointer;
 
 }
-#themeImage{
-  width: 50px;
-  border-radius: 500px;
-  border: 5px solid black;
-  position: fixed;
-  right: 150px;
-  top: 25px;
-  cursor: pointer;
-}
+
   .avatar {
     height: 50px;
     width: 50px;
