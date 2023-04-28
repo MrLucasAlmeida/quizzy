@@ -104,10 +104,6 @@ const newProfileDropdown = `
                         <a href="/post.html">Create a Set</a>
                     </li>
 
-                    <li>
-                        <span class="material-icons icons-size">${setThemeCode()}</span>
-                        <a href="" onclick="handleThemeBtnClick()">${setThemeText()}</a>
-                    </li>
 
                     <li>
                         <span class="material-icons icons-size">leaderboard</span>

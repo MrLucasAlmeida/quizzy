@@ -36,7 +36,15 @@ form.dark {
     box-shadow: 0 0 5px 2px #000000;
     color: white;
 }
-
+#themeImage{
+    width: 50px;
+    border-radius: 500px;
+    border: 5px solid black;
+    position: fixed;
+    right: 150px;
+    top: 25px;
+    cursor: pointer;
+}
 div {
     font-size: 30px;
     font-weight: bold;
