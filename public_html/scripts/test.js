@@ -5,6 +5,7 @@
 // set the master url to localhost
 MASTER_URL = 'http://localhost:3000';
 
+// get the set id from the url
 const urlParams = new URLSearchParams(window.location.search);
 const setId = urlParams.get('id');
 
@@ -15,16 +16,10 @@ let backTextArr = [];
 let quizAnswers = [];
 
 async function main() {
-    // const response = await fetch(`${MASTER_URL}/get/allcards/${setId}`);
-    // const cards = await response.json();
-    // console.log(cards);
-
+    
     // fill the global arrays with the cards
     console.log('filling global arrays');
     await fillGlobalArrays();
-    console.log(frontTextArr);
-    console.log(backTextArr);
-    console.log(quizAnswers);
 
 
     // use the arrays to display the quiz questions
@@ -35,7 +30,7 @@ async function main() {
 
 
 
-
+// fill the global arrays with the card information
 async function fillGlobalArrays() {
     // fetch all cards given the set id
     const response = await fetch(`${MASTER_URL}/get/allcards/${setId}`);
@@ -204,6 +199,7 @@ function handleQuizSubmit(e) {
     }
     console.log(correctArr);
     renderAnswers(correctArr);
+    // display the results
     theme();
 }
 

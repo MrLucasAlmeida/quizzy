@@ -4,6 +4,7 @@
 const MASTER_URL = 'http://localhost:3000';
 // This js is used to display the leaderboard for all users
 
+// add an entry to the leaderboard
 function displayUser(user, ranking){
     const row = document.createElement('tr');
     console.log(ranking)
@@ -58,6 +59,7 @@ async function main() {
         table.append(displayUser(users[i], ranking));
 
     }
+    // display the current them
     theme();
 }
 

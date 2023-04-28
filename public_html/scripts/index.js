@@ -4,10 +4,10 @@
 MASTER_URL = 'http://localhost:3000';
 
 
+// function to handle login
 async function handleLoginAccount() {
 
-
-    console.log('trying to create account')
+    // grab the username and password
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
 
@@ -21,8 +21,8 @@ async function handleLoginAccount() {
             },
         body: JSON.stringify({username, password})
     });
-    // const data = JSON.stringify(response);
-    // console.log(data);
+    
+    // if the login is successful, redirect to the home page and do some other stuff
     if (response.status === 200){
         const currentTheme = localStorage.getItem('theme');
         localStorage.clear();
@@ -39,5 +39,6 @@ async function handleLoginAccount() {
         loginForm.appendChild(p)
         const myTimeout = setTimeout(() => {loginForm.removeChild(p)}, 2000);
     }
+    // display theme
     theme();
 }

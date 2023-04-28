@@ -19,6 +19,8 @@ document.getElementById("removeButton").addEventListener("click", () => {
 
     // decrement the term number
     currTermNumber--;
+    
+    // display the current theme
     theme();
 })
 
@@ -28,7 +30,6 @@ document.getElementById('addButton').addEventListener('click', () => {
     const termContainer = document.getElementById('cardInputContainer');
 
     // create new title element
-    // const titleElement = `<h2>Term ${currTermNumber}:</h2>`;
     const titleElement = document.createElement('h2');
     titleElement.innerText = `Term ${currTermNumber}:`;
     
@@ -44,10 +45,7 @@ document.getElementById('addButton').addEventListener('click', () => {
     backCardElement.setAttribute('type', 'text');
     backCardElement.setAttribute('name', 'back');
     backCardElement.setAttribute('class', 'backCard');
-    // const frontCardElement = '<input type="text" name="front" class="frontCard">';
-    // const backCardElement = '<input type="text" name="back" class="backCard">';
 
-    // document.createElement(
     // add elements to the term container
     termContainer.append(titleElement);
     termContainer.append(frontCardElement);
@@ -59,6 +57,7 @@ document.getElementById('addButton').addEventListener('click', () => {
 
     // increment the term number
     currTermNumber++;
+    // display the current theme
     theme();
 });
 
@@ -118,8 +117,8 @@ document.getElementById('createButton').addEventListener('click', async () => {
         });
     }
 
+    
     // redirect to the home page
-    // console.log('set created successfully');
     alert('Set created successfully, and you earned 20 points');
     window.location.href = `${MASTER_URL}/home.html`;
     theme();

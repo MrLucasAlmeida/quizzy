@@ -63,7 +63,7 @@ findConversation.addEventListener('click', async () => {
 
 
 
-
+// Function for displaying the conversation for the pair of users
 async function displayConversation(user)
 {
     const conversationPanel = document.getElementById('conversationContainer')
@@ -87,11 +87,13 @@ async function displayConversation(user)
                 `;
                 conversationPanel.appendChild(div);
             }
+            // display theme
             theme();
             })
             
 } 
-
+// Function for adding the send button and the input 
+// field for sending a message
 async function writeMessageD(){
     console.log('writing message')
     const panel = document.getElementById('panel');
@@ -108,6 +110,7 @@ async function writeMessageD(){
     theme();
 }
 
+// Function for adding a message to the database
 async function sendMessage(){
 
     const message = document.getElementById('newMessage').value;
@@ -124,5 +127,6 @@ async function sendMessage(){
     iteration = true;
     document.getElementById('newMessage').value = '';
     displayConversation(otherUser);
+    // display current theme
     theme();
 }

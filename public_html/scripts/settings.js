@@ -1,10 +1,13 @@
 // script for the settings page
 // Author: Lucas, Akbar
 
+// handle updating the password
 async function handleNewPassword(){
+    // grab the old and new password
     const oldPassword = document.getElementById("oldPassword").value;
     const newPassword = document.getElementById("newPassword").value;
 
+    // check if the passwords are empty
     if (oldPassword === '' || newPassword === '') return;
 
     const response = await fetch('/update/password', {
@@ -14,7 +17,8 @@ async function handleNewPassword(){
         },
         body: JSON.stringify({oldPassword, newPassword})
     })
-    console.log(response.status)
+    
+    // check if the password was updated
     if (response.status === 200){
         window.location.href = '/home.html';
     }
@@ -28,5 +32,6 @@ async function handleNewPassword(){
         formSettings.appendChild(p)
         const myTimeout = setTimeout(() => {formSettings.removeChild(p)}, 2000)
     }
+    // display theme
     theme();
 }

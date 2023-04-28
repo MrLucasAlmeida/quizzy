@@ -6,13 +6,14 @@ MASTER_URL = 'http://localhost:3000';
 
 
 async function handleCreateAccount() {
-    console.log('trying to create account')
+    // grab the username and password
     const username = document.getElementById('signupUsername').value;
     const password = document.getElementById('signupPassword').value;
 
     // do nothing if either field is empty
     if (username === '' || password === '') return;
 
+    // send the request to the server to create account
     const response = await fetch(`${MASTER_URL}/signup`, {
         method: 'POST',
         headers: {
@@ -20,8 +21,8 @@ async function handleCreateAccount() {
             },
         body: JSON.stringify({username, password})
     });
-    // const data = JSON.stringify(response);
-    // console.log(data);
+    
+    // check if the account was created successfully 
     if (response.status === 200){
         window.location.href = '/';
     }
@@ -34,6 +35,7 @@ async function handleCreateAccount() {
         signupForm.appendChild(p)
         const myTimeout = setTimeout(() => {signupForm.removeChild(p)}, 2000)
     }
+    // display theme
     theme();
 }
 

@@ -8,6 +8,7 @@ const flashcard = document.getElementById('flashcard');
 const left = document.getElementById('left');
 const right = document.getElementById('right');
 
+// get the set id from the url
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 
@@ -28,18 +29,21 @@ async function main() {
     displayCard(globalCards[currIndex]);
 }
 
-
+// left arrow
 function handleClickLeft() {
     console.log('clicked left');
     currIndex = (currIndex - 1 + globalCards.length) % globalCards.length;
     displayCard(globalCards[currIndex]);
 }
+
+// right arrow
 function handleClickRight() {
     console.log('clicked right');
     currIndex = (currIndex + 1 + globalCards.length) % globalCards.length;
     displayCard(globalCards[currIndex]);
 }
 
+// display the card
 function displayCard(cardDoc) {
     const flashcardContainer = document.getElementById('allCardsContainer');
 
@@ -77,9 +81,6 @@ function displayCard(cardDoc) {
     document.getElementById('currTerm').innerHTML = `${currIndex + 1} of ${globalCards.length}`;
     theme();
 }
-
-
-
 
 
 main();

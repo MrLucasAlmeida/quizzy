@@ -66,7 +66,7 @@ head.innerHTML += `
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 `;
 
-
+// html for profile dropdown
 const newProfileDropdown = `
 <div class="action">
             <div class="profile" onclick="menuToggle();">

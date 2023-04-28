@@ -40,16 +40,20 @@ function createSetContainer(setDoc) {
 }
 
 async function main() {
+    // grabs all the favorites
     const fav = await fetch(`${MASTER_URL}/get/favorites`);
     favoritesSet = await fav.json();
+    // get all the cards
     const response = await fetch(`${MASTER_URL}/get/cards/all`);
     const data = await response.json();
     console.log(data);
-    // const response = [];
+    
+    // grab set container
     console.log('handling search for sets');
     const studySetContainer = document.getElementById('studySetContainer');
     studySetContainer.innerHTML = '';
 
+    // create a set container for each set
     for (let i in data) {
         let setContainer = createSetContainer(data[i]);
         setContainer.addEventListener('click', handleSetClick);
@@ -59,6 +63,7 @@ async function main() {
 
     const favStarArray = Array.from(favoriteStar);
     console.log(favStarArray);
+
     // iterate through the favorite stars and add an event listener to each one
     favStarArray.forEach((star) => {
         const id = star.parentElement.getElementsByClassName('setId')[0].innerText;
@@ -68,7 +73,7 @@ async function main() {
         }
         star.addEventListener('click', (e) => 
     {  
-        // fetch('/favorite/set' and send the set id)
+        // update the favorites
         fetch("/update/favorites", {
             method: 'POST',
             headers: {
@@ -83,6 +88,7 @@ async function main() {
     theme();
 }
 
+// function for handling the click of a set
 function handleSetClick(e) {
     console.log('handling set click');
     const setId = e.currentTarget.getElementsByClassName('setId')[0].innerText;

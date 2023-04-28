@@ -46,11 +46,8 @@ function theme(){
 
 
 document.addEventListener('DOMContentLoaded', theme);
-// document.addEventListener('change', theme);
-// document.querySelector('body').addEventListener('DOMContentLoaded', theme);
-// document.querySelector('body').addEventListener('change', theme);
 
-
+// constantly check for theme to update DOM
 setInterval(theme, 1);
 
 

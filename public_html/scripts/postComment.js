@@ -9,7 +9,7 @@ urlParamsD = new URLSearchParams(window.location.search);
 const setId = urlParamsD.get('id');
 var iteration = false;
 
-
+// display the comments
 async function main(iteration) {
     // fetch the comments from the current set
     const response = await fetch(`${MASTER_URL}/get/comments/${setId}`);
@@ -35,6 +35,7 @@ async function main(iteration) {
     theme();
 }
 
+// post the comment
 async function postCommentD(){
     const comment = document.getElementById('newComment').value;
     console.log(comment);
@@ -55,6 +56,7 @@ async function postCommentD(){
 const commentUpload = document.getElementById('commentUpload');
 commentUpload.addEventListener('click', postCommentD);
 
+// display all the comments
 function displayComments(comments) {
     let div = document.createElement('div');
     div.className = 'comment';

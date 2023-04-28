@@ -39,26 +39,33 @@ function createSetContainer(setDoc) {
 }
 var setContainingFav = [];
 async function main() {
+    // grabs all the favorites
     const fav = await fetch(`${MASTER_URL}/get/favorites`);
     favoritesSet = await fav.json();
+    // grabts all the cards
     const response = await fetch(`${MASTER_URL}/get/cards/all`);
     const data = await response.json();
     console.log(data);
-    // const response = [];
-    console.log('handling search for sets');
+    
+
+    // grab set container
     const studySetContainer = document.getElementById('studySetContainer');
     studySetContainer.innerHTML = '';
+
+    // iterate through the favorites and fetch the favorite sets
     for (let i in favoritesSet) {
         const fav2 = await fetch(`${MASTER_URL}/get/set/${favoritesSet[i]}`);
         const fav3 = await fav2.json();
         setContainingFav.push(fav3)
     }
-    console.log(setContainingFav);
+    // iterate through the sets and create a set container for each one
     for (let i in setContainingFav) {
         let setContainer = createSetContainer(setContainingFav[i]);
+        // add event listener to each set container
         setContainer.addEventListener('click', handleSetClick);
         studySetContainer.append(setContainer);
     }
+    // find all the stars
     const favoriteStar = document.querySelectorAll('.favorite-star');
 
     const favStarArray = Array.from(favoriteStar);
@@ -72,7 +79,7 @@ async function main() {
         }
         star.addEventListener('click', (e) => 
     {  
-        // fetch('/favorite/set' and send the set id)
+        // update favorites in the database
         fetch("/update/favorites", {
             method: 'POST',
             headers: {
@@ -86,7 +93,7 @@ async function main() {
     });
     theme();
 }
-
+// event listener for clicking on a set to take them to view.html
 function handleSetClick(e) {
     console.log('handling set click');
     const setId = e.currentTarget.getElementsByClassName('setId')[0].innerText;

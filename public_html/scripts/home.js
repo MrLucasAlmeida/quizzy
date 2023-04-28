@@ -58,7 +58,7 @@ async function main() {
 
     
 
-
+    // add the rest of the options
     for (let i in data) {
         let newOption = document.createElement('option');
         // capitalize the first letter of each topic
@@ -71,7 +71,7 @@ async function main() {
     // function for adding all the sets to the page based on a search
     document.getElementById('searchBar').addEventListener('keyup', handleSearch);
     document.getElementById('searchIcon').addEventListener('click', handleSearch);
-    theme()
+    theme();
 }
 
 
@@ -80,7 +80,7 @@ async function main() {
 
 
 
-
+// function for logging out the user
 function logout(){
 
     const currentTheme = localStorage.getItem('theme');
@@ -98,13 +98,11 @@ function logout(){
     localStorage.setItem('theme', currentTheme);
 
 }
-/*
 
-*/
 // create a container that will hold a set
 function createSetContainer(setDoc) {
 
-
+    // set div
     let newDiv = document.createElement('div');
     newDiv.className = 'setContainer';
     newDiv.innerHTML += `
@@ -121,6 +119,7 @@ function createSetContainer(setDoc) {
     return newDiv;
 }
 
+// function for handling the search for keyword
 async function handleSearch(e) {
 
     console.log('checking for enter key');
@@ -183,6 +182,7 @@ async function handleSearch(e) {
     theme();
 }
 
+// function for handling the click of a set
 function handleSetClick(e) {
     console.log('handling set click');
     const setId = e.currentTarget.getElementsByClassName('setId')[0].innerText;
@@ -190,6 +190,7 @@ function handleSetClick(e) {
     theme();
 }
 
+// function for handling the selection of a topic
 async function handleMenuSelection(e) {
     console.log('handling menu selection');
     const topic = e.target.value;
@@ -209,7 +210,7 @@ async function handleMenuSelection(e) {
     favoritesSet = await fav.json();
 
 
-
+    // get the study set container
     console.log('handling search for sets');
     const studySetContainer = document.getElementById('studySetContainer');
     studySetContainer.innerHTML = '';
@@ -251,6 +252,7 @@ async function handleMenuSelection(e) {
     theme();
 }
 
+// function for handling the click of the create set button
 function theme(){
     const theme = localStorage.getItem('theme');
     if (theme === 'dark') {
