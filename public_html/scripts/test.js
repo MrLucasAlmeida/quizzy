@@ -1,3 +1,7 @@
+// script for the test page
+// Author: Lucas, Akbar
+
+
 // set the master url to localhost
 MASTER_URL = 'http://localhost:3000';
 

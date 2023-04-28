@@ -1,3 +1,5 @@
+// script for the favorite sets page
+// Author: Lucas, Akbar
 
 const MASTER_URL = 'http://localhost:3000';
 var favoritesSet = [];

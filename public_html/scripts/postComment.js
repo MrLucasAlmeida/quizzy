@@ -1,3 +1,6 @@
+// script for the posting a comment
+// Author: Lucas, Akbar
+
 MASTER_URL = 'http://localhost:3000';
 
 

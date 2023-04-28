@@ -1,5 +1,5 @@
-// import { theme } from './themeToggle.js';
-// var {theme} = required('./themeToggle.js');
+// script for the home page
+// Author: Lucas, Akbar
 
 
 MASTER_URL = 'http://localhost:3000';

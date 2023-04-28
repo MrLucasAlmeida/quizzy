@@ -1,3 +1,6 @@
+// script for the settings page
+// Author: Lucas, Akbar
+
 async function handleNewPassword(){
     const oldPassword = document.getElementById("oldPassword").value;
     const newPassword = document.getElementById("newPassword").value;

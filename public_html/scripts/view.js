@@ -1,3 +1,6 @@
+// script for the view page
+// Author: Lucas, Akbar
+
 MASTER_URL = 'http://localhost:3000';
 
 

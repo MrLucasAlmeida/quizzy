@@ -1,3 +1,6 @@
+// script for adding the profile dropdown to the page
+// Author: Lucas, Akbar
+
 const header = document.getElementById('header');
 const head = document.querySelector('head');
 MASTER_URL = 'http://localhost:3000';

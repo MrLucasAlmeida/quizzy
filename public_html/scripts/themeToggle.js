@@ -1,3 +1,7 @@
+// script for everything having to do with the theme toggling
+// Author: Lucas, Akbar
+
+
 //  check local storage for theme
 function theme(){
     const theme = localStorage.getItem('theme');

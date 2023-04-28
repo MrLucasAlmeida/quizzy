@@ -1,3 +1,6 @@
+// script for the login page
+// Author: Lucas, Akbar
+
 MASTER_URL = 'http://localhost:3000';
 
 

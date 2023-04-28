@@ -1,3 +1,6 @@
+/* css style sheet for nav bar that exists in every page except login and signup
+Author: Lucas, Akbar */
+
 #header {
     display: flex;
     flex-direction: row;

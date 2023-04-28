@@ -1,3 +1,6 @@
+// script for the create sets page
+// Author: Lucas, Akbar
+
 MASTER_URL = 'http://localhost:3000';
 var currTermNumber = 4;
 

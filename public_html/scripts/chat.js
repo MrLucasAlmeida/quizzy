@@ -1,3 +1,7 @@
+// script for the chat page
+// Author: Lucas, Akbar
+
+
 const MASTER_URL = 'http://localhost:3000'
 
 const findConversation = document.getElementById('findConversation');

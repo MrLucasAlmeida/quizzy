@@ -1,3 +1,6 @@
+// script for the leaderboard page
+// Author: Lucas, Akbar
+
 const MASTER_URL = 'http://localhost:3000';
 // This js is used to display the leaderboard for all users
 
