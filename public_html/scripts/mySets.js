@@ -2,7 +2,8 @@
 // Author: Lucas, Akbar
 
 
-const MASTER_URL = 'http://localhost:3000';
+// const MASTER_URL = 'http://localhost:3000';
+const MASTER_URL = 'http://167.172.150.50:3000';
 var favoritesSet = [];
 //----------------------------
 // TEST SET STARTS HERE

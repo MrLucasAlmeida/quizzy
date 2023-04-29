@@ -1,6 +1,9 @@
 // script for the settings page
 // Author: Lucas, Akbar
 
+// const MASTER_URL = 'http://localhost:3000';
+const MASTER_URL = 'http://167.172.150.50:3000';
+
 // handle updating the password
 async function handleNewPassword(){
     // grab the old and new password
@@ -10,7 +13,7 @@ async function handleNewPassword(){
     // check if the passwords are empty
     if (oldPassword === '' || newPassword === '') return;
 
-    const response = await fetch('/update/password', {
+    const response = await fetch(`${MASTER_URL}/update/password`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
