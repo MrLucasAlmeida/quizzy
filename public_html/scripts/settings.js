@@ -2,7 +2,9 @@
 // Author: Lucas, Akbar
 
 // const MASTER_URL = 'http://localhost:3000';
-const MASTER_URL = 'http://167.172.150.50:3000';
+// const MASTER_URL = 'http://167.172.150.50:3000';
+MASTER_URL = '';
+
 
 // handle updating the password
 async function handleNewPassword(){
@@ -37,4 +39,11 @@ async function handleNewPassword(){
     }
     // display theme
     theme();
+}
+
+
+function handleAvatarChange() {
+    const currentTheme = localStorage.getItem('theme');
+    localStorage.clear();
+    localStorage.setItem('theme', currentTheme);
 }

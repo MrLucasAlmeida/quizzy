@@ -2,7 +2,8 @@
 // Author: Lucas, Akbar
 
 // const MASTER_URL = 'http://localhost:3000';
-const MASTER_URL = 'http://167.172.150.50:3000';
+// const MASTER_URL = 'http://167.172.150.50:3000';
+MASTER_URL = '';
 // This js is used to display the leaderboard for all users
 
 // add an entry to the leaderboard

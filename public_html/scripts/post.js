@@ -2,7 +2,8 @@
 // Author: Lucas, Akbar
 
 // MASTER_URL = 'http://localhost:3000';
-MASTER_URL = 'http://167.172.150.50:3000';
+// MASTER_URL = 'http://167.172.150.50:3000';
+MASTER_URL = '';
 var currTermNumber = 4;
 
 document.getElementById("removeButton").addEventListener("click", () => {

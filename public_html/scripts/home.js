@@ -3,7 +3,8 @@
 
 
 // MASTER_URL = 'http://localhost:3000';
-MASTER_URL = 'http://167.172.150.50:3000';
+// MASTER_URL = 'http://167.172.150.50:3000';
+MASTER_URL = '';
 var favoritesSet = [];
 //----------------------------
 // TEST SET STARTS HERE

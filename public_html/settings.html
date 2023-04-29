@@ -32,7 +32,7 @@ Author: Lucas Almeida -->
     <form action="/update/avatar" method="post" enctype="multipart/form-data">
         <label for="newAvatar">Change my avatar</label>
         <input type="file" name="newAvatar" accept="image/*" required>
-        <button onclick="localStorage.clear()">Update Profile Picture</button>
+        <button onclick="handleAvatarChange()">Update Profile Picture</button>
     </form>
     <a href="./help.html"><image src="./assets/helpButton1.jpg" alt="help Button" id="helpButton"></image></a>
     <script src="./scripts/settings.js"></script>

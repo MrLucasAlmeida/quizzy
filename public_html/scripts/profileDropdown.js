@@ -4,7 +4,8 @@
 const header = document.getElementById('header');
 const head = document.querySelector('head');
 // MASTER_URL = 'http://localhost:3000';
-MASTER_URL = 'http://167.172.150.50:3000';
+// MASTER_URL = 'http://167.172.150.50:3000';
+MASTER_URL = '';
 
 // get the logged in user from cookies
 let loggedInUser = JSON.parse(decodeURIComponent(getCookie('login')).slice(2)).username;
