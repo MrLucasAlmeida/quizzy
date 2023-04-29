@@ -46,7 +46,10 @@ Styling of the star icon
     filter: invert(1);
   }
 
-
+#landingImage{
+    width: 600px;
+    height: 400px;
+}
 
 #studySetContainer {
     display: flex;

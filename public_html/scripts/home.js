@@ -11,14 +11,6 @@ var favoritesSet = [];
 const setCont = document.getElementById('studySetContainer');
 newDiv = document.createElement('div');
 newDiv.addEventListener('click', handleSetClick);
-newDiv.className = 'setContainer';
-newDiv.innerHTML += `
-        <i class="favorite-star"></i>
-        <h2 class="setId">6439983325f3e78ff8ee6d29</h2>
-        <h1>Test Title</h1>
-        <p>Test Topic</p>
-        <p>5 Terms</p>
-        <p>Test Author</p>`;
 
 setCont.append(newDiv);
 
