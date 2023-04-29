@@ -8,18 +8,18 @@ var favoritesSet = [];
 //----------------------------
 // TEST SET STARTS HERE
 // default set for testing purposes
-const setCont = document.getElementById('studySetContainer');
-newDiv = document.createElement('div');
-newDiv.addEventListener('click', handleSetClick);
-newDiv.className = 'setContainer';
-newDiv.innerHTML += `
-        <h2 class="setId">6439983325f3e78ff8ee6d29</h2>
-        <h1>Test Title</h1>
-        <p>Test Topic</p>
-        <p>5 Terms</p>
-        <p>Test Author</p>`;
+// const setCont = document.getElementById('studySetContainer');
+// newDiv = document.createElement('div');
+// newDiv.addEventListener('click', handleSetClick);
+// newDiv.className = 'setContainer';
+// newDiv.innerHTML += `
+//         <h2 class="setId">6439983325f3e78ff8ee6d29</h2>
+//         <h1>Test Title</h1>
+//         <p>Test Topic</p>
+//         <p>5 Terms</p>
+//         <p>Test Author</p>`;
 
-setCont.append(newDiv);
+// setCont.append(newDiv);
 
 // TEST SET ENDS HERE
 //----------------------------
